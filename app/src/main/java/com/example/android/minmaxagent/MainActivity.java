@@ -1,24 +1,42 @@
 package com.example.android.minmaxagent;
 
+import android.content.res.ColorStateList;
+import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public final int BOARD_SIZE = 6;
-    public final int NUMBER_OF_FRUITS = 3;
+    public final int BOARD_SIZE = 8;
+    public final int NUMBER_OF_FRUITS = 9;
+    private final int[] fruitColor = {
+            R.color.colorFruitApple,
+            R.color.colorFruitBanana,
+            R.color.colorFruitGuava,
+            R.color.colorFruitBlueberry,
+            R.color.colorFruitStrawberry,
+            R.color.colorFruitCyan,
+            R.color.colorFruitLime,
+            R.color.colorFruitOrange,
+            R.color.colorFruitGrape};
+    private final int fruitColorEmpty = R.color.colorWhite;
 
 
-
-    /**
-     * An instance of the game.
-     */
     private FruitGame game;
+    private Button btnGrid[][];
+    private GridLayout baseGrid;
+    private TextView tvTurnPlayer;
+    private TextView tvScorePlayers[];
 
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
@@ -39,25 +57,36 @@ public class MainActivity extends AppCompatActivity {
      */
     private void refreshFruits()
     {
-        // TODO Refresh the score for all players
+        // Refresh the score for all players
+        for(int i = 0; i < game.players; i++)
+        {
+            tvScorePlayers[i].setText(String.valueOf(game.scores[i]));
+        }
 
-        // Refresh the fruit Grid
+        // Refresh the turn player display
+        tvTurnPlayer.setText(String.format("Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+
+        // Refresh the fruit Grid - use the board of the game
+        byte[][] board = game.node.grid;
+
         for(int i = 0; i < BOARD_SIZE; i++)
         {
             for(int j = 0; j < BOARD_SIZE; j++)
             {
                 Button btnCurrent = findViewById(buttonLocationToID(i,j));
 
-                // Use the board of the game
-                byte[][] board = game.node.grid;
+                int value = board[i][j];
 
-                // Setting Text
-                String text =
-                        (board[i][j] == FruitNode.EMPTY)?
-                                String.valueOf(FruitNode.EMPTY_CHAR):
-                                String.valueOf(board[i][j]);
-
-                btnCurrent.setText(text);
+                // Label and Color this button based on its fruit
+                if(value == FruitNode.EMPTY) {
+                    btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
+                    btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
+                    btnCurrent.setOnClickListener(null);
+                }
+                else {
+                    btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
+                    btnCurrent.setText(String.valueOf(value));
+                }
             }
         }
     }
@@ -71,17 +100,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // GridLayout object
-        final GridLayout gridLayout = findViewById(R.id.baseGrid);
+        baseGrid = findViewById(R.id.baseGrid);
 
         // Start a new game.
         game = new FruitGame(BOARD_SIZE, NUMBER_OF_FRUITS);
 
         // Set rowCount and columnCount for GridLayout
-        gridLayout.setRowCount(BOARD_SIZE);
-        gridLayout.setColumnCount(BOARD_SIZE);
+        baseGrid.setRowCount(BOARD_SIZE);
+        baseGrid.setColumnCount(BOARD_SIZE);
+
+        tvTurnPlayer = (TextView) findViewById(R.id.turnPlayer);
+
+        tvScorePlayers = new TextView[game.players];
+        tvScorePlayers[0] = (TextView) findViewById(R.id.scoreP1);
+        tvScorePlayers[1] = (TextView) findViewById(R.id.scoreP2);
 
         // Buttons stored in a 2D grid allows for easy indexing
-        Button btnGrid[][] = new Button[BOARD_SIZE][BOARD_SIZE];
+        btnGrid = new Button[BOARD_SIZE][BOARD_SIZE];
 
         for(int i = BOARD_SIZE-1 ; i >= 0 ; i--)
         // for(int i = 0; i < BOARD_SIZE; i++)
@@ -92,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 // Creating new Button
                 btnGrid[i][j] = new Button(this);
 
-                // TODO Just a temporary reference for convenience
-                Button btnCurrent = btnGrid[i][j];
+                final Button btnCurrent = btnGrid[i][j];
 
                 // Creating and setting Button ID for row and column using formula
                 // rowID = row*10 + column
@@ -103,19 +137,13 @@ public class MainActivity extends AppCompatActivity {
                 // Adding onclick Listener for buttons
                 btnCurrent.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        // ButtonView gets selected for clicked button
-                        int row = (int)  view.getId()/10;
-                        int column = (int) view.getId() % 10;
-                        String toastString = "Clicked Button has Row: " + row + " Column: " + column ;
+                    public void onClick(View view)
+                    {
+                        // TODO Handle onClick
+                        int x = (int)btnCurrent.getId() / 10 - 1;
+                        int y = (int)btnCurrent.getId() % 10 - 1;
 
-                        //Displaying Row and Column number for clicked button as Toast on screen
-                        Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_SHORT).show();
-
-                        // TODO Instead of making a toast use this position
-                        // TODO Pass clicked position and compute board and display new board on Grid
-                        // TODO This new board should will be one after grabbing all similar fruits adjacent to clicked fruit
-                        // TODo Apply gravity before displaying new Grid
+                        new GamePlayTask().execute(x, y);
                     }
                 });
 
@@ -127,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 layoutParams.width = 0;    // Setting width to "0dp" so weight is applied instead
                 layoutParams.height = 0;   // Setting height to "0dp" so height is applied instead
                 btnCurrent.setLayoutParams(layoutParams);
-                gridLayout.addView(btnCurrent);
+                baseGrid.addView(btnCurrent);
 
                 /*gridLayout.addView(btnCurrent, new GridLayout.LayoutParams(
                         GridLayout.spec(1, GridLayout.CENTER),
@@ -136,5 +164,83 @@ public class MainActivity extends AppCompatActivity {
         }
 
         refreshFruits();
+    }
+
+    class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
+    {
+
+        @Override
+        protected void onPreExecute() {
+
+            baseGrid.setEnabled(false);
+        }
+
+        @Override
+        protected Boolean doInBackground(Integer... ints) {
+
+            // ButtonView gets selected for clicked button
+            int x = ints[0];
+            int y = ints[1];
+
+            // Human takes a move
+            if(FruitGame.DEBUG_MODE)
+                System.out.printf("The selected cell is (%d, %d)\n", x, y);
+
+            FruitNode humanResult = game.node.playHumanMove(x, y);
+            if(humanResult != null) // only update game if move was valid.
+            {
+                game.node = humanResult;
+            }
+            else {
+                System.out.println("Human made an invalid move?!?!");
+            }
+
+            // If the game can be stopped, stop it
+            if(!game.advanceTurn())
+                return false;
+
+            publishProgress();
+
+            // Sleep for a while
+            SystemClock.sleep(1000);
+
+            // AI automatically takes a move
+            if (game.isAI[game.turnPlayer])
+            {
+                FruitNode aiResult = game.playAIMove();
+
+                if(aiResult != null) // only update game if move was valid.
+                {
+                    game.node = aiResult;
+                }
+                else {
+                    if(FruitGame.DEBUG_MODE) System.out.println("AI made an invalid move? TF!");
+                }
+            }
+
+            publishProgress();
+
+            return game.advanceTurn();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            // Refresh the display
+            refreshFruits();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean advanceable)
+        {
+
+            if(!advanceable)
+            {
+                int pWinner = game.winner();
+                tvTurnPlayer.setText(String.format("P%d won the game!", pWinner));
+            }
+            else {
+                baseGrid.setEnabled(true);
+            }
+        }
     }
 }

@@ -16,7 +16,10 @@ public class FruitGame
     int turnPlayer = 0;
     int players = 2;
     boolean[] isAI = {false, true};
-    int scores[] = {0, 0};
+    int scores[];
+
+    /** Helps update the score - this value should be updated each turn */
+    int emptySquares;
 
     /** If true, prints node information to the console. */
     static final boolean DEBUG_MODE = true;
@@ -94,8 +97,6 @@ public class FruitGame
      */
     FruitGame(int boardSize, int numberOfFruits) {
 
-        // TODO (2) These values shouldn't be fixed
-
         // Start reading input
         FruitNode.n = boardSize;
         // System.out.println("Grid size (n) is " + FruitNode.n + ".");
@@ -108,8 +109,16 @@ public class FruitGame
 
         // System.out.println("Time remaining is " + durSecondsAllotted + " seconds.");
 
+        // Initialize scores
+        scores = new int[players];
+        for(int i = 0; i < players; i++)
+            scores[i] = 0;
+
         // Randomly generate the Grid
         byte[][] gridInitial = FruitUtils.createTestCase(FruitNode.n, FruitNode.p);
+
+        // Set number of empty squares
+        emptySquares = FruitUtils.numberOfEmptySquares(gridInitial);
 
         timeStart = System.nanoTime();
 
@@ -276,26 +285,12 @@ public class FruitGame
 			System.out.println("Elapsed time: " + nanosecondsToSeconds(durElapsedSinceStart) + " seconds."); */
     }
 
-    /**
-     * Goes forward to the next turn.
-     */
-    private void advanceTurn() {
-        turnPlayer = (turnPlayer+1)%players;
 
-        if(DEBUG_MODE)
-        {
-            System.out.printf("\nPlayer %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer])?"AI":"Human"));
-            System.out.print("Current scores are: ");
-            for(int i : scores)
-                System.out.print(i+" ");
-            System.out.println("\nCurrently board is:\n"+ FruitUtils.gridStringPretty(node.grid)+"\n");
-        }
-    }
 
     /**
      * Play a move of the game using the AI.
      */
-    private FruitNode playAIMove()
+    FruitNode playAIMove()
     {
         // Set it to become a root again
         node.depth = 0;
@@ -391,6 +386,45 @@ public class FruitGame
 
     }
 
+    /**
+     * Updates score and Goes forward to the next turn.
+     * @return true if the game has finished.
+     */
+    boolean advanceTurn()
+    {
+
+        // Update scores
+        int beforeFruits = emptySquares;
+        int afterFruits = FruitUtils.numberOfEmptySquares(node.grid);
+
+        int scoreGain = afterFruits-beforeFruits;
+        scoreGain = scoreGain * scoreGain;
+        scores[turnPlayer] += scoreGain;
+
+        if(!node.isTerminalNode()) {
+
+            // Update number of empty scores
+            emptySquares = afterFruits;
+
+            // Next turn
+            turnPlayer = (turnPlayer + 1) % players;
+
+            if (DEBUG_MODE) {
+                System.out.printf("\nPlayer %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer]) ? "AI" : "Human"));
+                System.out.print("Current scores are: ");
+                for (int i : scores)
+                    System.out.print(i + " ");
+                System.out.println("\nCurrently board is:\n" + FruitUtils.gridStringPretty(node.grid) + "\n");
+            }
+
+            return true;
+
+        }
+        else {
+            return true;
+        }
+    }
+
     int winner()
     {
         int maxIndex = -1;
@@ -420,10 +454,7 @@ public class FruitGame
         // Start with a random player.
         game.turnPlayer = FruitUtils.RAND.nextInt(game.players);
 
-        while (!game.node.isTerminalNode())
-        {
-
-            int beforeFruits = FruitUtils.numberOfEmptySquares(game.node.grid);
+        do {
 
             if (game.isAI[game.turnPlayer]) {
                 FruitNode aiResult = game.playAIMove();
@@ -454,16 +485,8 @@ public class FruitGame
                 }
 
             }
-
-            int afterFruits = FruitUtils.numberOfEmptySquares(game.node.grid);
-
-            int scoreGain = afterFruits-beforeFruits;
-            scoreGain = scoreGain * scoreGain;
-            game.scores[game.turnPlayer] += scoreGain;
-
-            game.advanceTurn();
-
         }
+        while(game.advanceTurn());
 
         game.winner();
     }

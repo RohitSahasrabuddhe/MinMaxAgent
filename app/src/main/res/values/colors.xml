@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="colorFruitApple">#ff3d00</color>
+    <color name="colorFruitBanana">#ffea00</color>
+    <color name="colorFruitBlueberry">#304ffe</color>
+    <color name="colorFruitGuava">#64dd17</color>
+    <color name="colorFruitStrawberry">#ff3af5</color>
+    <color name="colorFruitOrange">#ff8f00</color>
+    <color name="colorFruitCyan">#4dd0e1</color>
+    <color name="colorFruitGrape">#6a00ff</color>
+    <color name="colorFruitLime">#c6ff00</color>
+
 </resources>
