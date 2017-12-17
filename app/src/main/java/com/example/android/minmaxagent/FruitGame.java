@@ -2,7 +2,6 @@ package com.example.android.minmaxagent;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * A single INSTANCE of the FruitRage game.
@@ -13,10 +12,11 @@ public class FruitGame
 {
 
     private float timeAlloted;
-    private FruitNode initNode;
-    private int turnPlayer = 0;
-    private int players = 2;
-    private boolean[] isAI = {false, true};
+    FruitNode node;
+    int turnPlayer = 0;
+    int players = 2;
+    boolean[] isAI = {false, true};
+    int scores[] = {0, 0};
 
     /** If true, prints node information to the console. */
     static final boolean DEBUG_MODE = true;
@@ -92,15 +92,15 @@ public class FruitGame
      * Reads the input from the text files in the format specified, and returns
      * a byte array corresponding to the initial grid.
      */
-    FruitGame() {
+    FruitGame(int boardSize, int numberOfFruits) {
 
         // TODO (2) These values shouldn't be fixed
 
         // Start reading input
-        FruitNode.n = 6;
+        FruitNode.n = boardSize;
         // System.out.println("Grid size (n) is " + FruitNode.n + ".");
 
-        FruitNode.p = 3;
+        FruitNode.p = numberOfFruits;
         // System.out.println("Fruit types (p) are " + FruitNode.p + ".");
 
         float durSecondsAllotted = 5.0f;
@@ -116,11 +116,11 @@ public class FruitGame
         timeLimitExceeded = false;
 
         // Create starting node
-        initNode = new FruitNode(gridInitial);
+        node = new FruitNode(gridInitial);
 
-        // System.out.println("\nStarting configuration: \n" + initNode + "\n");
+        // System.out.println("\nStarting configuration: \n" + node + "\n");
 
-        initNode.gravitate();
+        node.gravitate();
     }
 
     /**
@@ -282,20 +282,25 @@ public class FruitGame
     private void advanceTurn() {
         turnPlayer = (turnPlayer+1)%players;
 
-        if(DEBUG_MODE) System.out.printf("Player %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer])?"AI":"Human"));
-
-
+        if(DEBUG_MODE)
+        {
+            System.out.printf("\nPlayer %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer])?"AI":"Human"));
+            System.out.print("Current scores are: ");
+            for(int i : scores)
+                System.out.print(i+" ");
+            System.out.println("\nCurrently board is:\n"+ FruitUtils.gridStringPretty(node.grid)+"\n");
+        }
     }
 
     /**
-     * Play a turn of the game using the AI.
+     * Play a move of the game using the AI.
      */
-    private void playAITurn()
+    private FruitNode playAIMove()
     {
         // Set it to become a root again
-        initNode.depth = 0;
+        node.depth = 0;
 
-        List<FruitNode> children = initNode.generateChildren();
+        List<FruitNode> children = node.generateChildren();
 
         // Assign a random legal move in case time runs out - this appears to be slower
         // fallbackChild = children.get(new Random().nextInt(children.size()));
@@ -382,63 +387,85 @@ public class FruitGame
         }
 
         // The solution is in BestChildSaved
-        initNode = bestChildSaved;
-
-        if(DEBUG_MODE) System.out.println("\nCurrently board is:\n"+initNode);
-
-        advanceTurn();
+        return bestChildSaved;
 
     }
 
-
-    /**
-     * Plays the game until someone wins. start with random player
-     * @return
-     */
-    int play()
+    int winner()
     {
+        int maxIndex = -1;
+        int maxScore = Integer.MIN_VALUE;
+
+        for(int i = 0; i < scores.length; i++)
+        {
+            if(scores[i] > maxScore)
+            {
+                maxIndex = i;
+                maxScore = scores[i];
+            }
+        }
+
+        if(DEBUG_MODE) System.out.println("The winner is player "+maxIndex+((isAI[maxIndex])?" (AI).":" (Human)."));
+
+        return maxIndex;
+    }
+
+
+    public static void main(String[] args) {
+
+        FruitGame game = new FruitGame(6, 6);
+
         int winner = -1;
 
         // Start with a random player.
-        turnPlayer = (int)(Math.random()*players);
+        game.turnPlayer = FruitUtils.RAND.nextInt(game.players);
 
-        while (!initNode.isTerminalNode()) {
+        while (!game.node.isTerminalNode())
+        {
 
+            int beforeFruits = FruitUtils.numberOfEmptySquares(game.node.grid);
 
-            if (isAI[turnPlayer]) {
-                playAITurn();
+            if (game.isAI[game.turnPlayer]) {
+                FruitNode aiResult = game.playAIMove();
+
+                if(aiResult != null) // only update game if move was valid.
+                {
+                    game.node = aiResult;
+                }
+                else {
+                    if(DEBUG_MODE) System.out.println("AI made an invalid move? TF!");
+                }
             }
 
             // If it's a human player
             else {
-                // Scanner in = new Scanner(System.in);
 
-                if(DEBUG_MODE) System.out.println("Enter the move you want to make (x y): ");
-                int x = 0;
-                int y = 0;
-                if(DEBUG_MODE) System.out.println("("+x+", "+y+") chosen.");
+                if(FruitGame.DEBUG_MODE) System.out.print("Enter the move you want to make (x, y): ");
 
-                // TODO (1) Add code to finish this move
-                initNode.playMove(x, y);
+                // Add code to finish this move
+                int x = FruitUtils.RAND.nextInt(FruitNode.n);
+                int y = FruitUtils.RAND.nextInt(FruitNode.n);
+                System.out.printf("(%d, %d)\n", x, y);
 
-                // in.close();
+                FruitNode humanResult = game.node.playHumanMove(x, y);
+                if(humanResult != null) // only update game if move was valid.
+                {
+                    game.node = humanResult;
+                }
 
-                advanceTurn();
             }
+
+            int afterFruits = FruitUtils.numberOfEmptySquares(game.node.grid);
+
+            int scoreGain = afterFruits-beforeFruits;
+            scoreGain = scoreGain * scoreGain;
+            game.scores[game.turnPlayer] += scoreGain;
+
+            game.advanceTurn();
 
         }
 
-        // TODO (3) Keep track of score
-
-        return winner;
-    }
-
-    public static void main(String[] args) {
-
-        FruitGame game = new FruitGame();
-
-        System.out.println(game.play()+" won the game.");
-
+        game.winner();
     }
 
 }

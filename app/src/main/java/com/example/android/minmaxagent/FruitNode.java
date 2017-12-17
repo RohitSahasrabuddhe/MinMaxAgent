@@ -237,13 +237,11 @@ class FruitNode implements Comparable<FruitNode> {
         return children;
     }
 
-
-    // TODO (4) The human player's move seems to be malfunctioning
     /**
      * Returns the FruitNode created as a result of playing a move -
      * i.e. 'picking' a particular node.
      */
-    FruitNode playMove(int x, int y)
+    FruitNode playHumanMove(int x, int y)
     {
 
         // FruitGridPoint seed = new FruitGridPoint(x, y, this.grid[x][y]);
@@ -254,6 +252,8 @@ class FruitNode implements Comparable<FruitNode> {
         int value = this.grid[x][y];
 
         FruitNode child = null;
+
+        int utilityIncrease = 0;
 
         if(value != EMPTY) {
 
@@ -290,7 +290,7 @@ class FruitNode implements Comparable<FruitNode> {
              * Record the score of this move by increasing utility - it should
              * be increased by n^2.
              */
-            int utilityIncrease = action.size() * action.size();
+            utilityIncrease = action.size() * action.size();
 
             // if it is a Min-Node, move is opponent's, so make this negative
             if (!this.isMaxNode())
@@ -305,17 +305,16 @@ class FruitNode implements Comparable<FruitNode> {
 
             // Apply gravity
             child.gravitate();
-
-
-
         }
         else {
             if(FruitGame.DEBUG_MODE)
             {
-                System.err.println("invalid move?");
+                System.out.printf("%s seems to be an invalid move [!]\n", FruitGridPoint.pointToMoveString(x, y));
             }
         }
 
+        if(FruitGame.DEBUG_MODE)
+            System.out.printf("Move for human given by %s (%d pts).\n", FruitGridPoint.pointToMoveString(x, y), utilityIncrease);
 
         return child;
     }
