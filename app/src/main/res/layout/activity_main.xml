@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.minmaxagent.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
+        <GridLayout
+            android:id="@+id/baseGrid"
+            android:layout_width="368dp"
+            android:layout_height="495dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+        </GridLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
