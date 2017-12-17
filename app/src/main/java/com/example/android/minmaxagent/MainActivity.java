@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +18,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final int BOARD_SIZE = 4;
-    public final int NUMBER_OF_FRUITS = 3;
+    public final int BOARD_SIZE = 8;
+    public final int NUMBER_OF_FRUITS = 6;
+
+    //TODO instead of Fruits we can use images
     private final int[] fruitColor = {
             R.color.colorFruitApple,
             R.color.colorFruitBanana,
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private GridLayout baseGrid;
     private TextView tvTurnPlayer;
     private TextView tvScorePlayers[];
+    private LinearLayout scoreLayout , player1Score , player2Score;
 
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
@@ -64,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Refresh the turn player display
-        tvTurnPlayer.setText(String.format("Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+        //tvTurnPlayer.setText(String.format("Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+        tvTurnPlayer.setText(String.format("Turn of %s", (game.isAI[game.turnPlayer])?"AI":"Human"));
 
         // Refresh the fruit Grid - use the board of the game
         byte[][] board = game.node.grid;
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
                     btnCurrent.setOnClickListener(null);
 
-                    // TODO should this be invisible or disabled? idk
+                    // COMPLETED should this be invisible or disabled? idk Ans: Visible but empty
                     btnCurrent.setVisibility(View.INVISIBLE);
 
                 }
@@ -102,6 +107,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        //Setting width of score layouts half of parents width
+        //earlier they were of wrapping parents and matchinng content
+
+        scoreLayout = findViewById(R.id.scoreLayout);
+        player1Score = findViewById(R.id.player1Score);
+        player2Score = findViewById(R.id.player2Score);
+
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                1.0f
+        );
+        player1Score.setLayoutParams(param);
+
+        player2Score.setLayoutParams(param);
+
 
         // GridLayout object
         baseGrid = findViewById(R.id.baseGrid);

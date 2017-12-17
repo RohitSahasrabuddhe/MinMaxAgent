@@ -11,11 +11,14 @@
 
     <LinearLayout
         android:id="@+id/scoreLayout"
+        android:background="@drawable/grid_row_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/player1Score"
+            android:background="@drawable/grid_row_border"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,6 +44,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/player2Score"
+            android:background="@drawable/grid_row_border"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -67,15 +72,15 @@
 
     <GridLayout
         android:id="@+id/baseGrid"
+        android:background="@drawable/grid_row_border"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:useDefaultMargins="true">
-
-
     </GridLayout>
 
     <LinearLayout
+        android:background="@drawable/grid_row_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
