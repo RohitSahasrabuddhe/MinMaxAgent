@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final int BOARD_SIZE = 8;
-    public final int NUMBER_OF_FRUITS = 9;
+    public final int BOARD_SIZE = 4;
+    public final int NUMBER_OF_FRUITS = 3;
     private final int[] fruitColor = {
             R.color.colorFruitApple,
             R.color.colorFruitBanana,
@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                     btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
                     btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
                     btnCurrent.setOnClickListener(null);
+
+                    // TODO should this be invisible or disabled? idk
+                    btnCurrent.setVisibility(View.INVISIBLE);
+
                 }
                 else {
                     btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
@@ -186,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             if(FruitGame.DEBUG_MODE)
                 System.out.printf("The selected cell is (%d, %d)\n", x, y);
 
-            FruitNode humanResult = game.node.playHumanMove(x, y);
+            FruitNode humanResult = game.playHumanMove(x, y);
             if(humanResult != null) // only update game if move was valid.
             {
                 game.node = humanResult;

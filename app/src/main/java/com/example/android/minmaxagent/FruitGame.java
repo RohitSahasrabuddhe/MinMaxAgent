@@ -1,5 +1,6 @@
 package com.example.android.minmaxagent;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class FruitGame
      * <br>
      * For the IDS variant, this keeps on changing.
      */
-    private int depth = 3;
+    private int depthToSearch = 3;
 
     /**
      * Never explore beyond these many levels.
@@ -62,7 +63,7 @@ public class FruitGame
 
     private long durAllotToMove;
 
-    // What if this happened when depth was 1?
+    // What if this happened when depthToSearch was 1?
     /** Must be initialized */
     private boolean timeLimitExceeded;
 
@@ -144,7 +145,7 @@ public class FruitGame
         if (node.isTerminalNode()) {
 			
 			/*if (FruitGame.DEBUG_MODE) {
-				for (int i = 0; i < node.depth; i++)
+				for (int i = 0; i < node.depthToSearch; i++)
 					System.out.print(DEPTH_SEPARATOR);
 
 				System.out.format("%s value (terminal node) computed to be %d\n", (node.isMaxNode()) ? "Max" : "Min",
@@ -167,7 +168,7 @@ public class FruitGame
 
                     timeLimitExceeded = true;
 
-                    if(depth == 1)
+                    if(depthToSearch == 1)
                     {
                         emergencyExit();
                     }
@@ -184,12 +185,12 @@ public class FruitGame
             else
                 Collections.sort(children);
 
-            // Evaluation procedure for depth-cutoff
+            // Evaluation procedure for depthToSearch-cutoff
             if (node.depth >= cutoff) {
 				
 				/*if (FruitGame.DEBUG_MODE) {
 
-					for (int i = 0; i < node.depth; i++)
+					for (int i = 0; i < node.depthToSearch; i++)
 						System.out.print(DEPTH_SEPARATOR);
 
 					System.out.format("%s value (cutoff node) computed to be %d\n", (node.isMaxNode()) ? "Max" : "Min",
@@ -210,7 +211,7 @@ public class FruitGame
                         {
 							
 							/*if (FruitGame.DEBUG_MODE) {
-								for (int i = 0; i < node.depth; i++)
+								for (int i = 0; i < node.depthToSearch; i++)
 									System.out.print(DEPTH_SEPARATOR);
 
 								System.out.println("Max value (pruned) computed to be " + v);
@@ -232,7 +233,7 @@ public class FruitGame
                         {
 							/*if (FruitGame.DEBUG_MODE) {
 
-								for (int i = 0; i < node.depth; i++)
+								for (int i = 0; i < node.depthToSearch; i++)
 									System.out.print(DEPTH_SEPARATOR);
 
 								System.out.println("Min value (pruned) computed to be " + v);
@@ -249,7 +250,7 @@ public class FruitGame
 
 		/*if (FruitGame.DEBUG_MODE) {
 
-			for (int i = 0; i < node.depth; i++)
+			for (int i = 0; i < node.depthToSearch; i++)
 				System.out.print(DEPTH_SEPARATOR);
 
 			System.out.println("Minimax value computed to be " + v);
@@ -263,7 +264,7 @@ public class FruitGame
      */
     private void emergencyExit() {
 
-        System.out.println("Emergency exit! A random move will be chosen.\n");
+        if(DEBUG_MODE) System.out.println("Emergency exit! A random move will be chosen.\n");
         bestChildSaved = fallbackChild;
         bestChildUtilitySaved = fallbackChild.moveFromParentScore;
 
@@ -303,20 +304,21 @@ public class FruitGame
         // Maximize pruning?
         Collections.sort(children, Collections.reverseOrder());
 
-        // Assign the greediest legal move in case time runs out.
-        fallbackChild = children.get(0);
-
         FruitNode bestChild;
         int bestChildUtility;
 
         // Check if no children exist!
-        if (!children.isEmpty()) {
+        if (!children.isEmpty())
+        {
+
+            // Assign the greediest legal move in case time runs out.
+            fallbackChild = children.get(0);
 
             // Check time remaining
             updateRemainingTime();
             // System.out.printf("Remaining time is %.3f seconds.\n", nanosecondsToSeconds(durRemaining));
 
-            // Approximately calculate how much time the depth-searching in
+            // Approximately calculate how much time the depthToSearch-searching in
             // TOTAL should take.
             durAllotToMove = durRemaining / children.size() * 2;
 
@@ -325,9 +327,9 @@ public class FruitGame
 
             timeMovesearchStart = System.nanoTime();
 
-            // depth is global
-            for (depth = 1; depth < MAX_DEPTH; depth++) {
-                // System.out.println("\nGoing to depth " + depth + ".");
+            // depthToSearch is global
+            for (depthToSearch = 1; depthToSearch < MAX_DEPTH; depthToSearch++) {
+                // System.out.println("\nGoing to depthToSearch " + depthToSearch + ".");
 
                 bestChild = null;
                 bestChildUtility = -INF;
@@ -335,7 +337,7 @@ public class FruitGame
                 for (int i = 0; i < children.size(); i++) {
                     FruitNode currentChild = children.get(i);
 
-                    int currentChildUtility = minimaxValue(currentChild, -INF, +INF, depth);
+                    int currentChildUtility = minimaxValue(currentChild, -INF, +INF, depthToSearch);
 
                     if (currentChildUtility > bestChildUtility) {
                         bestChild = currentChild;
@@ -348,16 +350,16 @@ public class FruitGame
                     bestChildSaved = bestChild;
                     bestChildUtilitySaved = bestChildUtility;
 
-                        /*System.out.println("At this depth, max value (root) is " + bestChildUtilitySaved + " given by "
+                        /*System.out.println("At this depthToSearch, max value (root) is " + bestChildUtilitySaved + " given by "
                                 + bestChildSaved.moveFromParent + " (" + bestChildSaved.moveFromParentScore
                                 + " pts).\n");*/
 
                     long durIterationsSoFar = System.nanoTime() - timeMovesearchStart;
-                        /*System.out.printf("So far, depth searching took %.3f seconds.\n",
+                        /*System.out.printf("So far, depthToSearch searching took %.3f seconds.\n",
                                 nanosecondsToSeconds(durIterationsSoFar));*/
 
-                    if (durIterationsSoFar * (depth) > durAllotToMove) {
-                        // System.out.println("Searching the next depth will be too expensive.");
+                    if (durIterationsSoFar * (depthToSearch) > durAllotToMove) {
+                        // System.out.println("Searching the next depthToSearch will be too expensive.");
                         break;
                     }
 
@@ -368,22 +370,103 @@ public class FruitGame
 
             }
 
-            if (timeLimitExceeded && depth > 1)
-                depth -= 1;
+            if (timeLimitExceeded && depthToSearch > 1)
+                depthToSearch -= 1;
 
             System.out.println("Final max value (root) is " + bestChildUtilitySaved + " given by "
                     + bestChildSaved.moveFromParent + " (" + bestChildSaved.moveFromParentScore
-                    + " pts) for cutoff " + depth + ".");
+                    + " pts) for cutoff " + depthToSearch + ".");
         }
-        // Find the move to perform
         else {
-            // moveToPlay = "";
-            // Handle this in finish(FruitNode)
+            if(DEBUG_MODE)
+                System.out.println("Something's wrong, no children generated for AI move.");
         }
 
         // The solution is in BestChildSaved
         return bestChildSaved;
 
+    }
+
+    /**
+     * Returns the FruitNode created as a result of playing a move -
+     * i.e. 'picking' a particular node.
+     */
+    FruitNode playHumanMove(int x, int y)
+    {
+
+        // FruitGridPoint seed = new FruitGridPoint(x, y, this.grid[x][y]);
+
+        // Set it to become a root again
+        node.depth = 0;
+
+        int value = node.grid[x][y];
+
+        FruitNode child = null;
+
+        int utilityIncrease = 0;
+
+        if(value != FruitNode.EMPTY) {
+
+            // Check all possible squares
+            boolean[][] visited = new boolean[FruitNode.n][FruitNode.n];
+            for (int i = 0; i < FruitNode.n; i++) {
+                for (int j = 0; j < FruitNode.n; j++) {
+                    visited[i][j] = false;
+                }
+            }
+
+            List<FruitGridPoint> action = new ArrayList<>();
+            node.markGroups(action, visited, x, y, value);
+
+            // We now the point, upon selection of which a new child is formed
+		/*if (FruitGame.DEBUG_MODE)
+			System.out.format("%d possible move(s) from this node.\n", groupPoints.size());*/
+
+            // These will be ordered in the minimax call.
+
+            // Copy the grid
+            byte[][] childGrid = new byte[FruitNode.n][FruitNode.n];
+            for (int i = 0; i < node.grid.length; i++) {
+                for (int j = 0; j < node.grid[i].length; j++) {
+                    childGrid[i][j] = node.grid[i][j];
+                }
+            }
+
+            // Blank out this group in the grid
+            for (FruitGridPoint point : action)
+                childGrid[point.x][point.y] = FruitNode.EMPTY;
+
+            /**
+             * Record the score of this move by increasing utility - it should
+             * be increased by n^2.
+             */
+            utilityIncrease = action.size() * action.size();
+
+            // if it is a Min-Node, move is opponent's, so make this negative
+            if (!node.isMaxNode())
+                utilityIncrease = -utilityIncrease;
+
+            // Record which move was played
+            String movePlayed = FruitGridPoint.pointToMoveString(action.get(0).x, action.get(0).y);
+
+            // Create a new node with this configuration
+            child = new FruitNode(childGrid, node.depth + 1,
+                    (node.utilityPassedDown + utilityIncrease), movePlayed, utilityIncrease);
+
+            // Apply gravity
+            child.gravitate();
+        }
+        else {
+            if(FruitGame.DEBUG_MODE)
+            {
+                System.out.printf("%s seems to be an invalid move [!]\n", FruitGridPoint.pointToMoveString(x, y));
+            }
+        }
+
+        if(FruitGame.DEBUG_MODE)
+            System.out.printf("Move for human given by %s (%d pts).\n", FruitGridPoint.pointToMoveString(x, y), utilityIncrease);
+
+        return child;
     }
 
     /**
@@ -478,7 +561,7 @@ public class FruitGame
                 int y = FruitUtils.RAND.nextInt(FruitNode.n);
                 System.out.printf("(%d, %d)\n", x, y);
 
-                FruitNode humanResult = game.node.playHumanMove(x, y);
+                FruitNode humanResult = game.playHumanMove(x, y);
                 if(humanResult != null) // only update game if move was valid.
                 {
                     game.node = humanResult;

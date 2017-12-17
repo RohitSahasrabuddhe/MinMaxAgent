@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class FruitUtils {
 
-    private static final double HOLE_PROBABILITY = 0.1;
+    private static final double HOLE_PROBABILITY = 0;
 
     static final Random RAND = new Random();
 
