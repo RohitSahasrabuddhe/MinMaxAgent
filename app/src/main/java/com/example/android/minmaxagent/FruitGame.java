@@ -283,6 +283,8 @@ public class FruitGame
         turnPlayer = (turnPlayer+1)%players;
 
         if(DEBUG_MODE) System.out.printf("Player %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer])?"AI":"Human"));
+
+
     }
 
     /**
@@ -290,6 +292,8 @@ public class FruitGame
      */
     private void playAITurn()
     {
+        // Set it to become a root again
+        initNode.depth = 0;
 
         List<FruitNode> children = initNode.generateChildren();
 
@@ -395,7 +399,11 @@ public class FruitGame
     {
         int winner = -1;
 
+        // Start with a random player.
+        turnPlayer = (int)(Math.random()*players);
+
         while (!initNode.isTerminalNode()) {
+
 
             if (isAI[turnPlayer]) {
                 playAITurn();
@@ -403,20 +411,24 @@ public class FruitGame
 
             // If it's a human player
             else {
-                Scanner in = new Scanner(System.in);
+                // Scanner in = new Scanner(System.in);
 
-                System.out.print("Enter the move you want to make (x y): ");
-                // int x = in.nextInt();
-                // int y = in.nextInt();
+                if(DEBUG_MODE) System.out.println("Enter the move you want to make (x y): ");
+                int x = 0;
+                int y = 0;
+                if(DEBUG_MODE) System.out.println("("+x+", "+y+") chosen.");
 
                 // TODO (1) Add code to finish this move
+                initNode.playMove(x, y);
 
-                in.close();
+                // in.close();
 
                 advanceTurn();
             }
 
         }
+
+        // TODO (3) Keep track of score
 
         return winner;
     }

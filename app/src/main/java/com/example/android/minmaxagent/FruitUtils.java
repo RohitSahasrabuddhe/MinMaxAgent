@@ -91,4 +91,28 @@ public class FruitUtils {
 
         return sb.toString();
     }
+
+    /**
+     * Counts the number of squares with value EMPTY in an nxn byte grid.<br>
+     * <br>
+     * Helps compute the score difference.
+     */
+    static int numberOfEmptySquares(byte[][] grid)
+    {
+        int n = grid.length;
+
+        int count = 0;
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(grid[i][j] == FruitNode.EMPTY)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
 }

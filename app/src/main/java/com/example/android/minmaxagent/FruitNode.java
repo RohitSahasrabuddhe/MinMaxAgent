@@ -135,7 +135,7 @@ class FruitNode implements Comparable<FruitNode> {
 
     /** Check if all spaces are empty. */
     boolean isTerminalNode() {
-        
+
         // Check if any of the grid spaces contains a fruit
         for (int i = 0; i < FruitNode.n; i++) {
             for (int j = 0; j < FruitNode.n; j++) {
@@ -237,8 +237,96 @@ class FruitNode implements Comparable<FruitNode> {
         return children;
     }
 
+
+    // TODO (4) The human player's move seems to be malfunctioning
     /**
-     * Marks all the groups of matching fruits with a given 'value' as visited.
+     * Returns the FruitNode created as a result of playing a move -
+     * i.e. 'picking' a particular node.
+     */
+    FruitNode playMove(int x, int y)
+    {
+
+        // FruitGridPoint seed = new FruitGridPoint(x, y, this.grid[x][y]);
+
+        // Set it to become a root again
+        this.depth = 0;
+
+        int value = this.grid[x][y];
+
+        FruitNode child = null;
+
+        if(value != EMPTY) {
+
+            // Check all possible squares
+            boolean[][] visited = new boolean[n][n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    visited[i][j] = false;
+                }
+            }
+
+            List<FruitGridPoint> action = new ArrayList<>();
+            markGroups(action, visited, x, y, value);
+
+            // We now the point, upon selection of which a new child is formed
+		/*if (FruitGame.DEBUG_MODE)
+			System.out.format("%d possible move(s) from this node.\n", groupPoints.size());*/
+
+            // These will be ordered in the minimax call.
+
+            // Copy the grid
+            byte[][] childGrid = new byte[FruitNode.n][FruitNode.n];
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[i].length; j++) {
+                    childGrid[i][j] = grid[i][j];
+                }
+            }
+
+            // Blank out this group in the grid
+            for (FruitGridPoint point : action)
+                childGrid[point.x][point.y] = FruitNode.EMPTY;
+
+            /**
+             * Record the score of this move by increasing utility - it should
+             * be increased by n^2.
+             */
+            int utilityIncrease = action.size() * action.size();
+
+            // if it is a Min-Node, move is opponent's, so make this negative
+            if (!this.isMaxNode())
+                utilityIncrease = -utilityIncrease;
+
+            // Record which move was played
+            String movePlayed = FruitGridPoint.pointToMoveString(action.get(0).x, action.get(0).y);
+
+            // Create a new node with this configuration
+            child = new FruitNode(childGrid, this.depth + 1,
+                    (this.utilityPassedDown + utilityIncrease), movePlayed, utilityIncrease);
+
+            // Apply gravity
+            child.gravitate();
+
+
+
+        }
+        else {
+            if(FruitGame.DEBUG_MODE)
+            {
+                System.err.println("invalid move?");
+            }
+        }
+
+
+        return child;
+    }
+
+    /**
+     * Marks all the groups of matching fruits with a given 'value' as visited.<br>
+     *     <br>
+     *         Checks the grid value at current location - if it is equal to the value
+     *         specified, and the cell has not been visited, the point is added to the
+     *         current group, and the cell is marked as visited. The process is repeated
+     *         for the surrounding 4 squares, recursively.
      */
     private void markGroups(List<FruitGridPoint> currentGroup, boolean[][] visited, int i, int j, int value) {
 
