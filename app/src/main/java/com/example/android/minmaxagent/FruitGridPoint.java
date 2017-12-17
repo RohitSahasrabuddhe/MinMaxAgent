@@ -59,7 +59,7 @@ class FruitGridPoint {
         StringBuilder sb = new StringBuilder();
 
         sb.append((char) ('A' + y));
-        sb.append(FruitRageNode.n - x);
+        sb.append(FruitNode.n - x);
 
         return sb.toString();
     }

@@ -7,41 +7,41 @@ import java.util.List;
  * Created by siddh on 12/16/2017.
  */
 
-public class FruitRageNode implements Comparable<FruitRageNode> {
+class FruitNode implements Comparable<FruitNode> {
 
     /** Width and height of the square board (0 < n <= 26) */
-    public static int n;
+    static int n;
 
     /** Number of fruit types (0 < p <= 9) */
-    public static int p;
+    static int p;
 
     /** The value used for empty spaces on the grid */
-    public static final byte EMPTY = -1;
+    static final byte EMPTY = -1;
 
     /** How the empty spaces are displayed */
-    public static final char EMPTY_CHAR = '*';
+    static final char EMPTY_CHAR = '*';
 
     // Now begin the instance variables.
 
     /** Stores all the fruit positions. */
-    public byte[][] grid;
+    byte[][] grid;
 
     /**
      * Measures how deep the tree has become. Also specifies whether it is a MIN
      * or a MAX node; for a MAX node, the value of depth will be even (since it
      * starts from 0).
      */
-    public int depth;
+    int depth;
 
     /**
      * Records the move that the parent node played to result in this child.
      */
-    public String moveFromParent;
+    String moveFromParent;
 
     /**
      * Records the score gained by parent while generating this child.
      */
-    public int moveFromParentScore;
+    int moveFromParentScore;
 
     /**
      * The utility value of the node.<br>
@@ -49,16 +49,16 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
      * This value is only valid for terminal nodes. For any non-terminal node,
      * the utility value is always calculated by using Minimax.
      */
-    public int utilityPassedDown;
+    int utilityPassedDown;
 
 	/*
-	 * public FruitRageNode() { for(int i = 0; i < n; i++) for(int j = 0; j < n;
+	 * FruitNode() { for(int i = 0; i < n; i++) for(int j = 0; j < n;
 	 * j++) grid[i][j] = EMPTY;
 	 *
 	 * depth = 0; }
 	 */
 
-    public FruitRageNode(byte[][] gridParam) {
+    FruitNode(byte[][] gridParam) {
         this.grid = gridParam;
         this.depth = 0;
         this.utilityPassedDown = 0;
@@ -66,7 +66,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
         this.moveFromParentScore = 0;
     }
 
-    public FruitRageNode(byte[][] gridParam, int depth, int utilityGain, String move, int score) {
+    FruitNode(byte[][] gridParam, int depth, int utilityGain, String move, int score) {
         this.grid = gridParam;
         this.depth = depth;
         this.utilityPassedDown += utilityGain;
@@ -80,7 +80,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
      * Alters the current grid in such a way that all empty spaces rise to the
      * top.
      */
-    public void gravitate() {
+    void gravitate() {
 
         // Go column-wise
         for (int j = 0; j < n; j++)
@@ -107,7 +107,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
      * This is decided by the depth of the game tree at that point; if it is
      * even, it's a max node.
      */
-    public boolean isMaxNode() {
+    boolean isMaxNode() {
         return depth % 2 == 0;
     }
 
@@ -117,7 +117,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
      * The sort order is used descending or max-nodes, ascending for min-nodes.
      */
     @Override
-    public int compareTo(FruitRageNode otherNode) {
+    public int compareTo(FruitNode otherNode) {
         //noinspection UnnecessaryBoxing
         return Integer.valueOf(this.moveFromParentScore).compareTo(Integer.valueOf(otherNode.moveFromParentScore));
     }
@@ -134,11 +134,12 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
     }
 
     /** Check if all spaces are empty. */
-    public boolean isTerminalNode() {
+    boolean isTerminalNode() {
+        
         // Check if any of the grid spaces contains a fruit
-        for (int i = 0; i < FruitRageNode.n; i++) {
-            for (int j = 0; j < FruitRageNode.n; j++) {
-                if (this.grid[i][j] != FruitRageNode.EMPTY)
+        for (int i = 0; i < FruitNode.n; i++) {
+            for (int j = 0; j < FruitNode.n; j++) {
+                if (this.grid[i][j] != FruitNode.EMPTY)
                     return false;
             }
         }
@@ -149,11 +150,11 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
     /**
      * Return all the children for this node. Check all the possible moves -
      * each child corresponds to one move.
-
      */
-    public List<FruitRageNode> generateChildren() {
+    List<FruitNode> generateChildren()
+    {
 
-        List<FruitRageNode> children = new ArrayList<>();
+        List<FruitNode> children = new ArrayList<>();
 
         /**
          * Stores all the non-duplicated points that form a single group.
@@ -181,7 +182,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
                         groupPoints.add(currentGroup);
 
 					/*
-					 * if(homework.DEBUG_MODE)
+					 * if(FruitGame.DEBUG_MODE)
 					 * System.out.format("%d square(s) in this group of %d's.\n"
 					 * , currentGroup.size(), value);
 					 */
@@ -191,13 +192,14 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
 
         // We now have all the points, upon selection of which a new child is
         // formed
-		/*if (homework.DEBUG_MODE)
+		/*if (FruitGame.DEBUG_MODE)
 			System.out.format("%d possible move(s) from this node.\n", groupPoints.size());*/
 
         // These will be ordered in the minimax call.
-        for (List<FruitGridPoint> action : groupPoints) {
+        for (List<FruitGridPoint> action : groupPoints)
+        {
             // Copy the grid
-            byte[][] childGrid = new byte[FruitRageNode.n][FruitRageNode.n];
+            byte[][] childGrid = new byte[FruitNode.n][FruitNode.n];
             for (int i = 0; i < grid.length; i++) {
                 for (int j = 0; j < grid[i].length; j++) {
                     childGrid[i][j] = grid[i][j];
@@ -206,7 +208,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
 
             // Blank out this group in the grid
             for (FruitGridPoint point : action)
-                childGrid[point.x][point.y] = FruitRageNode.EMPTY;
+                childGrid[point.x][point.y] = FruitNode.EMPTY;
 
             /**
              * Record the score of this move by increasing utility - it should
@@ -222,7 +224,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
             String movePlayed = FruitGridPoint.pointToMoveString(action.get(0).x, action.get(0).y);
 
             // Create a new node with this configuration
-            FruitRageNode child = new FruitRageNode(childGrid, this.depth + 1,
+            FruitNode child = new FruitNode(childGrid, this.depth + 1,
                     (this.utilityPassedDown + utilityIncrease), movePlayed, utilityIncrease);
 
             // Apply gravity
@@ -236,7 +238,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
     }
 
     /**
-     * TODO Describe this function
+     * Marks all the groups of matching fruits with a given 'value' as visited.
      */
     private void markGroups(List<FruitGridPoint> currentGroup, boolean[][] visited, int i, int j, int value) {
 
@@ -257,7 +259,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
     }
 
     /** Returns a string representation required in the output. */
-    public String gridString() {
+    String gridString() {
         StringBuilder sb = new StringBuilder();
 
         for (int i = n - 1; i >= 0; i--) {
@@ -279,7 +281,7 @@ public class FruitRageNode implements Comparable<FruitRageNode> {
      * Returns a string representation like the one specified in the examples.
      */
 	/*
-	 * public String gridStringPretty() { StringBuilder sb = new
+	 * String gridStringPretty() { StringBuilder sb = new
 	 * StringBuilder();
 	 *
 	 * for(int j = 0; j < 2*n+1; j++) sb.append("-"); sb.append("\n");
