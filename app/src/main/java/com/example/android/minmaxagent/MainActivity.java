@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        final GridLayout grid = (GridLayout) findViewById(R.id.baseGrid);
+        final GridLayout grid = findViewById(R.id.baseGrid);
 
         byte[][] board = FruitUtils.createTestCase(8 , 5);
 
+        grid.setMinimumWidth(100);
 
         grid.setRowCount(BOARD_SIZE);
         grid.setColumnCount(BOARD_SIZE);
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0 ; i < BOARD_SIZE ; i++){
             for(int j = 0 ; j < BOARD_SIZE ; j++){
                 Button b = new Button(this);
-                b.setText(" " + board[i][j]);
+                String text = "" + board[i][j];
+                b.setText(text);
                 grid.addView(b);
             }
         }
