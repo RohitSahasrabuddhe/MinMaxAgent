@@ -1,7 +1,6 @@
 package com.example.android.minmaxagent;
 
 import android.content.res.ColorStateList;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
@@ -10,16 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.ImageView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public final int BOARD_SIZE = 7;
-    public final int NUMBER_OF_FRUITS = 9;
+    public final int BOARD_SIZE = 8;
+    public final int NUMBER_OF_FRUITS = 6;
+
+    //TODO instead of Fruits we can use images
     private final int[] fruitColor = {
             R.color.colorFruitApple,
             R.color.colorFruitBanana,
@@ -30,27 +32,15 @@ public class MainActivity extends AppCompatActivity {
             R.color.colorFruitLime,
             R.color.colorFruitOrange,
             R.color.colorFruitGrape};
-    private final int[] fruitImageResource = {
-            R.drawable.fruit_strawberry,
-            R.drawable.fruit_bananas,
-            R.drawable.fruit_grapes,
-            R.drawable.fruit_pear,
-            R.drawable.fruit_orange,
-            R.drawable.fruit_apple,
-            R.drawable.fruit_cherry,
-            R.drawable.fruit_watermelon,
-            R.drawable.fruit_lemon, };
-
-    private final int fruitImageResourceEmpty =R.drawable.fruit_empty;
-
     private final int fruitColorEmpty = R.color.colorWhite;
 
 
     private FruitGame game;
-    private ImageView btnGrid[][];
+    private Button btnGrid[][];
     private GridLayout baseGrid;
     private TextView tvTurnPlayer;
     private TextView tvScorePlayers[];
+    private LinearLayout scoreLayout , player1Score , player2Score;
 
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
@@ -78,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Refresh the turn player display
-        tvTurnPlayer.setText(String.format(Locale.getDefault(),"Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+        //tvTurnPlayer.setText(String.format("Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+        tvTurnPlayer.setText(String.format("Turn of %s", (game.isAI[game.turnPlayer])?"AI":"Human"));
 
         // Refresh the fruit Grid - use the board of the game
         byte[][] board = game.node.grid;
@@ -87,25 +78,23 @@ public class MainActivity extends AppCompatActivity {
         {
             for(int j = 0; j < BOARD_SIZE; j++)
             {
-                ImageView btnCurrent = findViewById(buttonLocationToID(i,j));
+                Button btnCurrent = findViewById(buttonLocationToID(i,j));
 
                 int value = board[i][j];
 
                 // Label and Color this button based on its fruit
                 if(value == FruitNode.EMPTY) {
-                    // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
-                    btnCurrent.setImageResource(fruitImageResourceEmpty);
-                    // btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
+                    btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
+                    btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
                     btnCurrent.setOnClickListener(null);
 
-                    // TODO should this be invisible or disabled? idk
+                    // COMPLETED should this be invisible or disabled? idk Ans: Visible but empty
                     btnCurrent.setVisibility(View.INVISIBLE);
 
                 }
                 else {
-                    btnCurrent.setImageResource(fruitImageResource[value]);
-                    // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
-                    // btnCurrent.setText(String.valueOf(value));
+                    btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
+                    btnCurrent.setText(String.valueOf(value));
                 }
             }
         }
@@ -119,6 +108,23 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        //Setting width of score layouts half of parents width
+        //earlier they were of wrapping parents and matchinng content
+
+        scoreLayout = findViewById(R.id.scoreLayout);
+        player1Score = findViewById(R.id.player1Score);
+        player2Score = findViewById(R.id.player2Score);
+
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                1.0f
+        );
+        player1Score.setLayoutParams(param);
+
+        player2Score.setLayoutParams(param);
+
+
         // GridLayout object
         baseGrid = findViewById(R.id.baseGrid);
 
@@ -129,14 +135,14 @@ public class MainActivity extends AppCompatActivity {
         baseGrid.setRowCount(BOARD_SIZE);
         baseGrid.setColumnCount(BOARD_SIZE);
 
-        tvTurnPlayer = findViewById(R.id.turnPlayer);
+        tvTurnPlayer = (TextView) findViewById(R.id.turnPlayer);
 
         tvScorePlayers = new TextView[game.players];
-        tvScorePlayers[0] = findViewById(R.id.scoreP1);
-        tvScorePlayers[1] = findViewById(R.id.scoreP2);
+        tvScorePlayers[0] = (TextView) findViewById(R.id.scoreP1);
+        tvScorePlayers[1] = (TextView) findViewById(R.id.scoreP2);
 
         // Buttons stored in a 2D grid allows for easy indexing
-        btnGrid = new ImageView[BOARD_SIZE][BOARD_SIZE];
+        btnGrid = new Button[BOARD_SIZE][BOARD_SIZE];
 
         for(int i = BOARD_SIZE-1 ; i >= 0 ; i--)
         // for(int i = 0; i < BOARD_SIZE; i++)
@@ -145,9 +151,9 @@ public class MainActivity extends AppCompatActivity {
             {
 
                 // Creating new Button
-                btnGrid[i][j] = new ImageView(this);
+                btnGrid[i][j] = new Button(this);
 
-                final ImageView btnCurrent = btnGrid[i][j];
+                final Button btnCurrent = btnGrid[i][j];
 
                 // Creating and setting Button ID for row and column using formula
                 // rowID = row*10 + column
@@ -159,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view)
                     {
+                        // TODO Handle onClick
                         int x = (int)btnCurrent.getId() / 10 - 1;
                         int y = (int)btnCurrent.getId() % 10 - 1;
 
