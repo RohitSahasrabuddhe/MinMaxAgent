@@ -1,5 +1,6 @@
 package com.example.android.minmaxagent;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -18,8 +19,9 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final int BOARD_SIZE = 7;
-    public final int NUMBER_OF_FRUITS = 9;
+    public String PLAYER_NAME = "dummy";
+    public int BOARD_SIZE = 7;
+    public int NUMBER_OF_FRUITS = 9;
     private final int[] fruitColor = {
             R.color.colorFruitApple,
             R.color.colorFruitBanana,
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private GridLayout baseGrid;
     private TextView tvTurnPlayer;
     private TextView tvScorePlayers[];
+    private TextView tvPlayerName;
 
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Refresh the turn player display
-        tvTurnPlayer.setText(String.format(Locale.getDefault(),"Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":"Human"));
+        tvTurnPlayer.setText(String.format(Locale.getDefault(),"Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":PLAYER_NAME));
 
         // Refresh the fruit Grid - use the board of the game
         byte[][] board = game.node.grid;
@@ -118,6 +121,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        Intent receivedIntent = getIntent();
+
+        PLAYER_NAME = receivedIntent.getStringExtra("valuePlayerName");
+        NUMBER_OF_FRUITS = Integer.parseInt(receivedIntent.getStringExtra("valueFruitTypes"));
+        BOARD_SIZE = Integer.parseInt(receivedIntent.getStringExtra("valueGridSize"));
+
+
+        tvPlayerName = findViewById(R.id.playerName);
+        tvPlayerName.setText(PLAYER_NAME + " Score");
 
         // GridLayout object
         baseGrid = findViewById(R.id.baseGrid);

@@ -30,6 +30,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/playerName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -61,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Player 1 Score"
+                android:text="AI Score"
                 android:textSize="18sp" />
 
             <TextView

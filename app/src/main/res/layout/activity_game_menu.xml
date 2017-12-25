@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="Player Name:" />
 
         <EditText
             android:id="@+id/valueUserName"
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="Fruit Types:" />
 
         <EditText
             android:id="@+id/valueFruitType"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="Grid Size:" />
 
         <EditText
             android:id="@+id/valueGridSize"
