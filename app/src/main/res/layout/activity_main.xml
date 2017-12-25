@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.MainActivity">
 
+    <!--<ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:src="@drawable/los_angeles_skyline" />-->
 
     <LinearLayout
         android:id="@+id/scoreLayout"
