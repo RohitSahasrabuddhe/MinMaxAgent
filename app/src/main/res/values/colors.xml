@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#ffffff</color>
 
+    <!-- These aren't used anymore -->
     <color name="colorFruitApple">#ff3d00</color>
     <color name="colorFruitBanana">#ffea00</color>
     <color name="colorFruitBlueberry">#304ffe</color>

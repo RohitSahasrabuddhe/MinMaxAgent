@@ -105,11 +105,6 @@ public class FruitGame
         FruitNode.p = numberOfFruits;
         // System.out.println("Fruit types (p) are " + FruitNode.p + ".");
 
-        float durSecondsAllotted = 5.0f;
-        durAllotted = FruitUtils.secondsToNanoseconds(durSecondsAllotted);
-
-        // System.out.println("Time remaining is " + durSecondsAllotted + " seconds.");
-
         // Initialize scores
         scores = new int[players];
         for(int i = 0; i < players; i++)
@@ -121,9 +116,7 @@ public class FruitGame
         // Set number of empty squares
         emptySquares = FruitUtils.numberOfEmptySquares(gridInitial);
 
-        timeStart = System.nanoTime();
 
-        timeLimitExceeded = false;
 
         // Create starting node
         node = new FruitNode(gridInitial);
@@ -264,10 +257,23 @@ public class FruitGame
      */
     private void emergencyExit() {
 
-        if(DEBUG_MODE) System.out.println("Emergency exit! A random move will be chosen.\n");
+        if(DEBUG_MODE)
+            System.out.println("Emergency exit! A random move will be chosen.\n");
+
         bestChildSaved = fallbackChild;
         bestChildUtilitySaved = fallbackChild.moveFromParentScore;
 
+    }
+
+    private void resetTime() {
+
+        // INITIALIZE TIME - this was first in the constructor
+        // TODO Don't hardcode alloted time
+        float durSecondsAllotted = 5.0f;
+        durAllotted = FruitUtils.secondsToNanoseconds(durSecondsAllotted);
+        // System.out.println("Time remaining is " + durSecondsAllotted + " seconds.");
+        timeStart = System.nanoTime();
+        timeLimitExceeded = false;
     }
 
     /**
@@ -293,13 +299,12 @@ public class FruitGame
      */
     FruitNode playAIMove()
     {
+        resetTime();
+
         // Set it to become a root again
         node.depth = 0;
 
         List<FruitNode> children = node.generateChildren();
-
-        // Assign a random legal move in case time runs out - this appears to be slower
-        // fallbackChild = children.get(new Random().nextInt(children.size()));
 
         // Maximize pruning?
         Collections.sort(children, Collections.reverseOrder());
@@ -493,10 +498,12 @@ public class FruitGame
             turnPlayer = (turnPlayer + 1) % players;
 
             if (DEBUG_MODE) {
-                System.out.printf("\nPlayer %d [%s]'s turn.\n", turnPlayer, ((isAI[turnPlayer]) ? "AI" : "Human"));
-                System.out.print("Current scores are: ");
+                System.out.printf("\nPlayer %d [%s]'s turn. ", turnPlayer, ((isAI[turnPlayer]) ? "AI" : "Human"));
+
+                System.out.print("Scores: ");
                 for (int i : scores)
                     System.out.print(i + " ");
+
                 System.out.println("\nCurrently board is:\n" + FruitUtils.gridStringPretty(node.grid) + "\n");
             }
 

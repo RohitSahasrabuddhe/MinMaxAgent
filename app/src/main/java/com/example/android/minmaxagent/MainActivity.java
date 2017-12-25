@@ -1,15 +1,12 @@
 package com.example.android.minmaxagent;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,19 +16,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String PLAYER_NAME = "dummy";
-    public int BOARD_SIZE = 7;
-    public int NUMBER_OF_FRUITS = 9;
-    private final int[] fruitColor = {
-            R.color.colorFruitApple,
-            R.color.colorFruitBanana,
-            R.color.colorFruitGuava,
-            R.color.colorFruitBlueberry,
-            R.color.colorFruitStrawberry,
-            R.color.colorFruitCyan,
-            R.color.colorFruitLime,
-            R.color.colorFruitOrange,
-            R.color.colorFruitGrape};
+    public String PLAYER_NAME = "Dummy";
+    public int BOARD_SIZE = 3;
+    public int NUMBER_OF_FRUITS = 3;
+
     private final int[] fruitImageResource = {
             R.drawable.fruit_strawberry,
             R.drawable.fruit_bananas,
@@ -44,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.fruit_lemon, };
 
     private final int fruitImageResourceEmpty =R.drawable.fruit_empty;
-
-    private final int fruitColorEmpty = R.color.colorWhite;
-
 
     private FruitGame game;
     private ImageView btnGrid[][];
@@ -123,10 +108,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent receivedIntent = getIntent();
+        if(receivedIntent != null) {
 
-        PLAYER_NAME = receivedIntent.getStringExtra("valuePlayerName");
-        NUMBER_OF_FRUITS = Integer.parseInt(receivedIntent.getStringExtra("valueFruitTypes"));
-        BOARD_SIZE = Integer.parseInt(receivedIntent.getStringExtra("valueGridSize"));
+            String pName = receivedIntent.getStringExtra("valuePlayerName");
+
+            if(!TextUtils.isEmpty(pName))
+                PLAYER_NAME = pName;
+
+            String noOfFruits = receivedIntent.getStringExtra("valueFruitTypes");
+
+            if(!TextUtils.isEmpty(noOfFruits))
+                NUMBER_OF_FRUITS = Integer.parseInt(noOfFruits);
+
+            String boardSize = receivedIntent.getStringExtra("valueGridSize");
+
+            if(!TextUtils.isEmpty(boardSize))
+                BOARD_SIZE = Integer.parseInt(boardSize);
+        }
 
 
         tvPlayerName = findViewById(R.id.playerName);
@@ -268,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
             if(!advanceable)
             {
                 int pWinner = game.winner();
-                tvTurnPlayer.setText(String.format("P%d won the game!", pWinner));
+                tvTurnPlayer.setText(String.format(Locale.getDefault(), "P%d won the game!", pWinner));
             }
             else {
                 baseGrid.setEnabled(true);
