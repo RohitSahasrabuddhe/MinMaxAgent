@@ -24,7 +24,7 @@
         <LinearLayout
             android:id="@+id/player1Score"
             android:background="@drawable/grid_row_border"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
@@ -53,7 +53,8 @@
             android:background="@drawable/grid_row_border"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -96,7 +97,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Player x's turn"
-            android:textSize="42dp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
 </LinearLayout>
