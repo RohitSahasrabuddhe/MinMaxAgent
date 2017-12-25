@@ -268,7 +268,7 @@ public class FruitGame
     private void resetTime() {
 
         // INITIALIZE TIME - this was first in the constructor
-        // TODO Don't hardcode alloted time
+        // TODO (12) AI "thinking" alloted time, avoid hardcoding
         float durSecondsAllotted = 5.0f;
         durAllotted = FruitUtils.secondsToNanoseconds(durSecondsAllotted);
         // System.out.println("Time remaining is " + durSecondsAllotted + " seconds.");

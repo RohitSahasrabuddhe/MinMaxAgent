@@ -7,13 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class GameMenuActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
+
+    // TODO (7) Persistent preferences - next new game has these default settings
 
     EditText valuePlayerName, valueFruitTypes, valueGridSize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_menu);
+        setContentView(R.layout.activity_settings);
 
         Button startActivityButton = findViewById(R.id.startActivityButton);
         startActivityButton.setOnClickListener(new View.OnClickListener() {

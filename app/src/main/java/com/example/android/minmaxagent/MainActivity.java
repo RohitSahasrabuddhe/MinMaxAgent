@@ -16,6 +16,8 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO (9) Multi (>2) player support - maybe show only active player?
+
     public String PLAYER_NAME = "Dummy";
     public int BOARD_SIZE = 3;
     public int NUMBER_OF_FRUITS = 3;
@@ -31,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.fruit_watermelon,
             R.drawable.fruit_lemon, };
 
-    private final int fruitImageResourceEmpty =R.drawable.fruit_empty;
+    // TODO (2) Empty grid cells don't seem to display correctly
+    private final int fruitImageResourceEmpty = R.drawable.fruit_empty;
 
     private FruitGame game;
-    private ImageView btnGrid[][];
-    private GridLayout baseGrid;
+    private ImageView ivFruitGrid[][];
+    private GridLayout glBaseGrid;
     private TextView tvTurnPlayer;
     private TextView tvScorePlayers[];
     private TextView tvPlayerName;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
      */
-    private int buttonLocationToID(int i, int j)
+    private int fruitLocationToID(int i, int j)
     {
         /*StringBuilder sb = new StringBuilder();
         sb.append((i+1)*10);
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         return (i+1)*10 + j+1 ;
     }
+
+    // TODO Bug (B1) AI score updated after a delay
 
     /**
      * Updates the text on each button to reflect the current fruit it holds.
@@ -75,23 +80,24 @@ public class MainActivity extends AppCompatActivity {
         {
             for(int j = 0; j < BOARD_SIZE; j++)
             {
-                ImageView btnCurrent = findViewById(buttonLocationToID(i,j));
+                ImageView ivFruitCurrent = findViewById(fruitLocationToID(i,j));
 
                 int value = board[i][j];
 
                 // Label and Color this button based on its fruit
-                if(value == FruitNode.EMPTY) {
+                if(value == FruitNode.EMPTY)
+                {
                     // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
-                    btnCurrent.setImageResource(fruitImageResourceEmpty);
+                    ivFruitCurrent.setImageResource(fruitImageResourceEmpty);
                     // btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
-                    btnCurrent.setOnClickListener(null);
+                    ivFruitCurrent.setOnClickListener(null);
 
-                    // TODO should this be invisible or disabled? idk
-                    btnCurrent.setVisibility(View.INVISIBLE);
+                    // Should this be invisible or disabled? idk
+                    ivFruitCurrent.setVisibility(View.INVISIBLE);
 
                 }
                 else {
-                    btnCurrent.setImageResource(fruitImageResource[value]);
+                    ivFruitCurrent.setImageResource(fruitImageResource[value]);
                     // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
                     // btnCurrent.setText(String.valueOf(value));
                 }
@@ -131,14 +137,14 @@ public class MainActivity extends AppCompatActivity {
         tvPlayerName.setText(PLAYER_NAME + " Score");
 
         // GridLayout object
-        baseGrid = findViewById(R.id.baseGrid);
+        glBaseGrid = findViewById(R.id.baseGrid);
 
         // Start a new game.
         game = new FruitGame(BOARD_SIZE, NUMBER_OF_FRUITS);
 
         // Set rowCount and columnCount for GridLayout
-        baseGrid.setRowCount(BOARD_SIZE);
-        baseGrid.setColumnCount(BOARD_SIZE);
+        glBaseGrid.setRowCount(BOARD_SIZE);
+        glBaseGrid.setColumnCount(BOARD_SIZE);
 
         tvTurnPlayer = findViewById(R.id.turnPlayer);
 
@@ -147,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         tvScorePlayers[1] = findViewById(R.id.scoreP2);
 
         // Buttons stored in a 2D grid allows for easy indexing
-        btnGrid = new ImageView[BOARD_SIZE][BOARD_SIZE];
+        ivFruitGrid = new ImageView[BOARD_SIZE][BOARD_SIZE];
 
         for(int i = BOARD_SIZE-1 ; i >= 0 ; i--)
         // for(int i = 0; i < BOARD_SIZE; i++)
@@ -156,22 +162,26 @@ public class MainActivity extends AppCompatActivity {
             {
 
                 // Creating new Button
-                btnGrid[i][j] = new ImageView(this);
+                ivFruitGrid[i][j] = new ImageView(this);
 
-                final ImageView btnCurrent = btnGrid[i][j];
+                final ImageView ivFruitCurrent = ivFruitGrid[i][j];
 
                 // Creating and setting Button ID for row and column using formula
                 // rowID = row*10 + column
-                int btnId = buttonLocationToID(i, j);
-                btnCurrent.setId(btnId);
+                int btnId = fruitLocationToID(i, j);
+                ivFruitCurrent.setId(btnId);
 
                 // Adding onclick Listener for buttons
-                btnCurrent.setOnClickListener(new View.OnClickListener() {
+                ivFruitCurrent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view)
                     {
-                        int x = (int)btnCurrent.getId() / 10 - 1;
-                        int y = (int)btnCurrent.getId() % 10 - 1;
+                        int x = (int)ivFruitCurrent.getId() / 10 - 1;
+                        int y = (int)ivFruitCurrent.getId() % 10 - 1;
+
+                        // TODO (1) Sound can be played when fruit is selected
+                        // TODO (6) Animation, sparkle when fruit is selected
+                        // TODO (19) Animation, Gravity when fruits drop
 
                         new GamePlayTask().execute(x, y);
                     }
@@ -184,8 +194,8 @@ public class MainActivity extends AppCompatActivity {
 
                 layoutParams.width = 0;    // Setting width to "0dp" so weight is applied instead
                 layoutParams.height = 0;   // Setting height to "0dp" so height is applied instead
-                btnCurrent.setLayoutParams(layoutParams);
-                baseGrid.addView(btnCurrent);
+                ivFruitCurrent.setLayoutParams(layoutParams);
+                glBaseGrid.addView(ivFruitCurrent);
 
                 /*gridLayout.addView(btnCurrent, new GridLayout.LayoutParams(
                         GridLayout.spec(1, GridLayout.CENTER),
@@ -202,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
-            baseGrid.setEnabled(false);
+            glBaseGrid.setEnabled(false);
         }
 
         @Override
@@ -225,13 +235,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Human made an invalid move?!?!");
             }
 
+            // TODO (16) Finish the game, Display Winner and go back to new menu screen
             // If the game can be stopped, stop it
             if(!game.advanceTurn())
                 return false;
 
             publishProgress();
 
-            // Sleep for a while
+            // TODO (12) AI "thinking" alloted time, avoid hardcoded sleeping
             SystemClock.sleep(1000);
 
             // AI automatically takes a move
@@ -269,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "P%d won the game!", pWinner));
             }
             else {
-                baseGrid.setEnabled(true);
+                glBaseGrid.setEnabled(true);
             }
         }
     }

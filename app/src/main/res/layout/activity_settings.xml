@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.android.minmaxagent.GameMenuActivity">
+    tools:context="com.example.android.minmaxagent.SettingsActivity">
 
+    <!-- TODO (17) User-friendly settings and controls -->
 
     <LinearLayout
         android:layout_width="match_parent"
