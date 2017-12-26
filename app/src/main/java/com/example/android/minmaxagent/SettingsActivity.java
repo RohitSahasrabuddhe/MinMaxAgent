@@ -27,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
                 valueGridSize = findViewById(R.id.valueGridSize);
 
 
-                Intent intent = new Intent(getApplicationContext() , MainActivity.class);
+                Intent intent = new Intent(getApplicationContext() , GameActivity.class);
 
                 intent.putExtra("valuePlayerName" , valuePlayerName.getText().toString());
                 intent.putExtra("valueFruitTypes" , valueFruitTypes.getText().toString());

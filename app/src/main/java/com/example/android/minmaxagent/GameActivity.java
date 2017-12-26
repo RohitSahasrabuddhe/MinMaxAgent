@@ -9,12 +9,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     // TODO (9) Multi (>2) player support - maybe show only active player?
 
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                     // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
                     // btnCurrent.setText(String.valueOf(value));
                 }
+
             }
         }
     }
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
 
         Intent receivedIntent = getIntent();
         if(receivedIntent != null) {
@@ -171,6 +173,15 @@ public class MainActivity extends AppCompatActivity {
                 // rowID = row*10 + column
                 int btnId = fruitLocationToID(i, j);
                 ivFruitCurrent.setId(btnId);
+
+                // Add frame and background and padding vagaira
+                ivFruitCurrent.setBackgroundResource(R.drawable.fruit_frame);
+
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(4, 4, 4, 4);
+                ivFruitCurrent.setLayoutParams(lp);
+
 
                 // Adding onclick Listener for buttons
                 ivFruitCurrent.setOnClickListener(new View.OnClickListener() {

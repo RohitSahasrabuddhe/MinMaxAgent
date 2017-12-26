@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landscape"
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
@@ -28,7 +29,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            />
+            android:text="Human" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="5" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,14 +72,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="6" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/startActivityButton"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Game"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="162dp" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/startActivityButton"
+            style="@style/mmButton"
+            android:layout_gravity="center"
+            android:text="Start Game"
+            tools:layout_editor_absoluteX="103dp"
+            tools:layout_editor_absoluteY="162dp" />
+    </FrameLayout>
 </LinearLayout>

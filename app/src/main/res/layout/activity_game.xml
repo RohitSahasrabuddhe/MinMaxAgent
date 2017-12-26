@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landscape"
     android:orientation="vertical"
-    tools:context="com.example.android.minmaxagent.MainActivity">
+    tools:context="com.example.android.minmaxagent.GameActivity">
 
     <!-- TODO (3) Style update to make it look like a game -->
     <!-- TODO (4) Font update -->
@@ -21,7 +22,6 @@
 
     <LinearLayout
         android:id="@+id/scoreLayout"
-        android:background="@drawable/grid_row_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -31,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/grid_row_border"
             android:orientation="horizontal">
 
             <TextView
@@ -39,9 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:autoText="true"
                 android:gravity="center"
-                android:text="Player 1 Score"
+                android:text="Dummy"
                 android:textSize="18sp" />
 
             <TextView
@@ -60,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/grid_row_border"
             android:orientation="horizontal">
 
             <TextView
@@ -68,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="AI Score"
+                android:text="AI"
                 android:textSize="18sp" />
 
             <TextView
@@ -83,23 +80,35 @@
         </LinearLayout>
     </LinearLayout>
 
-    <GridLayout
-        android:id="@+id/baseGrid"
-        android:background="@drawable/grid_row_border"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:useDefaultMargins="true">
-    </GridLayout>
+        android:layout_weight="1">
+
+        <GridLayout
+            android:id="@+id/baseGrid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/grid_frame"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </GridLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:background="@drawable/grid_row_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/turnPlayer"
+            style="@style/TextWhiteBlackShadow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
-    Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits, buttonQuit;
+    Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,6 @@ public class MainMenu extends AppCompatActivity {
         buttonSettings = findViewById(R.id.buttonSettings);
         buttonInstruction = findViewById(R.id.buttonInstructions);
         buttonCredits = findViewById(R.id.buttonCredits);
-        buttonQuit = findViewById(R.id.buttonQuit);
 
         buttonNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,14 +54,6 @@ public class MainMenu extends AppCompatActivity {
                 //Credits button is clicked
                 Intent intentCredits = new Intent(getApplicationContext() , CreditActivity.class);
                 startActivity(intentCredits);
-            }
-        });
-
-        buttonQuit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Quit button is clicked
-                //Implement Quit option
             }
         });
 

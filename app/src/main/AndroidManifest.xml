@@ -16,7 +16,7 @@
         <!-- TODO (5) Credits activity needs to be added (we're using free resources) -->
         <!-- TODO (8) Main menu neds to be added (contains new game, prefs, credits) -->
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".GameActivity">
 
             <!--
             <intent-filter>
@@ -36,7 +36,7 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".MainMenu">
+        <activity android:name=".MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
