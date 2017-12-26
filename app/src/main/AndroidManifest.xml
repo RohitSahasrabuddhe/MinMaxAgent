@@ -4,7 +4,6 @@
 
     <!-- TODO (14) Company/brand name, universalize package name -->
     <!-- TODO (20) Help/instruction activity -->
-
     <!-- TODO (10) Launcher icon needs to be updated -->
     <application
         android:allowBackup="true"
@@ -18,18 +17,34 @@
         <!-- TODO (8) Main menu neds to be added (contains new game, prefs, credits) -->
 
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
-        <activity android:name=".SettingsActivity">
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".SettingsActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".MainMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".InstructionActivity" />
+        <activity android:name=".CreditActivity"></activity>
     </application>
 
 </manifest>

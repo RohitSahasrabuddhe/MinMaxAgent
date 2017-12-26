@@ -281,6 +281,8 @@ public class MainActivity extends AppCompatActivity {
 
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
 
+
+
             }
             else {
                 glBaseGrid.setEnabled(true);
