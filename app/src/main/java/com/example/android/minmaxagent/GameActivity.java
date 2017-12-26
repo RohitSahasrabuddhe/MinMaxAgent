@@ -174,14 +174,18 @@ public class GameActivity extends AppCompatActivity {
                 int btnId = fruitLocationToID(i, j);
                 ivFruitCurrent.setId(btnId);
 
-                // Add frame and background and padding vagaira
+                // Add frame and background
                 ivFruitCurrent.setBackgroundResource(R.drawable.fruit_frame);
 
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                // TODO Bug (B2) Add margin
+                /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 lp.setMargins(4, 4, 4, 4);
-                ivFruitCurrent.setLayoutParams(lp);
+                ivFruitCurrent.setLayoutParams(lp);*/
 
+                // Add padding
+                int padding = 24;
+                ivFruitCurrent.setPadding(padding,padding,padding,padding);
 
                 // Adding onclick Listener for buttons
                 ivFruitCurrent.setOnClickListener(new View.OnClickListener() {
