@@ -18,6 +18,7 @@ public class FruitGame
     int players = 2;
     boolean[] isAI = {false, true};
     int scores[];
+    String playerNames[];
 
     /** Helps update the score - this value should be updated each turn */
     int emptySquares;
@@ -96,7 +97,7 @@ public class FruitGame
      * Reads the input from the text files in the format specified, and returns
      * a byte array corresponding to the initial grid.
      */
-    FruitGame(int boardSize, int numberOfFruits) {
+    FruitGame(int boardSize, int numberOfFruits, String[] playerNames) {
 
         // Start reading input
         FruitNode.n = boardSize;
@@ -109,6 +110,10 @@ public class FruitGame
         scores = new int[players];
         for(int i = 0; i < players; i++)
             scores[i] = 0;
+
+        // COMPLETED (21) Set Player name array
+
+        this.playerNames = playerNames;
 
         // Randomly generate the Grid
         byte[][] gridInitial = FruitUtils.createTestCase(FruitNode.n, FruitNode.p);
@@ -476,7 +481,7 @@ public class FruitGame
 
     /**
      * Updates score and Goes forward to the next turn.
-     * @return true if the game has finished.
+     * @return false if the game has finished.
      */
     boolean advanceTurn()
     {
@@ -511,11 +516,11 @@ public class FruitGame
 
         }
         else {
-            return true;
+            return false;
         }
     }
 
-    int winner()
+    String winner()
     {
         int maxIndex = -1;
         int maxScore = Integer.MIN_VALUE;
@@ -531,13 +536,14 @@ public class FruitGame
 
         if(DEBUG_MODE) System.out.println("The winner is player "+maxIndex+((isAI[maxIndex])?" (AI).":" (Human)."));
 
-        return maxIndex;
+        return this.playerNames[maxIndex];
     }
 
 
     public static void main(String[] args) {
 
-        FruitGame game = new FruitGame(6, 6);
+        String[] pNames = {"Human" , "AI"};
+        FruitGame game = new FruitGame(6, 6, pNames );
 
         int winner = -1;
 

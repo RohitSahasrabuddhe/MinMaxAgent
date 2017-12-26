@@ -28,24 +28,25 @@
 
         <LinearLayout
             android:id="@+id/player1Score"
-            android:background="@drawable/grid_row_border"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/grid_row_border"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/playerName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:autoText="true"
                 android:gravity="center"
                 android:text="Player 1 Score"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/scoreP1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
@@ -56,14 +57,14 @@
 
         <LinearLayout
             android:id="@+id/player2Score"
-            android:background="@drawable/grid_row_border"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/grid_row_border"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -72,7 +73,7 @@
 
             <TextView
                 android:id="@+id/scoreP2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"

@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO (9) Multi (>2) player support - maybe show only active player?
 
     public String PLAYER_NAME = "Dummy";
-    public int BOARD_SIZE = 3;
-    public int NUMBER_OF_FRUITS = 3;
+    public int BOARD_SIZE = 6;
+    public int NUMBER_OF_FRUITS = 4;
 
     private final int[] fruitImageResource = {
             R.drawable.fruit_strawberry,
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.fruit_watermelon,
             R.drawable.fruit_lemon, };
 
-    // TODO (2) Empty grid cells don't seem to display correctly
+    // COMPLETED (2) Empty grid cells don't seem to display correctly
     private final int fruitImageResourceEmpty = R.drawable.fruit_empty;
 
     private FruitGame game;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Refresh the turn player display
-        tvTurnPlayer.setText(String.format(Locale.getDefault(),"Turn of P%d (%s)", game.turnPlayer, (game.isAI[game.turnPlayer])?"AI":PLAYER_NAME));
+        tvTurnPlayer.setText(String.format(Locale.getDefault(),"%s's Turn", game.playerNames[game.turnPlayer]));
 
         // Refresh the fruit Grid - use the board of the game
         byte[][] board = game.node.grid;
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     ivFruitCurrent.setOnClickListener(null);
 
                     // Should this be invisible or disabled? idk
-                    ivFruitCurrent.setVisibility(View.INVISIBLE);
+                    // ivFruitCurrent.setVisibility(View.INVISIBLE);
 
                 }
                 else {
@@ -134,13 +134,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         tvPlayerName = findViewById(R.id.playerName);
-        tvPlayerName.setText(PLAYER_NAME + " Score");
+        tvPlayerName.setText(PLAYER_NAME);
 
         // GridLayout object
         glBaseGrid = findViewById(R.id.baseGrid);
 
         // Start a new game.
-        game = new FruitGame(BOARD_SIZE, NUMBER_OF_FRUITS);
+        String[] pNames = {PLAYER_NAME , "AI"};
+        game = new FruitGame(BOARD_SIZE, NUMBER_OF_FRUITS, pNames);
 
         // Set rowCount and columnCount for GridLayout
         glBaseGrid.setRowCount(BOARD_SIZE);
@@ -236,32 +237,32 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // TODO (16) Finish the game, Display Winner and go back to new menu screen
-            // If the game can be stopped, stop it
-            if(!game.advanceTurn())
-                return false;
+            // Continue game if further playable
+            if(game.advanceTurn()) {
 
-            publishProgress();
+                publishProgress();
 
-            // TODO (12) AI "thinking" alloted time, avoid hardcoded sleeping
-            SystemClock.sleep(1000);
+                // TODO (12) AI "thinking" alloted time, avoid hardcoded sleeping
+                SystemClock.sleep(1000);
 
-            // AI automatically takes a move
-            if (game.isAI[game.turnPlayer])
-            {
-                FruitNode aiResult = game.playAIMove();
+                // AI automatically takes a move
+                if (game.isAI[game.turnPlayer]) {
+                    FruitNode aiResult = game.playAIMove();
 
-                if(aiResult != null) // only update game if move was valid.
-                {
-                    game.node = aiResult;
-                }
-                else {
-                    if(FruitGame.DEBUG_MODE) System.out.println("AI made an invalid move? TF!");
+                    if (aiResult != null) // only update game if move was valid.
+                    {
+                        game.node = aiResult;
+                    } else {
+                        if (FruitGame.DEBUG_MODE)
+                            System.out.println("AI made an invalid move? TF!");
+                    }
                 }
             }
-
             publishProgress();
 
             return game.advanceTurn();
+
+
         }
 
         @Override
@@ -276,8 +277,10 @@ public class MainActivity extends AppCompatActivity {
 
             if(!advanceable)
             {
-                int pWinner = game.winner();
-                tvTurnPlayer.setText(String.format(Locale.getDefault(), "P%d won the game!", pWinner));
+                String playerWinner = game.winner();
+
+                tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
+
             }
             else {
                 glBaseGrid.setEnabled(true);

@@ -3,6 +3,7 @@
     package="com.example.android.minmaxagent">
 
     <!-- TODO (14) Company/brand name, universalize package name -->
+    <!-- TODO (20) Help/instruction activity -->
 
     <!-- TODO (10) Launcher icon needs to be updated -->
     <application
