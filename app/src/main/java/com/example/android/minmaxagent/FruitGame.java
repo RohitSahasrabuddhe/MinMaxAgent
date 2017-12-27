@@ -450,7 +450,7 @@ public class FruitGame
              * Record the score of this move by increasing utility - it should
              * be increased by n^2.
              */
-            utilityIncrease = action.size() * action.size();
+            utilityIncrease = action.size();
 
             // if it is a Min-Node, move is opponent's, so make this negative
             if (!node.isMaxNode())
@@ -491,7 +491,7 @@ public class FruitGame
         int afterFruits = FruitUtils.numberOfEmptySquares(node.grid);
 
         int scoreGain = afterFruits-beforeFruits;
-        scoreGain = scoreGain * scoreGain;
+        scoreGain = scoreGain;
         scores[turnPlayer] += scoreGain;
 
         if(!node.isTerminalNode()) {

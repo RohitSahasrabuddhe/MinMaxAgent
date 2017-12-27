@@ -1,6 +1,7 @@
 package com.example.android.minmaxagent;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView tvScorePlayers[];
     private TextView tvPlayerName;
 
+    private MediaPlayer mpSound;
+
     /**
      * Converts a set of grid-coordinates to a String to use as button ID.
      */
@@ -58,7 +61,7 @@ public class GameActivity extends AppCompatActivity {
         return (i+1)*10 + j+1 ;
     }
 
-    // TODO Bug (B1) AI score updated after a delay
+    // COMPLETED Bug (B1) AI score updated after a delay
 
     /**
      * Updates the text on each button to reflect the current fruit it holds.
@@ -75,6 +78,12 @@ public class GameActivity extends AppCompatActivity {
         tvTurnPlayer.setText(String.format(Locale.getDefault(),"%s's Turn", game.playerNames[game.turnPlayer]));
 
         // Refresh the fruit Grid - use the board of the game
+        refreshFruitGridOnly();
+    }
+
+    private void refreshFruitGridOnly()
+    {
+
         byte[][] board = game.node.grid;
 
         for(int i = 0; i < BOARD_SIZE; i++)
@@ -158,6 +167,9 @@ public class GameActivity extends AppCompatActivity {
         // Buttons stored in a 2D grid allows for easy indexing
         ivFruitGrid = new ImageView[BOARD_SIZE][BOARD_SIZE];
 
+        // Initialize sound
+        mpSound = MediaPlayer.create(this, R.raw.fruit);
+
         for(int i = BOARD_SIZE-1 ; i >= 0 ; i--)
         // for(int i = 0; i < BOARD_SIZE; i++)
         {
@@ -195,9 +207,12 @@ public class GameActivity extends AppCompatActivity {
                         int x = (int)ivFruitCurrent.getId() / 10 - 1;
                         int y = (int)ivFruitCurrent.getId() % 10 - 1;
 
-                        // TODO (1) Sound can be played when fruit is selected
+                        // COMPLETED (1) Sound can be played when fruit is selected
                         // TODO (6) Animation, sparkle when fruit is selected
                         // TODO (19) Animation, Gravity when fruits drop
+
+                        // Play a sound
+                        mpSound.start();
 
                         new GamePlayTask().execute(x, y);
                     }
@@ -261,8 +276,12 @@ public class GameActivity extends AppCompatActivity {
                 SystemClock.sleep(1000);
 
                 // AI automatically takes a move
-                if (game.isAI[game.turnPlayer]) {
+                if (game.isAI[game.turnPlayer])
+                {
                     FruitNode aiResult = game.playAIMove();
+
+                    // Play a sound
+                    mpSound.start();
 
                     if (aiResult != null) // only update game if move was valid.
                     {
@@ -273,7 +292,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                 }
             }
-            publishProgress();
+
 
             return game.advanceTurn();
 
@@ -294,13 +313,21 @@ public class GameActivity extends AppCompatActivity {
             {
                 String playerWinner = game.winner();
 
+                refreshFruitGridOnly();
+
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
 
+                glBaseGrid.setEnabled(false);
 
 
             }
             else {
+
+                publishProgress();
+
                 glBaseGrid.setEnabled(true);
+
+
             }
         }
     }
