@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 public class InstructionActivity extends AppCompatActivity {
 
+    // TODO (20) Help/instruction activity
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

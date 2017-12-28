@@ -1,4 +1,4 @@
-package com.example.android.minmaxagent;
+package com.example.android.minmaxagent.fruit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,24 +7,24 @@ import java.util.List;
  * Created by siddh on 12/16/2017.
  */
 
-class FruitNode implements Comparable<FruitNode> {
+public class FruitNode implements Comparable<FruitNode> {
 
     /** Width and height of the square board (0 < n <= 26) */
-    static int n;
+    public static int n;
 
     /** Number of fruit types (0 < p <= 9) */
-    static int p;
+    public static int p;
 
     /** The value used for empty spaces on the grid */
-    static final byte EMPTY = -1;
+    public static final byte EMPTY = -1;
 
     /** How the empty spaces are displayed */
-    static final char EMPTY_CHAR = '*';
+    public static final char EMPTY_CHAR = '*';
 
     // Now begin the instance variables.
 
     /** Stores all the fruit positions. */
-    byte[][] grid;
+    public byte[][] grid;
 
     /**
      * Measures how deep the tree has become. Also specifies whether it is a MIN

@@ -8,10 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.android.minmaxagent.fruit.FruitGame;
+import com.example.android.minmaxagent.fruit.FruitNode;
 
 import java.util.Locale;
 
@@ -116,6 +119,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    // TODO (21) Display last fruit played
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -195,8 +200,16 @@ public class GameActivity extends AppCompatActivity {
                 lp.setMargins(4, 4, 4, 4);
                 ivFruitCurrent.setLayoutParams(lp);*/
 
-                // Add padding
-                int padding = 24;
+                // TODO Bug (B3) padding doesn't work properly same value returned
+                ivFruitCurrent.measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                int padding = ivFruitCurrent.getMeasuredWidth() / 6;
+
+                if(FruitGame.DEBUG_MODE)
+                    System.out.printf("Dimensions = %dx%d, .: Padding = %d.\n",
+                            ivFruitCurrent.getMeasuredWidth(),
+                            ivFruitCurrent.getMeasuredHeight(),
+                            padding);
+
                 ivFruitCurrent.setPadding(padding,padding,padding,padding);
 
                 // Adding onclick Listener for buttons
@@ -236,6 +249,8 @@ public class GameActivity extends AppCompatActivity {
 
         refreshFruits();
     }
+
+    // TODO Bug (B4) Score calculation buggy, multiple clicks also mess up score
 
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
     {
@@ -313,7 +328,7 @@ public class GameActivity extends AppCompatActivity {
             {
                 String playerWinner = game.winner();
 
-                refreshFruitGridOnly();
+                refreshFruits();
 
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
 

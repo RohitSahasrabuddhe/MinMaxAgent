@@ -1,10 +1,10 @@
-package com.example.android.minmaxagent;
+package com.example.android.minmaxagent.fruit;
 
 /**
  * Created by siddh on 12/16/2017.
  */
 
-class FruitGridPoint {
+public class FruitGridPoint {
     /** The location of this point on the grid. */
     int x, y;
     int value;

@@ -1,4 +1,4 @@
-package com.example.android.minmaxagent;
+package com.example.android.minmaxagent.fruit;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,19 +12,21 @@ import java.util.List;
 public class FruitGame
 {
 
+    // TODO (21) Keep track of last fruit played
+
     private float timeAlloted;
-    FruitNode node;
-    int turnPlayer = 0;
-    int players = 2;
-    boolean[] isAI = {false, true};
-    int scores[];
-    String playerNames[];
+    public FruitNode node;
+    public int turnPlayer = 0;
+    public int players = 2;
+    public boolean[] isAI = {false, true};
+    public int scores[];
+    public String playerNames[];
 
     /** Helps update the score - this value should be updated each turn */
     int emptySquares;
 
     /** If true, prints node information to the console. */
-    static final boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = true;
 
     // private static String DEPTH_SEPARATOR = ".";
 
@@ -40,9 +42,6 @@ public class FruitGame
      * Never explore beyond these many levels.
      */
     static final int MAX_DEPTH = 8;
-
-    static String inputFileName = "input.txt";
-    static String outputFileName = "output.txt";
 
     // Time variables
 
@@ -97,7 +96,7 @@ public class FruitGame
      * Reads the input from the text files in the format specified, and returns
      * a byte array corresponding to the initial grid.
      */
-    FruitGame(int boardSize, int numberOfFruits, String[] playerNames) {
+    public FruitGame(int boardSize, int numberOfFruits, String[] playerNames) {
 
         // Start reading input
         FruitNode.n = boardSize;
@@ -302,7 +301,7 @@ public class FruitGame
     /**
      * Play a move of the game using the AI.
      */
-    FruitNode playAIMove()
+    public FruitNode playAIMove()
     {
         resetTime();
 
@@ -401,7 +400,7 @@ public class FruitGame
      * Returns the FruitNode created as a result of playing a move -
      * i.e. 'picking' a particular node.
      */
-    FruitNode playHumanMove(int x, int y)
+    public FruitNode playHumanMove(int x, int y)
     {
 
         // FruitGridPoint seed = new FruitGridPoint(x, y, this.grid[x][y]);
@@ -483,7 +482,7 @@ public class FruitGame
      * Updates score and Goes forward to the next turn.
      * @return false if the game has finished.
      */
-    boolean advanceTurn()
+    public boolean advanceTurn()
     {
 
         // Update scores
@@ -520,7 +519,7 @@ public class FruitGame
         }
     }
 
-    String winner()
+    public String winner()
     {
         int maxIndex = -1;
         int maxScore = Integer.MIN_VALUE;

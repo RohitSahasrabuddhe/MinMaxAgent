@@ -1,4 +1,4 @@
-package com.example.android.minmaxagent;
+package com.example.android.minmaxagent.fruit;
 
 import java.util.Random;
 
