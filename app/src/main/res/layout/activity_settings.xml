@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/landscape"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
@@ -56,8 +57,8 @@
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                />
+                android:layout_weight="4" />
+
             <TextView
                 android:id="@+id/fruitTypeValueIndicator"
                 android:layout_width="0dp"
@@ -92,8 +93,8 @@
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                />
+                android:layout_weight="4" />
+
             <TextView
                 android:id="@+id/gridSizeValueIndicator"
                 android:layout_width="0dp"
@@ -103,7 +104,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
     <FrameLayout
