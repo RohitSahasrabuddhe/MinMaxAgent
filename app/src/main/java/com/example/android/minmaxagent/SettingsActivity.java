@@ -23,11 +23,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         valueSeekBar = findViewById(R.id.inputSeekBar);
 
+        valueSeekBar.setProgress(0);
+
         SeekBar.OnSeekBarChangeListener customSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
             int progressChangedValue = 0;
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
+
+
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
