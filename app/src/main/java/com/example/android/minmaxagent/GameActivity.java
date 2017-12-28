@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.minmaxagent.fruit.FruitGame;
 import com.example.android.minmaxagent.fruit.FruitNode;
@@ -146,6 +147,7 @@ public class GameActivity extends AppCompatActivity {
 
             if(!TextUtils.isEmpty(boardSize))
                 BOARD_SIZE = Integer.parseInt(boardSize);
+
         }
 
 

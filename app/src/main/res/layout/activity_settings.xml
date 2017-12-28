@@ -17,14 +17,14 @@
 
         <TextView
             android:id="@+id/userName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Player Name:" />
 
         <EditText
             android:id="@+id/valueUserName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
@@ -39,19 +39,18 @@
 
         <TextView
             android:id="@+id/fruitType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Fruit Types:" />
 
-        <EditText
+        <SeekBar
             android:id="@+id/valueFruitType"
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:text="5" />
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -61,19 +60,18 @@
 
         <TextView
             android:id="@+id/gridSize"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Grid Size:" />
 
-        <EditText
+        <SeekBar
             android:id="@+id/valueGridSize"
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:text="6" />
+            />
     </LinearLayout>
 
     <FrameLayout
@@ -89,11 +87,4 @@
             tools:layout_editor_absoluteY="162dp" />
     </FrameLayout>
 
-
-    <SeekBar
-        android:id="@+id/inputSeekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
 </LinearLayout>
