@@ -44,13 +44,28 @@
             android:layout_weight="1"
             android:text="Fruit Types:" />
 
-        <SeekBar
-            android:id="@+id/valueFruitType"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            android:orientation="horizontal">
+
+
+            <SeekBar
+                android:id="@+id/valueFruitType"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                />
+            <TextView
+                android:id="@+id/fruitTypeValueIndicator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -61,18 +76,35 @@
         <TextView
             android:id="@+id/gridSize"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Grid Size:" />
 
-        <SeekBar
-            android:id="@+id/valueGridSize"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            android:orientation="horizontal">
+
+
+            <SeekBar
+                android:id="@+id/valueGridSize"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                />
+            <TextView
+                android:id="@+id/gridSizeValueIndicator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4" />
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
     <FrameLayout
         android:layout_width="match_parent"
