@@ -10,6 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class SettingsActivity extends AppCompatActivity {
 
     // TODO (7) Persistent preferences - next new game has these default settings
@@ -30,12 +32,13 @@ public class SettingsActivity extends AppCompatActivity {
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
 
         valueFruitTypes.setProgress(0);
-        valueFruitTypes.setMax(60);
+        valueFruitTypes.setMax(5);
 
         valueFruitTypes.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
-                int indicatorValue = progressValue/10 + 4;
+                // int indicatorValue = progressValue/10 + 4;
+                int indicatorValue = progressValue + 4;
                 tvFruitTypeProgressIndicator.setText(""+indicatorValue);
                 fruitTypeProgress = indicatorValue;;
             }
@@ -55,13 +58,13 @@ public class SettingsActivity extends AppCompatActivity {
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
 
         valueGridSize.setProgress(0);
-        valueGridSize.setMax(60);
+        valueGridSize.setMax(5);
 
         valueGridSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
-                int indicatorValue = progressValue/10 + 4;
-                tvGridSizeProgressIndicator.setText(""+indicatorValue);
+                int indicatorValue = progressValue + 4;
+                tvGridSizeProgressIndicator.setText(String.format(Locale.getDefault(), "%d×%d", indicatorValue, indicatorValue));
                 gridSizeProgress = indicatorValue;
             }
 
