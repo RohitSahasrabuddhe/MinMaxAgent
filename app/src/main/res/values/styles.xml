@@ -18,8 +18,8 @@
 
     <style name="mmButton">
         <item name="android:background">@drawable/button_blue</item>
-        <item name="android:layout_width">150sp</item>
-        <item name="android:layout_height">60sp</item>
+        <item name="android:layout_width">180sp</item>
+        <item name="android:layout_height">70sp</item>
         <item name="android:layout_margin">3sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">15sp</item>
