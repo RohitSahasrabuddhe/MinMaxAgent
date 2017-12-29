@@ -67,7 +67,7 @@
             android:id="@+id/buttonSettings"
             style="@style/mmButton"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:background="@drawable/button_green"
+            android:background="@drawable/button_yellow"
             android:text="Setting" />
 
         <Button

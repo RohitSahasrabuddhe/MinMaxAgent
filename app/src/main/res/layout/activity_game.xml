@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/landscape"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.GameActivity">
 
@@ -14,16 +15,12 @@
 
     <!-- TODO (13) Tablet Layout - forcing Portrait mode is shabby -->
 
-    <!--<ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:src="@drawable/los_angeles_skyline" />-->
-
     <LinearLayout
         android:id="@+id/scoreLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="28"
+        android:background="@drawable/vine"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -31,13 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/playerName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="Dummy"
                 android:textSize="18sp" />
@@ -45,9 +42,9 @@
             <TextView
                 android:id="@+id/scoreP1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="100"
                 android:textSize="30sp" />
@@ -58,12 +55,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="AI"
                 android:textSize="18sp" />
@@ -71,9 +68,9 @@
             <TextView
                 android:id="@+id/scoreP2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="100"
                 android:textSize="30sp" />
@@ -83,7 +80,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="13">
 
         <GridLayout
             android:id="@+id/baseGrid"
@@ -91,7 +88,6 @@
             android:layout_height="0dp"
             android:layout_margin="8dp"
             android:background="@drawable/grid_frame"
-            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -103,14 +99,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="28"
+        android:background="@drawable/signpost"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/turnPlayer"
             style="@style/TextWhiteBlackShadow"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="Player x's turn"
             android:textSize="30sp" />
