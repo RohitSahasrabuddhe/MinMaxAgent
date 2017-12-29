@@ -10,33 +10,28 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="20dp" />
 
-        <LinearLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/logo" />
 
+    </FrameLayout>
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logo" />
-
-        </LinearLayout>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
 
         <Button
