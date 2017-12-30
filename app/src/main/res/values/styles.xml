@@ -16,7 +16,7 @@
         <item name="android:shadowRadius">0.01</item>
     </style>
 
-    <style name="mmButton">
+    <style name="ButtonWhiteTextMed">
         <item name="android:background">@drawable/button_blue</item>
         <item name="android:layout_width">180sp</item>
         <item name="android:layout_height">70sp</item>
@@ -27,6 +27,21 @@
         <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
         <item name="android:shadowRadius">0.01</item>
+    </style>
+
+    <style name="TextPlayer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+
+
+    </style>
+
+    <style name="TextPlayerScore">
+        <item name="android:textSize">40sp</item>
     </style>
 
 </resources>

@@ -58,28 +58,28 @@
 
         <Button
             android:id="@+id/buttonNewGame"
-            style="@style/mmButton"
+            style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_blue"
             android:text="New Game" />
 
         <Button
             android:id="@+id/buttonSettings"
-            style="@style/mmButton"
+            style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_yellow"
             android:text="Setting" />
 
         <Button
             android:id="@+id/buttonInstructions"
-            style="@style/mmButton"
+            style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_red"
             android:text="Instruction" />
 
         <Button
             android:id="@+id/buttonCredits"
-            style="@style/mmButton"
+            style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_violet"
             android:text="Credits" />

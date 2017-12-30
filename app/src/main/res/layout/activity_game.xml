@@ -30,21 +30,18 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
+            <com.qwerjk.better_text.MagicTextView
                 android:id="@+id/playerName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
+                style="@style/TextPlayer"
                 android:text="Dummy"
-                android:textSize="18sp" />
+                />
 
             <TextView
                 android:id="@+id/scoreP1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="100"
                 android:textSize="30sp" />
@@ -57,20 +54,16 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center"
+            <com.qwerjk.better_text.MagicTextView
+                style="@style/TextPlayer"
                 android:text="AI"
-                android:textSize="18sp" />
+                />
 
             <TextView
                 android:id="@+id/scoreP2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="2"
+                android:layout_height="0dp"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="100"
                 android:textSize="30sp" />
@@ -102,7 +95,7 @@
         android:layout_height="match_parent"
         android:layout_weight="28"
         android:background="@drawable/signpost"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/turnPlayer"
@@ -110,8 +103,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:paddingTop="8sp"
             android:text="Player x's turn"
-            android:textSize="30sp" />
+            android:textSize="43sp" />
     </LinearLayout>
 
 </LinearLayout>
