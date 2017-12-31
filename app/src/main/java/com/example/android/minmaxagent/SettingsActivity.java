@@ -19,10 +19,12 @@ public class SettingsActivity extends AppCompatActivity {
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypes, valueGridSize;
-    private int fruitTypeProgress, gridSizeProgress;
+    private int fruitTypeProgress = 0, gridSizeProgress = 0;
+    private static final int FRUITS_SEEK_MAX = 5, GRID_SEEK_MAX = 5;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -31,8 +33,8 @@ public class SettingsActivity extends AppCompatActivity {
         valueFruitTypes = findViewById(R.id.valueFruitType);
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
 
-        valueFruitTypes.setProgress(0);
-        valueFruitTypes.setMax(5);
+        valueFruitTypes.setProgress(fruitTypeProgress);
+        valueFruitTypes.setMax(FRUITS_SEEK_MAX);
 
         valueFruitTypes.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -44,21 +46,17 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) { }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
         valueGridSize = findViewById(R.id.valueGridSize);
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
 
-        valueGridSize.setProgress(0);
-        valueGridSize.setMax(5);
+        valueGridSize.setProgress(gridSizeProgress);
+        valueGridSize.setMax(GRID_SEEK_MAX);
 
         valueGridSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -69,14 +67,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) { }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
         Button startActivityButton = findViewById(R.id.startActivityButton);

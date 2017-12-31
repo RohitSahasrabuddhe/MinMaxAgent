@@ -25,4 +25,8 @@
 		    <enum name="round" value="2" />
 		</attr>
 	</declare-styleable>
+
+	<declare-styleable name="MagicTextViewTheme">
+		<attr name="magicTextViewStyle" format="reference"/>
+	</declare-styleable>
 </resources>
