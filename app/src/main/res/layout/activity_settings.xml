@@ -89,7 +89,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text="Human"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -162,7 +162,9 @@
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="8" />
+                    android:layout_weight="8"
+                    android:max="5"
+                    android:progress="1" />
 
                 <TextView
                     android:id="@+id/fruitTypeValueIndicator"
@@ -242,7 +244,9 @@
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="8" />
+                    android:layout_weight="8"
+                    android:max="5"
+                    android:progress="2" />
 
                 <TextView
                     android:id="@+id/gridSizeValueIndicator"
