@@ -28,6 +28,8 @@ public class GameActivity extends AppCompatActivity {
     public int BOARD_SIZE = 6;
     public int NUMBER_OF_FRUITS = 4;
 
+    Intent receivedIntent;
+
     private final int[] fruitImageResource = {
             R.drawable.fruit_strawberry,
             R.drawable.fruit_bananas,
@@ -130,7 +132,7 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_game);
 
-        Intent receivedIntent = getIntent();
+        receivedIntent = getIntent();
         if(receivedIntent != null) {
 
             String pName = receivedIntent.getStringExtra("valuePlayerName");
@@ -333,6 +335,11 @@ public class GameActivity extends AppCompatActivity {
                 refreshFruits();
 
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
+
+
+
+                Intent intentGameOver = new Intent(getApplicationContext() , GameOverActivity.class);
+                startActivity(intentGameOver);
 
                 glBaseGrid.setEnabled(false);
 
