@@ -10,5 +10,20 @@
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingTop="0dp">
 
+        <ImageView
+            android:id="@+id/imageViewGameOverMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="20dp"
+            app:srcCompat="@drawable/text_game_over_lose" />
+
+    </LinearLayout>
 </LinearLayout>
