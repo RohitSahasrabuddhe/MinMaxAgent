@@ -10,6 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.minmaxagent.db.DBHandler;
+
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -28,7 +30,13 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        final Intent receivedIntent = getIntent();
+
         valuePlayerName = findViewById(R.id.valueUserName);
+
+        if(receivedIntent.getStringExtra("UserName") != null) {
+            valuePlayerName.setText(receivedIntent.getStringExtra("UserName"));
+        }
 
         valueFruitTypes = findViewById(R.id.valueFruitType);
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
@@ -79,14 +87,30 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext() , GameActivity.class);
+                String playerName = valuePlayerName.getText().toString();
+                String userName = receivedIntent.getStringExtra("UserName");
 
-                intent.putExtra("valuePlayerName" , valuePlayerName.getText().toString());
-                intent.putExtra("valueFruitTypes" , ""+fruitTypeProgress);
-                intent.putExtra("valueGridSize" , ""+gridSizeProgress);
+                intent.putExtra("UserName" , userName);
+                intent.putExtra("PlayerName" , playerName);
+                //intent.putExtra("valueFruitTypes" , ""+fruitTypeProgress);
+                //intent.putExtra("valueGridSize" , ""+gridSizeProgress);
+
+                updateProfileTable(userName,fruitTypeProgress,gridSizeProgress);
+
 
                 startActivity(intent);
             }
         });
 
+    }
+
+    private void updateProfileTable(String userName, int fruitTypeProgress, int gridSizeProgress) {
+        DBHandler db = new DBHandler(this);
+
+        db.updateProfile(userName,fruitTypeProgress,gridSizeProgress);
+
+        Toast toast=Toast.makeText(getApplicationContext(),"Update Complete",Toast.LENGTH_SHORT);
+        toast.setMargin(50,50);
+        toast.show();
     }
 }

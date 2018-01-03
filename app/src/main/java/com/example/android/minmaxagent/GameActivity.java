@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.minmaxagent.db.DBHandler;
+import com.example.android.minmaxagent.db.Profile;
 import com.example.android.minmaxagent.fruit.FruitGame;
 import com.example.android.minmaxagent.fruit.FruitNode;
 
@@ -25,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     // TODO (9) Multi (>2) player support - maybe show only active player?
 
     public String PLAYER_NAME = "Dummy";
+    public String userName;
     public int BOARD_SIZE = 6;
     public int NUMBER_OF_FRUITS = 4;
 
@@ -134,21 +137,30 @@ public class GameActivity extends AppCompatActivity {
 
         receivedIntent = getIntent();
         if(receivedIntent != null) {
+            String playerName = receivedIntent.getStringExtra("PlayerName");
 
-            String pName = receivedIntent.getStringExtra("valuePlayerName");
+            if(!TextUtils.isEmpty(playerName))
+                PLAYER_NAME = playerName;
 
-            if(!TextUtils.isEmpty(pName))
-                PLAYER_NAME = pName;
 
-            String noOfFruits = receivedIntent.getStringExtra("valueFruitTypes");
+            String pName = receivedIntent.getStringExtra("UserName");
 
-            if(!TextUtils.isEmpty(noOfFruits))
-                NUMBER_OF_FRUITS = Integer.parseInt(noOfFruits);
+            if(!TextUtils.isEmpty(pName)) {
+                userName = pName;
 
-            String boardSize = receivedIntent.getStringExtra("valueGridSize");
+                DBHandler dbHandler= new DBHandler(this);
+                Profile profile = dbHandler.getProfileWithName(userName);
 
-            if(!TextUtils.isEmpty(boardSize))
-                BOARD_SIZE = Integer.parseInt(boardSize);
+
+
+                NUMBER_OF_FRUITS = profile.getFruitType();
+                BOARD_SIZE = profile.getGridSize();
+
+                Toast toast=Toast.makeText(getApplicationContext(),"Profile: " + profile,Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
+            }
+
 
         }
 

@@ -56,4 +56,5 @@ public class Profile {
     public String toString() {
         return this.name + " - " + this.password + " - " + this.fruitType + " - " + this.gridSize;
     }
+
 }

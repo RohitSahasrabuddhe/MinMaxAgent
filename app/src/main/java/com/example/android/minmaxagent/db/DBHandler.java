@@ -33,15 +33,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table profile(Name varchar(20), PASSWORD varchar(20), FRUITTYPE integer, GRIDSIZE integer)");
+        sqLiteDatabase.execSQL("create table profile(NAME varchar(20), PASSWORD varchar(20), FRUITTYPE integer, GRIDSIZE integer)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         // Drop older table if existed
-        sqLiteDatabase.execSQL("drop table if exists profile");
+        //sqLiteDatabase.execSQL("drop table if exists profile");
         // Creating tables again
-        onCreate(sqLiteDatabase);
+        //onCreate(sqLiteDatabase);
     }
 
     public void addProfile(Profile profile){
@@ -72,5 +72,45 @@ public class DBHandler extends SQLiteOpenHelper {
             }
         }
         return profile;
+    }
+
+    public String getPassword(String name) {
+
+        String password = "null";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"PASSWORD"};
+        Cursor cursor = db.rawQuery("select password from " + TABLE_NAME + " where name = '" + name + "'",null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            password = cursor.getString(0);
+        }
+        return password;
+    }
+
+    public Profile getProfileWithName(String name) {
+        Profile profile = new Profile();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where name = '" + name + "'",null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            for (int i = 0; i < cursor.getColumnCount(); i++) {
+                profile.setName(cursor.getString(0));
+                profile.setPassword(cursor.getString(1));
+                profile.setFruitType(Integer.parseInt(cursor.getString(2)));
+                profile.setGridSize(Integer.parseInt(cursor.getString(3)));
+            }
+        }
+        return profile;
+    }
+
+    public void updateProfile(String userName, int fruitType, int gridSize) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        db.execSQL("update " + TABLE_NAME + " set FRUITTYPE = " + fruitType + " where name = '" + userName + "'");
+        db.execSQL("update " + TABLE_NAME + " set GRIDSIZE = " + gridSize + " where name = '" + userName + "'");
+
     }
 }
