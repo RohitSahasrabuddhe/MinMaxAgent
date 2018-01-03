@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/landscape"
+    android:background="@drawable/bg_landscape"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.SettingsActivity">
@@ -94,7 +94,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:background="@drawable/arrow_right"
+            android:background="@drawable/signpost_arrow_right"
             android:orientation="vertical"
             android:paddingLeft="15dp">
 
@@ -119,7 +119,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:background="@drawable/arrow_right"
+            android:background="@drawable/signpost_arrow_right"
             android:orientation="vertical"
             android:scaleX="-1">
 

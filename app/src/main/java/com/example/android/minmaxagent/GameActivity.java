@@ -208,7 +208,7 @@ public class GameActivity extends AppCompatActivity {
                 ivFruitCurrent.setId(btnId);
 
                 // Add frame and background
-                ivFruitCurrent.setBackgroundResource(R.drawable.fruit_frame);
+                ivFruitCurrent.setBackgroundResource(R.drawable.grid_frame);
 
                 // TODO Bug (B2) Add margin
                 /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

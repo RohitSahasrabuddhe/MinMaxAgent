@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/landscape"
+    android:background="@drawable/bg_landscape"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.GameActivity">
@@ -82,7 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="8dp"
-            android:background="@drawable/grid_frame"
+            android:background="@drawable/grid_frame_overlay_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintLeft_toLeftOf="parent"

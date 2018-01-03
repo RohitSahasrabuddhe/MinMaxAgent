@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/landscape"
+    android:background="@drawable/bg_landscape"
     tools:context="com.example.android.minmaxagent.MainMenuActivity">
 
     <Space
@@ -34,7 +34,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/logo" />
+                app:srcCompat="@drawable/text_fruitrage" />
         </LinearLayout>
 
         <LinearLayout
