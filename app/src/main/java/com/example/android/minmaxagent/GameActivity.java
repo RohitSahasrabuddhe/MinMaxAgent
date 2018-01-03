@@ -346,11 +346,17 @@ public class GameActivity extends AppCompatActivity {
 
                 refreshFruits();
 
+                int scoreDifference = gethScoreDifference(game);
+
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
 
 
 
                 Intent intentGameOver = new Intent(getApplicationContext() , GameOverActivity.class);
+                intentGameOver.putExtra("UserName", userName);
+                intentGameOver.putExtra("Winner",playerWinner);
+                intentGameOver.putExtra("ScoreDiffenece",""+scoreDifference);
+                intentGameOver.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentGameOver);
 
                 glBaseGrid.setEnabled(false);
@@ -366,5 +372,16 @@ public class GameActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    private int gethScoreDifference(FruitGame game) {
+        int difference;
+
+        difference = game.scores[1] - game.scores[0];
+
+        if(difference < 0){
+            difference *= -1;
+        }
+        return  difference;
     }
 }

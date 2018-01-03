@@ -8,11 +8,19 @@ import android.widget.TextView;
 
 public class GameOverActivity extends AppCompatActivity {
 
+Intent receivedIntent;
     TextView tvRestart, tvQuit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+        receivedIntent = getIntent();
+
+        String winner = receivedIntent.getStringExtra("Winner");
+        String scoreDifference = receivedIntent.getStringExtra("ScoreDifference");
+
+
 
         tvRestart = findViewById(R.id.textViewRestartButton);
 
