@@ -9,11 +9,12 @@
     tools:context="com.example.android.minmaxagent.InstructionActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        app:srcCompat="@drawable/text_help" />
+        app:srcCompat="@drawable/text_help"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -21,7 +22,6 @@
         android:layout_weight="10">
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
@@ -29,24 +29,98 @@
             android:scaleType="fitXY"
             app:srcCompat="@drawable/signpost_board" />
 
-        <TextView
-            android:id="@+id/textView"
-            fontPath="fonts/ComicRelief.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_margin="46dp"
-            android:gravity="center"
-            android:text="Collect connected groups of fruits by tapping them!\n\nThe remaining fruits fall down due to gravity.\n\nBeat the AI to generate a higher score!"
-            style="@style/TextWhiteBlackShadow"
-            android:textSize="25dp"
-            tools:ignore="MissingPrefix" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="43dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="2"
+                    app:srcCompat="@drawable/help_group" />
+
+                <com.qwerjk.better_text.MagicTextView
+                    style="@style/TextWhiteBlackShadow"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical"
+                    android:text="Collect connected groups of fruits by tapping them!"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="2"
+                    app:srcCompat="@drawable/help_gravity" />
+
+                <com.qwerjk.better_text.MagicTextView
+                    style="@style/TextWhiteBlackShadow"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical"
+                    android:text="The remaining fruits fall down due to gravity."
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:layout_weight="2"
+                    app:srcCompat="@drawable/help_score" />
+
+                <com.qwerjk.better_text.MagicTextView
+                    style="@style/TextWhiteBlackShadow"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical"
+                    android:text="Beat the AI by obtaining a higher score!"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+            </LinearLayout>
+        </LinearLayout>
+
     </FrameLayout>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <Button
+        android:id="@+id/buttonNewGame"
+        style="@style/ButtonWhiteTextMed"
         android:layout_weight="2"
-        app:srcCompat="@drawable/button_red" />
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:text="New Game"
+        android:layout_margin="14dp"
+         />
 
 </LinearLayout>
