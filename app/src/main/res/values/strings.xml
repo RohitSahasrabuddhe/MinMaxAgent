@@ -1,7 +1,5 @@
 <resources>
 
     <!-- TODO (18) Convert all text in the game to String resources -->
-    <!-- TODO (15) Hindi (maybe Marathi, Spanish) as a language -->
-
     <string name="app_name">Fruit Rage</string>
 </resources>

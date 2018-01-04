@@ -9,8 +9,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InstructionActivity extends AppCompatActivity {
 
-    // TODO (20) Help/instruction activity
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +22,9 @@ public class InstructionActivity extends AppCompatActivity {
 
 
     }
+
+    // TODO Help screen's new game button
+    // TODO Help screen's back button
 
     @Override
     protected void attachBaseContext(Context newBase) {

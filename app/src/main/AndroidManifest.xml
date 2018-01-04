@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.minmaxagent">
 
-    <!-- TODO (14) Company/brand name, universalize package name -->
-    <!-- TODO (10) Launcher icon needs to be updated -->
+    <!-- TODO Fix screen transitions -->
+    <!-- TODO Company/brand name, universalize package name -->
+    <!-- COMPLETED Launcher icon needs to be updated -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,9 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- TODO (5) Credits activity needs to be added (we're using free resources) -->
-        <!-- TODO (8) Main menu neds to be added (contains new game, prefs, credits) -->
 
         <activity android:name=".GameActivity">
 

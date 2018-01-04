@@ -9,6 +9,8 @@
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
+    <!-- TODO Login activity layout -->
+
 
     <Space
         android:layout_width="match_parent"

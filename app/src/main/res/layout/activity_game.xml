@@ -10,9 +10,7 @@
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.GameActivity">
 
-    <!-- TODO (3) Style update to make it look like a game -->
-    <!-- TODO (4) Font update -->
-
+    <!-- TODO (4) Font: Add Calligraphy wherever required -->
     <!-- TODO (13) Tablet Layout - forcing Portrait mode is shabby -->
 
     <LinearLayout
@@ -20,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="28"
-        android:background="@drawable/vine"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -33,8 +30,7 @@
             <com.qwerjk.better_text.MagicTextView
                 android:id="@+id/playerName"
                 style="@style/TextPlayer"
-                android:text="Dummy"
-                />
+                android:text="Dummy" />
 
             <TextView
                 android:id="@+id/scoreP1"
@@ -57,8 +53,7 @@
 
             <com.qwerjk.better_text.MagicTextView
                 style="@style/TextPlayer"
-                android:text="AI"
-                />
+                android:text="AI" />
 
             <TextView
                 android:id="@+id/scoreP2"

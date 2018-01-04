@@ -1,5 +1,6 @@
 package com.example.android.minmaxagent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -19,12 +20,11 @@ import com.example.android.minmaxagent.db.Profile;
 import com.example.android.minmaxagent.fruit.FruitGame;
 import com.example.android.minmaxagent.fruit.FruitNode;
 
+import java.io.IOException;
 import java.util.Locale;
 
 
 public class GameActivity extends AppCompatActivity {
-
-    // TODO (9) Multi (>2) player support - maybe show only active player?
 
     public String PLAYER_NAME = "Dummy";
     public String userName;
@@ -44,7 +44,9 @@ public class GameActivity extends AppCompatActivity {
             R.drawable.fruit_watermelon,
             R.drawable.fruit_lemon, };
 
-    // COMPLETED (2) Empty grid cells don't seem to display correctly
+    // TODO Back button; modify to go to appropriate screen
+
+    // COMPLETED Empty grid cells don't seem to display correctly
     private final int fruitImageResourceEmpty = R.drawable.fruit_empty;
 
     private FruitGame game;
@@ -210,7 +212,6 @@ public class GameActivity extends AppCompatActivity {
                 // Add frame and background
                 ivFruitCurrent.setBackgroundResource(R.drawable.grid_frame);
 
-                // TODO Bug (B2) Add margin
                 /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 lp.setMargins(4, 4, 4, 4);
@@ -228,6 +229,8 @@ public class GameActivity extends AppCompatActivity {
 
                 ivFruitCurrent.setPadding(padding,padding,padding,padding);
 
+                final Context c = this;
+
                 // Adding onclick Listener for buttons
                 ivFruitCurrent.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -237,13 +240,10 @@ public class GameActivity extends AppCompatActivity {
                         int y = (int)ivFruitCurrent.getId() % 10 - 1;
 
                         // COMPLETED (1) Sound can be played when fruit is selected
-                        // TODO (6) Animation, sparkle when fruit is selected
-                        // TODO (19) Animation, Gravity when fruits drop
-
                         // Play a sound
                         mpSound.start();
 
-                        new GamePlayTask().execute(x, y);
+                        new GamePlayTask(c).execute(x, y);
                     }
                 });
 
@@ -271,6 +271,13 @@ public class GameActivity extends AppCompatActivity {
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
     {
 
+        Context context;
+
+        GamePlayTask(Context c)
+        {
+            this.context = c;
+        }
+
         @Override
         protected void onPreExecute() {
 
@@ -297,7 +304,7 @@ public class GameActivity extends AppCompatActivity {
                 System.out.println("Human made an invalid move?!?!");
             }
 
-            // TODO (16) Finish the game, Display Winner and go back to new menu screen
+            // COMPLETED (16) Finish the game, Display Winner and go back to new menu screen
             // Continue game if further playable
             if(game.advanceTurn()) {
 
@@ -311,7 +318,12 @@ public class GameActivity extends AppCompatActivity {
                 {
                     FruitNode aiResult = game.playAIMove();
 
-                    // Play a sound
+                    // Play a sound - cancel currently playing sound if it already is playing
+                    if (mpSound.isPlaying()) {
+                        mpSound.stop();
+                        mpSound.release();
+                        mpSound = MediaPlayer.create(context, R.raw.fruit);
+                    }
                     mpSound.start();
 
                     if (aiResult != null) // only update game if move was valid.

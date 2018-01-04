@@ -11,9 +11,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         app:srcCompat="@drawable/text_help"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"/>
 
     <FrameLayout
@@ -113,14 +113,33 @@
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/buttonNewGame"
-        style="@style/ButtonWhiteTextMed"
-        android:layout_weight="2"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:text="New Game"
-        android:layout_margin="14dp"
-         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:background="@drawable/button_red"
+            style="@style/ButtonWhiteTextMed"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_gravity="center"
+            android:text="Back" />
+
+        <Button
+            android:id="@+id/buttonNewGame"
+            style="@style/ButtonWhiteTextMed"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_gravity="center"
+            android:text="New Game" />
+    </LinearLayout>
 
 </LinearLayout>
