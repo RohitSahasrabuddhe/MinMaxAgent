@@ -95,6 +95,12 @@ public class SettingsActivity extends AppCompatActivity {
                 //intent.putExtra("valueFruitTypes" , ""+fruitTypeProgress);
                 //intent.putExtra("valueGridSize" , ""+gridSizeProgress);
 
+                if(fruitTypeProgress == 0){
+                    fruitTypeProgress = 3;
+                }
+                if(gridSizeProgress == 0){
+                    gridSizeProgress = 3;
+                }
                 updateProfileTable(userName,fruitTypeProgress,gridSizeProgress);
 
 
