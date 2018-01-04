@@ -137,12 +137,6 @@ public class GameActivity extends AppCompatActivity {
 
         receivedIntent = getIntent();
         if(receivedIntent != null) {
-            String playerName = receivedIntent.getStringExtra("PlayerName");
-
-            if(!TextUtils.isEmpty(playerName))
-                PLAYER_NAME = playerName;
-
-
             String pName = receivedIntent.getStringExtra("UserName");
 
             if(!TextUtils.isEmpty(pName)) {
@@ -152,7 +146,7 @@ public class GameActivity extends AppCompatActivity {
                 Profile profile = dbHandler.getProfileWithName(userName);
 
 
-
+                PLAYER_NAME = userName;
                 NUMBER_OF_FRUITS = profile.getFruitType();
                 BOARD_SIZE = profile.getGridSize();
 
@@ -160,6 +154,11 @@ public class GameActivity extends AppCompatActivity {
                 toast.setMargin(50,50);
                 toast.show();
             }
+
+            String playerNameIfChanged = receivedIntent.getStringExtra("PlayerName");
+
+            if(!TextUtils.isEmpty(playerNameIfChanged))
+                PLAYER_NAME = playerNameIfChanged;
 
 
         }
