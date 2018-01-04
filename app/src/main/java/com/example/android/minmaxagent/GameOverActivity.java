@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 public class GameOverActivity extends AppCompatActivity {
 
-Intent receivedIntent;
-    TextView tvRestart, tvQuit;
+    Intent receivedIntent;
+    TextView tvRestart, tvQuit, tvGameStat;
+
+    String userName, PLAYER_NAME;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +23,17 @@ Intent receivedIntent;
         String winner = receivedIntent.getStringExtra("Winner");
         String scoreDifference = receivedIntent.getStringExtra("ScoreDifference");
 
+        userName = receivedIntent.getStringExtra("UserName");
+        PLAYER_NAME = receivedIntent.getStringExtra("PlayerName");
+
+        tvGameStat = findViewById(R.id.textViewGameStat);
+
+        if(winner.equals("AI")){
+            tvGameStat.setText("The AI beat you by " + scoreDifference +" points!");
+        }
+        else{
+            tvGameStat.setText("Congrats, you won by " + scoreDifference +" points!");
+        }
 
 
         tvRestart = findViewById(R.id.textViewRestartButton);
@@ -29,6 +43,8 @@ Intent receivedIntent;
             public void onClick(View view) {
 
                 Intent intentRestartGame = new Intent(getApplicationContext() , GameActivity.class);
+                intentRestartGame.putExtra("UserName",userName);
+                intentRestartGame.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentRestartGame);
 
             }
@@ -41,6 +57,7 @@ Intent receivedIntent;
             public void onClick(View view) {
 
                 Intent intentQuitGame = new Intent(getApplicationContext(), MainMenuActivity.class);
+                intentQuitGame.putExtra("UserName",userName);
                 startActivity(intentQuitGame);
 
             }
