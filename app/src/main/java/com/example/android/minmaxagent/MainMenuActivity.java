@@ -11,7 +11,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits;
     Intent receivedIntent;
-    String PLAYER_NAME = "Dummy";
+    String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +21,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
         if(receivedIntent != null) {
 
-            String userName = receivedIntent.getStringExtra("UserName");
+            String pName = receivedIntent.getStringExtra("UserName");
 
             if (!TextUtils.isEmpty(userName))
-                PLAYER_NAME = userName;
+                userName = pName;
         }
 
 
@@ -40,7 +40,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 //New Game button is Clicked
 
                 Intent intentNewGame = new Intent(getApplicationContext() , GameActivity.class);
-                intentNewGame.putExtra("UserName" , PLAYER_NAME);
+                intentNewGame.putExtra("UserName" , userName);
                 startActivity(intentNewGame);
             }
         });
@@ -51,7 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 //Settings button is clicked
 
                 Intent intentSettings = new Intent(getApplicationContext() , SettingsActivity.class);
-                intentSettings.putExtra("UserName" , PLAYER_NAME);
+                intentSettings.putExtra("UserName" , userName);
                 startActivity(intentSettings);
             }
         });
@@ -61,7 +61,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Instruction button is clicked
                 Intent intentInstruction = new Intent(getApplicationContext() , InstructionActivity.class);
-                intentInstruction.putExtra("UserName" , PLAYER_NAME);
+                intentInstruction.putExtra("UserName" , userName);
                 startActivity(intentInstruction);
             }
         });
@@ -71,7 +71,7 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Credits button is clicked
                 Intent intentCredits = new Intent(getApplicationContext() , CreditActivity.class);
-                intentCredits.putExtra("UserName" , PLAYER_NAME);
+                intentCredits.putExtra("UserName" , userName);
                 startActivity(intentCredits);
             }
         });

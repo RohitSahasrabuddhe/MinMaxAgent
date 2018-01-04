@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameOverActivity extends AppCompatActivity {
 
     Intent receivedIntent;
     TextView tvRestart, tvQuit, tvGameStat;
+    ImageView ivGameOverText;
 
     String userName, PLAYER_NAME;
 
@@ -28,11 +30,16 @@ public class GameOverActivity extends AppCompatActivity {
 
         tvGameStat = findViewById(R.id.textViewGameStat);
 
+        ivGameOverText = findViewById(R.id.imageViewGameOverMessage);
+
+
         if(winner.equals("AI")){
             tvGameStat.setText("The AI beat you by " + scoreDifference +" points!");
+            ivGameOverText.setImageDrawable(@drawable/text_game_over_lose");
         }
         else{
             tvGameStat.setText("Congrats, you won by " + scoreDifference +" points!");
+            ivGameOverText.setImageDrawable(@drawable/text_game_over_win");
         }
 
 
