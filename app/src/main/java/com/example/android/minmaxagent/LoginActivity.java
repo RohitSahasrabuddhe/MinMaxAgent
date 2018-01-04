@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     private String getPasswordFromDBHandler(String userName) {
         DBHandler db = new DBHandler(this);
 
-        //db.addProfile(new Profile("Rohit","pass",5,5));
+        db.addProfile(new Profile("a","a",5,5));
 
         String passwordInDatabase = db.getPassword(userName);
 
