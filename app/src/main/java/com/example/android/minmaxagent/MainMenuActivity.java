@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -22,8 +23,8 @@ public class MainMenuActivity extends AppCompatActivity {
         if(receivedIntent != null) {
 
             String pName = receivedIntent.getStringExtra("UserName");
-
-            if (!TextUtils.isEmpty(userName))
+            //Toast.makeText(getApplicationContext(),"Name: " + pName,Toast.LENGTH_LONG).show();
+            if (!TextUtils.isEmpty(pName))
                 userName = pName;
         }
 

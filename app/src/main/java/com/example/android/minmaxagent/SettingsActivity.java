@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypes, valueGridSize;
     private int fruitTypeProgress = 0, gridSizeProgress = 0;
-    private static final int FRUITS_SEEK_MAX = 5, GRID_SEEK_MAX = 5;
+    private static final int FRUITS_SEEK_MAX = 6, GRID_SEEK_MAX = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
                 // int indicatorValue = progressValue/10 + 4;
-                int indicatorValue = progressValue + 4;
+                int indicatorValue = progressValue + 3;
                 tvFruitTypeProgressIndicator.setText(""+indicatorValue);
                 fruitTypeProgress = indicatorValue;;
             }
@@ -69,7 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
         valueGridSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
-                int indicatorValue = progressValue + 4;
+                int indicatorValue = progressValue + 3;
                 tvGridSizeProgressIndicator.setText(String.format(Locale.getDefault(), "%d×%d", indicatorValue, indicatorValue));
                 gridSizeProgress = indicatorValue;
             }

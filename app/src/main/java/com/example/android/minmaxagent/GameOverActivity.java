@@ -35,11 +35,11 @@ public class GameOverActivity extends AppCompatActivity {
 
         if(winner.equals("AI")){
             tvGameStat.setText("The AI beat you by " + scoreDifference +" points!");
-            ivGameOverText.setImageDrawable(@drawable/text_game_over_lose");
+            ivGameOverText.setImageResource(R.drawable.text_game_over_lose);
         }
         else{
             tvGameStat.setText("Congrats, you won by " + scoreDifference +" points!");
-            ivGameOverText.setImageDrawable(@drawable/text_game_over_win");
+            ivGameOverText.setImageResource(R.drawable.text_game_over_win);
         }
 
 

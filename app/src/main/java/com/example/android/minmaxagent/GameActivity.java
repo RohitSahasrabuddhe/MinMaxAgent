@@ -136,6 +136,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         receivedIntent = getIntent();
+
         if(receivedIntent != null) {
             String pName = receivedIntent.getStringExtra("UserName");
 
@@ -150,7 +151,7 @@ public class GameActivity extends AppCompatActivity {
                 NUMBER_OF_FRUITS = profile.getFruitType();
                 BOARD_SIZE = profile.getGridSize();
 
-                Toast toast=Toast.makeText(getApplicationContext(),"Profile: " + profile,Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getApplicationContext(),"Profile: " + profile,Toast.LENGTH_LONG);
                 toast.setMargin(50,50);
                 toast.show();
             }
@@ -354,7 +355,7 @@ public class GameActivity extends AppCompatActivity {
                 Intent intentGameOver = new Intent(getApplicationContext() , GameOverActivity.class);
                 intentGameOver.putExtra("UserName", userName);
                 intentGameOver.putExtra("Winner",playerWinner);
-                intentGameOver.putExtra("ScoreDiffenece",""+scoreDifference);
+                intentGameOver.putExtra("ScoreDifference",""+scoreDifference);
                 intentGameOver.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentGameOver);
 

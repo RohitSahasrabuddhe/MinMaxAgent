@@ -37,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 String passwordFromDBHandler = getPasswordFromDBHandler(userName);
 
-                Toast toast=Toast.makeText(getApplicationContext(),"Typed Password: " + password + " DB Pass is: " + passwordFromDBHandler,Toast.LENGTH_SHORT);
+                Toast toast=Toast.makeText(getApplicationContext(),"Typed Password: " + password + " DB Pass is: " + passwordFromDBHandler
+                        + "\tuser Name Received: " + userName ,Toast.LENGTH_LONG);
                 toast.setMargin(50,50);
                 toast.show();
 
