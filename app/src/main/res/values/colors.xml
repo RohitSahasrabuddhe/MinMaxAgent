@@ -5,7 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#ffffff</color>
 
-    <!-- These aren't used anymore -->
     <color name="colorFruitApple">#ff3d00</color>
     <color name="colorFruitBanana">#ffea00</color>
     <color name="colorFruitBlueberry">#304ffe</color>
@@ -15,5 +14,6 @@
     <color name="colorFruitCyan">#4dd0e1</color>
     <color name="colorFruitGrape">#6a00ff</color>
     <color name="colorFruitLime">#c6ff00</color>
+    <color name="red">#fd0a12</color>
 
 </resources>

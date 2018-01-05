@@ -11,120 +11,96 @@
 
     <!-- TODO Login activity layout -->
 
-
-    <Space
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="60dp"
+        android:src="@drawable/text_login" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="5"
+        android:background="@drawable/signpost_board"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvUserName"
+            style="@style/TextWhiteBlackShadow"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="User Name"
+            android:textSize="30sp" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
-
-            <TextView
-                android:id="@+id/tvUserName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="User Name"
-                android:textSize="30sp" />
-
-            <EditText
-                android:id="@+id/editTextUserName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="text"
-                android:text="a"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/editTextUserName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="a"
+            android:textSize="20sp" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
+        <TextView
+            android:id="@+id/tvPassword"
+            style="@style/TextWhiteBlackShadow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Password"
+            android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/tvPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Password"
-                android:textSize="30sp" />
-
-            <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:text="a"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:text="a"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
         <Button
             android:id="@+id/buttonLogin"
-            android:layout_width="wrap_content"
+            style="@style/ButtonWhiteTextMed"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Login" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="Login"
+            android:background="@drawable/button_red"/>
 
         <Button
             android:id="@+id/buttonSignUp"
-            android:layout_width="wrap_content"
+            style="@style/ButtonWhiteTextMed"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sign Up" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
+
 </LinearLayout>
