@@ -17,7 +17,7 @@
         android:layout_gravity="bottom"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="2"
+        android:layout_weight="1.6"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="60dp"
@@ -52,6 +52,7 @@
             android:gravity="center"
             android:inputType="text"
             android:text="a"
+            android:background="@color/wood"
             android:textSize="20sp" />
 
         <TextView
@@ -69,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/wood"
             android:ems="10"
             android:gravity="center"
             android:inputType="textPassword"

@@ -131,12 +131,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Fruit Type"
+                    android:text="Fruit Types"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 
