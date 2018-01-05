@@ -127,8 +127,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (21) Display last fruit played
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

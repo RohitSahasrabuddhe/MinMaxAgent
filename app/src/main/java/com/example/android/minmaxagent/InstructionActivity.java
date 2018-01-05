@@ -23,9 +23,6 @@ public class InstructionActivity extends AppCompatActivity {
 
     }
 
-    // TODO Help screen's new game button
-    // TODO Help screen's back button
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

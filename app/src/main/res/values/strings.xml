@@ -1,5 +1,5 @@
 <resources>
 
-    <!-- TODO (18) Convert all text in the game to String resources -->
+    <!-- TODO Convert all text in the game to String resources -->
     <string name="app_name">Fruit Rage</string>
 </resources>

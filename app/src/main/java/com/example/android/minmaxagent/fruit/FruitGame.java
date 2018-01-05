@@ -12,7 +12,8 @@ import java.util.List;
 public class FruitGame
 {
 
-    // TODO (21) Keep track of last fruit played
+    // TODO Keep track of last fruit played
+    // TODO Achievements
 
     private float timeAlloted;
     public FruitNode node;

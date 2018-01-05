@@ -17,8 +17,6 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    // TODO (7) Persistent preferences - next new game has these default settings
-
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypesSeekbar, valueGridSizeSeekbar;
