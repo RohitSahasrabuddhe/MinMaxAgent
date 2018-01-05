@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:orientation="vertical"></LinearLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -27,53 +33,103 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:background="@drawable/signpost_board"
         android:orientation="vertical"
         android:padding="30dp">
 
-        <TextView
-            android:id="@+id/tvUserName"
-            style="@style/TextWhiteBlackShadow"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="User Name"
-            android:textSize="30sp" />
-
-        <EditText
-            android:id="@+id/editTextUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="text"
-            android:text="a"
-            android:background="@color/wood"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvPassword"
-            style="@style/TextWhiteBlackShadow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Password"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/tvUserName"
+                style="@style/TextWhiteBlackShadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="User Name"
+                android:textSize="30sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/editTextPassword"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/editTextUserName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/wood"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="a"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/wood"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="textPassword"
-            android:text="a"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPassword"
+                style="@style/TextWhiteBlackShadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Password"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:background="@color/wood"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:text="a"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -102,5 +158,11 @@
             android:text="Sign Up" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:orientation="vertical"></LinearLayout>
 
 </LinearLayout>
