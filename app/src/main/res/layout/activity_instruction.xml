@@ -32,7 +32,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="43dp"
+            android:layout_margin="35dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="18dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/help_group" />
 
                 <com.qwerjk.better_text.MagicTextView
@@ -55,7 +55,7 @@
                     android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:text="Collect connected groups of fruits by tapping them!"
-                    android:textSize="22dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:ignore="MissingPrefix" />
             </LinearLayout>
@@ -70,7 +70,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="18dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/help_gravity" />
 
                 <com.qwerjk.better_text.MagicTextView
@@ -80,7 +80,7 @@
                     android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:text="The remaining fruits fall down due to gravity."
-                    android:textSize="22dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:ignore="MissingPrefix" />
             </LinearLayout>
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="18dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/help_score" />
 
                 <com.qwerjk.better_text.MagicTextView
@@ -105,7 +105,7 @@
                     android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:text="Beat the AI by obtaining a higher score!"
-                    android:textSize="22dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:ignore="MissingPrefix" />
             </LinearLayout>
@@ -120,26 +120,42 @@
         android:gravity="center"
         android:orientation="horizontal">
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/buttonBack"
-            android:background="@drawable/button_red"
             style="@style/ButtonWhiteTextMed"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginLeft="6dp"
+            android:layout_width="0dp"
             android:layout_gravity="center"
+            android:layout_margin="0dp"
+            android:layout_weight="5"
+            android:background="@drawable/button_red"
             android:text="Back" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/buttonNewGame"
             style="@style/ButtonWhiteTextMed"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginLeft="6dp"
+            android:layout_width="0dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="5"
             android:text="New Game" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>
