@@ -1,14 +1,20 @@
 package com.example.android.minmaxagent;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InstructionActivity extends AppCompatActivity {
 
+    Button buttonBack, buttonNewGame;
+    String userName;
+    Intent receivedIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +25,32 @@ public class InstructionActivity extends AppCompatActivity {
                         .build() );
 
         setContentView(R.layout.activity_instruction);
+
+        receivedIntent = getIntent();
+        userName = receivedIntent.getStringExtra("UserName");
+
+        buttonBack = findViewById(R.id.buttonBack);
+        buttonNewGame = findViewById(R.id.buttonNewGame);
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+                intentMainMenu.putExtra("UserName",userName);
+                startActivity(intentMainMenu);
+
+
+            }
+        });
+
+        buttonNewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentGameActivity = new Intent(getApplicationContext(),GameActivity.class);
+                intentGameActivity.putExtra("UserName",userName);
+                startActivity(intentGameActivity);
+            }
+        });
 
 
     }
