@@ -40,6 +40,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
         Profile currentUserProfile = db.getProfileWithName(userName);
+        Toast toast=Toast.makeText(getApplicationContext(),"CurrentUserProfile: " + currentUserProfile,Toast.LENGTH_SHORT);
+        toast.setMargin(50,50);
+        toast.show();
 
         fruitTypeProgress = currentUserProfile.getFruitType()-3;
         gridSizeProgress = currentUserProfile.getGridSize()-3;

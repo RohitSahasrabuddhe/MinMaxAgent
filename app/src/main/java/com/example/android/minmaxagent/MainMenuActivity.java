@@ -23,7 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
         if(receivedIntent != null) {
 
             String pName = receivedIntent.getStringExtra("UserName");
-            //Toast.makeText(getApplicationContext(),"Name: " + pName,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Name: " + pName,Toast.LENGTH_LONG).show();
             if (!TextUtils.isEmpty(pName))
                 userName = pName;
         }

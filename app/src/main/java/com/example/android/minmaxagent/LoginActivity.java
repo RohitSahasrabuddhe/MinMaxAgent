@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editTextUserName, editTextPassword;
 
-    Button buttonLogin, buttonSignUp;
+    Button buttonLogin, buttonGuestUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
 
         buttonLogin = findViewById(R.id.buttonLogin);
-        buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonGuestUser = findViewById(R.id.buttonGuestUser);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +51,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+
+
+        buttonGuestUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Creating new guest user in database
+                String guestUserName = "Guest";
+                createGuestUser(guestUserName);
 
+                //Creating intent to render further
+                Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+                intentMainMenu.putExtra("UserName",guestUserName);
+                startActivity(intentMainMenu);
             }
         });
+
+    }
+
+    private void createGuestUser(String guestUserName) {
+        DBHandler db = new DBHandler(this);
+
+        db.deleteRecordIfExists(guestUserName);
+        db.addProfile(new Profile(guestUserName,"",5,5));
+
+        Profile dbProfile = db.getProfileWithName(guestUserName);
+        Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
+        toast.setMargin(50,50);
+        toast.show();
     }
 
     private String getPasswordFromDBHandler(String userName) {

@@ -113,4 +113,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("update " + TABLE_NAME + " set GRIDSIZE = " + gridSize + " where name = '" + userName + "'");
 
     }
+
+    public void deleteRecordIfExists(String guestUserName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("delete from " + TABLE_NAME + " where name = '" + guestUserName + "'");
+    }
 }
