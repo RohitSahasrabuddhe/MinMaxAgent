@@ -10,3 +10,4 @@ A big thank you to all of you guys for making this easier:
 
 ## Code libraries
 * [MagicTextView](https://github.com/m5/MagicTextView) by [m5](https://github.com/m5)
+* [Calligraphy](https://github.com/chrisjenx/Calligraphy) by [chrisjenx](https://github.com/chrisjenx)
