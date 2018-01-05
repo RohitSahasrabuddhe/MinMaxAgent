@@ -1,6 +1,7 @@
 package com.example.android.minmaxagent;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ public class MainMenuActivity extends AppCompatActivity {
     Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits;
     Intent receivedIntent;
     String userName;
+    private boolean exitFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
         if(receivedIntent != null) {
 
             String pName = receivedIntent.getStringExtra("UserName");
-            Toast.makeText(getApplicationContext(),"Name: " + pName,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"Name: " + pName,Toast.LENGTH_LONG).show();
             if (!TextUtils.isEmpty(pName))
                 userName = pName;
         }
@@ -77,5 +79,22 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (exitFlag) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "Press Back again to Exit." , Toast.LENGTH_SHORT).show();
+            exitFlag = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exitFlag = false;
+                }
+            }, 3 * 1000);
+
+        }
     }
 }

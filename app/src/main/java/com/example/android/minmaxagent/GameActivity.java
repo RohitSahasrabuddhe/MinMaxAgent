@@ -127,6 +127,17 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    private int gethScoreDifference(FruitGame game) {
+        int difference;
+
+        difference = game.scores[1] - game.scores[0];
+
+        if(difference < 0){
+            difference *= -1;
+        }
+        return  difference;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -384,14 +395,15 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private int gethScoreDifference(FruitGame game) {
-        int difference;
 
-        difference = game.scores[1] - game.scores[0];
 
-        if(difference < 0){
-            difference *= -1;
-        }
-        return  difference;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+        intentMainMenu.putExtra("UserName" , userName);
+        startActivity(intentMainMenu);
+        finish();
     }
 }

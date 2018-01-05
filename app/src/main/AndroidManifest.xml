@@ -4,7 +4,6 @@
 
     <!-- TODO Fix screen transitions -->
     <!-- TODO Company/brand name, universalize package name -->
-    <!-- COMPLETED Launcher icon needs to be updated -->
 
     <application
         android:allowBackup="true"

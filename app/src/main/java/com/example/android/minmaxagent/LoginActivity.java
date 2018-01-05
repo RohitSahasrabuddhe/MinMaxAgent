@@ -37,14 +37,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 String passwordFromDBHandler = getPasswordFromDBHandler(userName);
 
-                Toast toast=Toast.makeText(getApplicationContext(),"Typed Password: " + password + " DB Pass is: " + passwordFromDBHandler
-                        + "\tuser Name Received: " + userName ,Toast.LENGTH_LONG);
-                toast.setMargin(50,50);
-                toast.show();
-
                 if(password.equals(passwordFromDBHandler)){
                     Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
                     intentMainMenu.putExtra("UserName",userName);
+
+                    intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(intentMainMenu);
                 }
 
@@ -63,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                 //Creating intent to render further
                 Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
                 intentMainMenu.putExtra("UserName",guestUserName);
+                intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentMainMenu);
             }
         });
@@ -76,9 +77,9 @@ public class LoginActivity extends AppCompatActivity {
         db.addProfile(new Profile(guestUserName,"",5,5));
 
         Profile dbProfile = db.getProfileWithName(guestUserName);
-        Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
+        /*Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
         toast.setMargin(50,50);
-        toast.show();
+        toast.show();*/
     }
 
     private String getPasswordFromDBHandler(String userName) {
