@@ -61,4 +61,15 @@ public class SignUpActivity extends AppCompatActivity {
         db.deleteRecordIfExists(profile.getName());
         db.addProfile(profile);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+        intentMainMenu.putExtra("UserName" , userName);
+        intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentMainMenu);
+        finish();
+    }
 }

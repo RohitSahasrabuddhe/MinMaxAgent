@@ -65,6 +65,7 @@ public class GameOverActivity extends AppCompatActivity {
 
                 Intent intentQuitGame = new Intent(getApplicationContext(), MainMenuActivity.class);
                 intentQuitGame.putExtra("UserName",userName);
+                intentQuitGame.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //Clears Activity stack till now
                 startActivity(intentQuitGame);
 
             }

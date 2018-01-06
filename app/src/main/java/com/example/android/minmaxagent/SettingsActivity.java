@@ -134,4 +134,15 @@ public class SettingsActivity extends AppCompatActivity {
         toast.setMargin(50,50);
         toast.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+        intentMainMenu.putExtra("UserName" , userName);
+        intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentMainMenu);
+        finish();
+    }
 }
