@@ -15,8 +15,8 @@ import com.example.android.minmaxagent.db.Profile;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextUserName, editTextPassword;
-    TextView textViewSignUp;
-    Button buttonLogin, buttonGuestUser;
+    TextView textViewGuestUser;
+    Button buttonLogin, buttonSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class LoginActivity extends AppCompatActivity {
         editTextUserName = findViewById(R.id.editTextUserName);
         editTextPassword = findViewById(R.id.editTextPassword);
 
-        textViewSignUp = findViewById(R.id.textViewSignUp);
+        textViewGuestUser = findViewById(R.id.textViewGurstUser);
 
         buttonLogin = findViewById(R.id.buttonLogin);
-        buttonGuestUser = findViewById(R.id.buttonGuestUser);
+        buttonSignUp = findViewById(R.id.buttonSignUp);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        buttonGuestUser.setOnClickListener(new View.OnClickListener() {
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Forward control to Intent Sign Up
+                Intent intentSignUp = new Intent(getApplicationContext(),SignUpActivity.class);
+                startActivity(intentSignUp);
+
+
+
+            }
+        });
+
+
+        textViewGuestUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Creating new guest user in database
@@ -68,15 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentMainMenu);
-            }
-        });
-
-
-        textViewSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentSignUp = new Intent(getApplicationContext(),SignUpActivity.class);
-                startActivity(intentSignUp);
             }
         });
     }

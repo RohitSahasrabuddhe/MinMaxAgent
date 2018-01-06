@@ -129,14 +129,14 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textViewSignUp"
+            android:id="@+id/textViewGurstUser"
+            style="@style/TextWhiteBlackShadow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Not already a user, Sign Up Here!"
-            android:textSize="20sp"
-            style="@style/TextWhiteBlackShadow"/>
+            android:text="Not already a user, Play as Guest User Here!"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -158,11 +158,11 @@
             android:text="Login" />
 
         <Button
-            android:id="@+id/buttonGuestUser"
+            android:id="@+id/buttonSignUp"
             style="@style/ButtonWhiteTextMed"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Guest User" />
+            android:text="Sign Up" />
 
     </LinearLayout>
 
