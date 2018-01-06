@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.example.android.minmaxagent.db.DBHandler;
 import com.example.android.minmaxagent.db.Profile;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 import static android.widget.Toast.*;
 
 public class CreditActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class CreditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Cartwheel.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build() );
 
 
         DBHandler db = new DBHandler(this);

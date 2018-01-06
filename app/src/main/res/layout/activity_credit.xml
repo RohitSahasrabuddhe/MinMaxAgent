@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_scenery"
@@ -10,20 +11,29 @@
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
 
-    <LinearLayout
+    <com.qwerjk.better_text.MagicTextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:paddingTop="0dp">
+        android:layout_height="wrap_content"
+        android:text="It's a draw!"
+        android:textColor="#FFF"
+        android:gravity="center"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        app:foreground="@drawable/gradient_pink_square"
+        app:strokeColor="#FFF"
+        app:strokeJoinStyle="miter"
+        app:strokeWidth="2dp"
+        app:outerShadowDx="0dp"
+        app:outerShadowDy="0dp"
+        app:outerShadowColor="@color/red"
+        app:outerShadowRadius="3dp"/>
 
-        <ImageView
-            android:id="@+id/imageViewGameOverMessage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="20dp"
-            app:srcCompat="@drawable/text_game_over_lose" />
+    <ImageView
+        android:id="@+id/imageViewGameOverMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:srcCompat="@drawable/text_game_over_lose" />
 
-    </LinearLayout>
 </LinearLayout>

@@ -20,7 +20,6 @@ import com.example.android.minmaxagent.db.Profile;
 import com.example.android.minmaxagent.fruit.FruitGame;
 import com.example.android.minmaxagent.fruit.FruitNode;
 
-import java.io.IOException;
 import java.util.Locale;
 
 
@@ -293,7 +292,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    // TODO Bug (B4) Score calculation buggy, multiple clicks also mess up score
+    // TODO Bug Score calculation buggy
 
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
     {
@@ -331,7 +330,7 @@ public class GameActivity extends AppCompatActivity {
             }
 
             // Continue game if further playable
-            if(game.advanceTurn()) {
+            if(game.advanceTurnIfPossible()) {
 
                 publishProgress();
 
@@ -362,7 +361,7 @@ public class GameActivity extends AppCompatActivity {
             }
 
 
-            return game.advanceTurn();
+            return game.advanceTurnIfPossible();
 
 
         }
@@ -386,7 +385,6 @@ public class GameActivity extends AppCompatActivity {
                 int scoreDifference = gethScoreDifference(game);
 
                 tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
-
 
 
                 Intent intentGameOver = new Intent(getApplicationContext() , GameOverActivity.class);

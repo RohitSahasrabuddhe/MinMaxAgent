@@ -480,12 +480,13 @@ public class FruitGame
     }
 
     /**
-     * Updates score and Goes forward to the next turn.
-     * @return false if the game has finished.
+     * The number of empty scores are stored at every step.<br/>
+     * <br/>
+     * Update the score by computing the new number of empty squares, the difference of the two,
+     * and then adding that value to the score of the turn player.
      */
-    public boolean advanceTurn()
+    public void updateScores()
     {
-
         // Update scores
         int beforeFruits = emptySquares;
         int afterFruits = FruitUtils.numberOfEmptySquares(node.grid);
@@ -494,10 +495,19 @@ public class FruitGame
         scoreGain = scoreGain;
         scores[turnPlayer] += scoreGain;
 
-        if(!node.isTerminalNode()) {
+        // Update number of empty scores
+        emptySquares = afterFruits;
+    }
 
-            // Update number of empty scores
-            emptySquares = afterFruits;
+    /**
+     * If the game has not finished, go forward to the next turn.
+     * @return false if the game has finished.
+     */
+    public boolean advanceTurnIfPossible()
+    {
+        updateScores();
+
+        if(!node.isTerminalNode()) {
 
             // Next turn
             turnPlayer = (turnPlayer + 1) % players;
@@ -582,7 +592,8 @@ public class FruitGame
 
             }
         }
-        while(game.advanceTurn());
+
+        while(game.advanceTurnIfPossible());
 
         game.winner();
     }
