@@ -328,11 +328,11 @@ public class GameActivity extends AppCompatActivity {
                     FruitNode aiResult = game.playAIMove();
 
                     // Play a sound - cancel currently playing sound if it already is playing
-                    if (mpSound.isPlaying()) {
+                    /*if (mpSound.isPlaying()) {
                         mpSound.stop();
                         mpSound.release();
                         mpSound = MediaPlayer.create(context, R.raw.fruit);
-                    }
+                    }*/
                     mpSound.start();
 
                     if (aiResult != null) // only update game if move was valid.

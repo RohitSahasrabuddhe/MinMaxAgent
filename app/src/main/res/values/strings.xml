@@ -2,4 +2,5 @@
 
     <!-- TODO Convert all text in the game to String resources -->
     <string name="app_name">Fruit Rage</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

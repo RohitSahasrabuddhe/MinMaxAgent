@@ -20,6 +20,7 @@ android {
 
 dependencies {
 
+    implementation 'com.android.support:design:27.0.2'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

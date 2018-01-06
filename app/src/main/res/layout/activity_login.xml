@@ -24,7 +24,7 @@
         android:layout_weight="1.6"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="60dp"
+        android:paddingTop="20dp"
         android:src="@drawable/text_login" />
 
     <LinearLayout
@@ -130,7 +130,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_weight="1"
@@ -139,15 +139,15 @@
         <Button
             android:id="@+id/buttonLogin"
             style="@style/ButtonWhiteTextMed"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Login"
-            android:background="@drawable/button_red"/>
+            android:background="@drawable/button_red"
+            android:text="Login" />
 
         <Button
             android:id="@+id/buttonGuestUser"
             style="@style/ButtonWhiteTextMed"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Guest User" />
 
@@ -156,7 +156,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.25"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Not already a user, Sign Up Here!"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </LinearLayout>

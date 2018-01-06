@@ -57,4 +57,5 @@ public class Profile {
         return this.name + " - " + this.password + " - " + this.fruitType + " - " + this.gridSize;
     }
 
+
 }

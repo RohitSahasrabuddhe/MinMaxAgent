@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.minmaxagent.db.DBHandler;
@@ -14,7 +15,7 @@ import com.example.android.minmaxagent.db.Profile;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextUserName, editTextPassword;
-
+    TextView textViewSignUp;
     Button buttonLogin, buttonGuestUser;
 
     @Override
@@ -24,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextUserName = findViewById(R.id.editTextUserName);
         editTextPassword = findViewById(R.id.editTextPassword);
+
+        textViewSignUp = findViewById(R.id.textViewSignUp);
 
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonGuestUser = findViewById(R.id.buttonGuestUser);
@@ -68,6 +71,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        textViewSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentSignUp = new Intent(getApplicationContext(),SignUpActivity.class);
+                startActivity(intentSignUp);
+            }
+        });
     }
 
     private void createGuestUser(String guestUserName) {
