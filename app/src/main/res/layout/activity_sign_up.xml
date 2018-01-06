@@ -30,9 +30,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@drawable/signpost">
+        android:background="@drawable/signpost"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -49,15 +50,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@drawable/signpost">
+        android:background="@drawable/signpost"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -74,15 +76,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:background="@drawable/signpost">
+        android:background="@drawable/signpost"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/t"
@@ -100,7 +103,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
