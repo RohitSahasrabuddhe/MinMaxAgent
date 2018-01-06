@@ -66,10 +66,9 @@ public class SignUpActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
-        intentMainMenu.putExtra("UserName" , userName);
-        intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intentMainMenu);
+        Intent intentLogin = new Intent(getApplicationContext(),LoginActivity.class);
+        intentLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intentLogin);
         finish();
     }
 }
