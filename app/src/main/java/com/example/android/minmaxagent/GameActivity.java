@@ -275,6 +275,24 @@ public class GameActivity extends AppCompatActivity {
         refreshFruits();
     }
 
+    /**
+     * Sets the enabled property for a View AND all its descendants<br>
+     * (Android does not do this by default.)<br>
+     * <br>
+     * Reference:
+     * stackoverflow.com/questions/19224560/view-setenabledfalse-does-not-work-quite-right-in-android
+     */
+    public static void setEnabledAll(View v, boolean enabled) {
+        v.setEnabled(enabled);
+        v.setFocusable(enabled);
+
+        if(v instanceof ViewGroup) {
+            ViewGroup vg = (ViewGroup) v;
+            for (int i = 0; i < vg.getChildCount(); i++)
+                setEnabledAll(vg.getChildAt(i), enabled);
+        }
+    }
+
     // TODO Bug (B4) Score calculation buggy, multiple clicks also mess up score
 
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
@@ -289,8 +307,7 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-
-            glBaseGrid.setEnabled(false);
+            setEnabledAll(glBaseGrid, false);
         }
 
         @Override
@@ -313,7 +330,6 @@ public class GameActivity extends AppCompatActivity {
                 System.out.println("Human made an invalid move?!?!");
             }
 
-            // COMPLETED (16) Finish the game, Display Winner and go back to new menu screen
             // Continue game if further playable
             if(game.advanceTurn()) {
 
@@ -380,15 +396,13 @@ public class GameActivity extends AppCompatActivity {
                 intentGameOver.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentGameOver);
 
-                glBaseGrid.setEnabled(false);
-
 
             }
             else {
 
                 publishProgress();
 
-                glBaseGrid.setEnabled(true);
+                setEnabledAll(glBaseGrid, true);
 
 
             }
