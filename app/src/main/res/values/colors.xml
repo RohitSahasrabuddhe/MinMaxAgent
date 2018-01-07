@@ -14,6 +14,8 @@
     <color name="colorFruitCyan">#4dd0e1</color>
     <color name="colorFruitGrape">#6a00ff</color>
     <color name="colorFruitLime">#c6ff00</color>
+
+    <color name="blue_tint">#25303F9F</color>
     <color name="red">#fd0a12</color>
     <color name="wood">#e9c276</color>
 

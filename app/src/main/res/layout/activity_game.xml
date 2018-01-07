@@ -21,49 +21,55 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/player1Score"
+            android:id="@+id/scoreBoardP1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            style="@style/LinearLayoutScoreBoard"
             android:orientation="vertical">
 
             <com.qwerjk.better_text.MagicTextView
                 android:id="@+id/playerName"
                 style="@style/TextPlayer"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Dummy" />
 
             <TextView
                 android:id="@+id/scoreP1"
                 style="@style/TextPlayerScore"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="100"
                 android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/player2Score"
+            android:id="@+id/scoreBoardP2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            style="@style/LinearLayoutScoreBoard"
             android:orientation="vertical">
 
             <com.qwerjk.better_text.MagicTextView
                 style="@style/TextPlayer"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="AI" />
 
             <TextView
                 android:id="@+id/scoreP2"
                 style="@style/TextPlayerScore"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="100"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 

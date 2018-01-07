@@ -2,6 +2,7 @@ package com.example.android.minmaxagent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.SystemClock;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView tvTurnPlayer;
     private TextView tvScorePlayers[];
     private TextView tvPlayerName;
+    private LinearLayout[] llScoreBoards;
 
     private MediaPlayer mpSound;
 
@@ -80,6 +83,22 @@ public class GameActivity extends AppCompatActivity {
         {
             tvScorePlayers[i].setText(String.valueOf(game.scores[i]));
         }
+
+        // Color the scoreboard
+        for(int i = 0; i < game.players; i++)
+        {
+            if(i == game.turnPlayer) {
+                // llScoreBoards[i].setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.blue_tint));
+
+                llScoreBoards[i].setBackgroundResource(R.drawable.scoreboard_selected);
+            }
+            else {
+                // llScoreBoards[i].setBackgroundTintList(null);
+
+                llScoreBoards[i].setBackgroundResource(R.drawable.scoreboard);
+            }
+        }
+
 
         // Refresh the turn player display
         tvTurnPlayer.setText(String.format(Locale.getDefault(),"%s's Turn", game.playerNames[game.turnPlayer]));
@@ -174,6 +193,10 @@ public class GameActivity extends AppCompatActivity {
         tvScorePlayers = new TextView[game.players];
         tvScorePlayers[0] = findViewById(R.id.scoreP1);
         tvScorePlayers[1] = findViewById(R.id.scoreP2);
+
+        llScoreBoards = new LinearLayout[game.players];
+        llScoreBoards[0] = findViewById(R.id.scoreBoardP1);
+        llScoreBoards[1] = findViewById(R.id.scoreBoardP2);
 
         // Buttons stored in a 2D grid allows for easy indexing
         ivFruitGrid = new ImageView[BOARD_SIZE][BOARD_SIZE];
