@@ -198,24 +198,13 @@ public class GameActivity extends AppCompatActivity {
                 ivFruitCurrent.setId(btnId);
 
                 // Add frame and background
-                ivFruitCurrent.setBackgroundResource(R.drawable.grid_frame);
+                ivFruitCurrent.setBackgroundResource(R.drawable.grid_frame_single);
 
-                /*LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                lp.setMargins(4, 4, 4, 4);
-                ivFruitCurrent.setLayoutParams(lp);*/
-
-                // TODO Padding doesn't work properly same value returned
-                ivFruitCurrent.measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                int padding = ivFruitCurrent.getMeasuredWidth() / 6;
-
-                if(FruitGame.DEBUG_MODE)
-                    System.out.printf("Dimensions = %dx%d, .: Padding = %d.\n",
-                            ivFruitCurrent.getMeasuredWidth(),
-                            ivFruitCurrent.getMeasuredHeight(),
-                            padding);
-
-                ivFruitCurrent.setPadding(padding,padding,padding,padding);
+                // Padding is kept fixed for now
+                final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+                int dps = 10;
+                int pixels = (int) (dps * scale + 0.5f);
+                ivFruitCurrent.setPadding(pixels, pixels, pixels, pixels);
 
                 final Context c = this;
 
@@ -224,8 +213,8 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view)
                     {
-                        int x = (int)ivFruitCurrent.getId() / 10 - 1;
-                        int y = (int)ivFruitCurrent.getId() % 10 - 1;
+                        int x = (ivFruitCurrent.getId()) / 10 - 1;
+                        int y = (ivFruitCurrent.getId()) % 10 - 1;
 
                         // Play a sound when fruit is selected
                         mpSound.start();

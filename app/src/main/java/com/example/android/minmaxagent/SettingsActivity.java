@@ -20,6 +20,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    // TODO Bug when default settings used: grid doesn't match
+    // TODO Crash when Settings -> game -> BACK -> Settings -> game
+
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypesSeekbar, valueGridSizeSeekbar;
