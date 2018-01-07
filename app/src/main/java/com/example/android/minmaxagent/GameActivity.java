@@ -73,7 +73,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Updates the scores, turn play display, and the fruit display.
      */
-    private void refreshFruits()
+    private void refreshDisplay()
     {
         // Refresh the score for all players
         for(int i = 0; i < game.players; i++)
@@ -235,7 +235,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        refreshFruits();
+        refreshDisplay();
     }
 
     /**
@@ -259,7 +259,6 @@ public class GameActivity extends AppCompatActivity {
 
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
     {
-
         Context context;
 
         GamePlayTask(Context c)
@@ -332,7 +331,7 @@ public class GameActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... values) {
             // Refresh the display
-            refreshFruits();
+            refreshDisplay();
         }
 
         @Override
@@ -343,7 +342,7 @@ public class GameActivity extends AppCompatActivity {
             {
                 String playerWinner = game.winner();
 
-                refreshFruits();
+                refreshDisplay();
 
                 int scoreDifference = game.scores[1] - game.scores[0];
 

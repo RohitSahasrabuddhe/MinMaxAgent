@@ -22,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     // TODO Bug when default settings used: grid doesn't match
     // TODO Crash when Settings -> game -> BACK -> Settings -> game
+    // TODO Settings must have a back button
 
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
@@ -130,8 +131,8 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 updateProfileTable(userName,fruitTypeProgress,gridSizeProgress);
 
-
                 startActivity(intent);
+                finish();
             }
         });
 

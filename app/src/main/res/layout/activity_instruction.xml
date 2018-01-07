@@ -117,42 +117,14 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
         <Button
             android:id="@+id/buttonBack"
             style="@style/ButtonWhiteTextMed"
-            android:layout_width="0dp"
             android:layout_gravity="center"
             android:layout_margin="0dp"
-            android:layout_weight="5"
             android:background="@drawable/button_red"
             android:text="Back" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/buttonNewGame"
-            style="@style/ButtonWhiteTextMed"
-            android:layout_width="0dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="5"
-            android:text="New Game" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

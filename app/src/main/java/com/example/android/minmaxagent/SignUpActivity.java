@@ -57,6 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
                     storeInDatabase(profile);
 
                     startActivity(intentMainMenu);
+
+                    finish();
                 }
                 else{
                     //Make a toast
@@ -73,13 +75,4 @@ public class SignUpActivity extends AppCompatActivity {
         db.addProfile(profile);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent intentLogin = new Intent(getApplicationContext(),LoginActivity.class);
-        intentLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intentLogin);
-        finish();
-    }
 }

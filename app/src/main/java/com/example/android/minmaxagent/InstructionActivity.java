@@ -12,9 +12,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InstructionActivity extends AppCompatActivity {
 
-    Button buttonBack, buttonNewGame;
-    String userName;
-    Intent receivedIntent;
+    Button buttonBack;
+    // String userName;
+    // Intent receivedIntent;
 
     /**
      * Allow Calligraphy to set its default font.
@@ -30,34 +30,23 @@ public class InstructionActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_instruction);
 
-        receivedIntent = getIntent();
-        userName = receivedIntent.getStringExtra("UserName");
+        // receivedIntent = getIntent();
+        // userName = receivedIntent.getStringExtra("UserName");
 
         buttonBack = findViewById(R.id.buttonBack);
-        buttonNewGame = findViewById(R.id.buttonNewGame);
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+
+                /*Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
                 intentMainMenu.putExtra("UserName",userName);
                 intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intentMainMenu);
+                startActivity(intentMainMenu);*/
 
-
+                finish();
             }
         });
-
-        buttonNewGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentGameActivity = new Intent(getApplicationContext(),GameActivity.class);
-                intentGameActivity.putExtra("UserName",userName);
-                startActivity(intentGameActivity);
-            }
-        });
-
-
     }
 
 }

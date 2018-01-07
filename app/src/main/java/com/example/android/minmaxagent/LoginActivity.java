@@ -59,12 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                     intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(intentMainMenu);
+
+                    finish();
                 }
 
             }
         });
-
-
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +73,8 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intentSignUp = new Intent(getApplicationContext(),SignUpActivity.class);
                 startActivity(intentSignUp);
 
-
-
+                // In case the user wants to Login instead?
+                // finish();
             }
         });
 
@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                 intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentMainMenu);
+
+                finish();
             }
         });
     }
@@ -103,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         db.addProfile(new Profile(guestUserName,"",5,5));
 
         Profile dbProfile = db.getProfileWithName(guestUserName);
+
         /*Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
         toast.setMargin(50,50);
         toast.show();*/

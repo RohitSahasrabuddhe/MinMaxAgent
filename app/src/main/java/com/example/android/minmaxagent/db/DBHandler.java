@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 /**
  * Created by Rohit on 1/3/2018.
  */
@@ -70,7 +67,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 profile.setFruitType(Integer.parseInt(cursor.getString(2)));
                 profile.setGridSize(Integer.parseInt(cursor.getString(3)));
             }
+
+            cursor.close();
         }
+
+
         return profile;
     }
 
@@ -78,12 +79,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String password = "null";
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"PASSWORD"};
+
         Cursor cursor = db.rawQuery("select password from " + TABLE_NAME + " where name = '" + name + "'",null);
         if (cursor != null) {
             cursor.moveToFirst();
             password = cursor.getString(0);
+
+            cursor.close();
         }
+
         return password;
     }
 
@@ -102,6 +106,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 profile.setFruitType(Integer.parseInt(cursor.getString(2)));
                 profile.setGridSize(Integer.parseInt(cursor.getString(3)));
             }
+
+            cursor.close();
         }
         return profile;
     }

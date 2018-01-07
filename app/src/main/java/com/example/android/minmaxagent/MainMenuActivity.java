@@ -42,13 +42,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 userName = pName;
         }
 
-
-
+        // New Game
         buttonNewGame = findViewById(R.id.buttonNewGame);
-        buttonSettings = findViewById(R.id.buttonSettings);
-        buttonInstruction = findViewById(R.id.buttonInstructions);
-        buttonCredits = findViewById(R.id.buttonCredits);
-
         buttonNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,9 +52,13 @@ public class MainMenuActivity extends AppCompatActivity {
                 Intent intentNewGame = new Intent(getApplicationContext() , GameActivity.class);
                 intentNewGame.putExtra("UserName" , userName);
                 startActivity(intentNewGame);
+
+                finish();
             }
         });
 
+        // Settings
+        buttonSettings = findViewById(R.id.buttonSettings);
         buttonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,19 +67,27 @@ public class MainMenuActivity extends AppCompatActivity {
                 Intent intentSettings = new Intent(getApplicationContext() , SettingsActivity.class);
                 intentSettings.putExtra("UserName" , userName);
                 startActivity(intentSettings);
+
+                finish();
             }
         });
 
+        // Instructions
+        buttonInstruction = findViewById(R.id.buttonInstructions);
         buttonInstruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //Instruction button is clicked
                 Intent intentInstruction = new Intent(getApplicationContext() , InstructionActivity.class);
-                intentInstruction.putExtra("UserName" , userName);
+
+                // intentInstruction.putExtra("UserName" , userName);
                 startActivity(intentInstruction);
             }
         });
 
+        // Credits
+        buttonCredits = findViewById(R.id.buttonCredits);
         buttonCredits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

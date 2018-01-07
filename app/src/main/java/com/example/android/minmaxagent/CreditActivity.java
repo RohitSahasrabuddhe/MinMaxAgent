@@ -44,6 +44,7 @@ public class CreditActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
 
+        // wtf is this shit
         db.addProfile(new Profile("Rohit","pass",5,5));
 
         Profile storedProfile = db.getProfile();
@@ -53,16 +54,5 @@ public class CreditActivity extends AppCompatActivity {
         toast.show();
 
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
-        intentMainMenu.putExtra("UserName" , userName);
-        intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intentMainMenu);
-        finish();
     }
 }
