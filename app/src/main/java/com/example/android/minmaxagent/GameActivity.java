@@ -30,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     public int BOARD_SIZE = 6;
     public int NUMBER_OF_FRUITS = 4;
 
-    Intent receivedIntent;
+    private Intent receivedIntent;
 
     private final int[] fruitImageResource = {
             R.drawable.fruit_strawberry,
@@ -43,9 +43,6 @@ public class GameActivity extends AppCompatActivity {
             R.drawable.fruit_watermelon,
             R.drawable.fruit_lemon, };
 
-    // TODO Back button; modify to go to appropriate screen
-
-    // COMPLETED Empty grid cells don't seem to display correctly
     private final int fruitImageResourceEmpty = R.drawable.fruit_empty;
 
     private FruitGame game;
@@ -71,10 +68,8 @@ public class GameActivity extends AppCompatActivity {
         return (i+1)*10 + j+1 ;
     }
 
-    // COMPLETED Bug (B1) AI score updated after a delay
-
     /**
-     * Updates the text on each button to reflect the current fruit it holds.
+     * Updates the scores, turn play display, and the fruit display.
      */
     private void refreshFruits()
     {
@@ -88,12 +83,6 @@ public class GameActivity extends AppCompatActivity {
         tvTurnPlayer.setText(String.format(Locale.getDefault(),"%s's Turn", game.playerNames[game.turnPlayer]));
 
         // Refresh the fruit Grid - use the board of the game
-        refreshFruitGridOnly();
-    }
-
-    private void refreshFruitGridOnly()
-    {
-
         byte[][] board = game.node.grid;
 
         for(int i = 0; i < BOARD_SIZE; i++)
@@ -107,35 +96,17 @@ public class GameActivity extends AppCompatActivity {
                 // Label and Color this button based on its fruit
                 if(value == FruitNode.EMPTY)
                 {
-                    // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColorEmpty)));
                     ivFruitCurrent.setImageResource(fruitImageResourceEmpty);
-                    // btnCurrent.setText(String.valueOf(FruitNode.EMPTY_CHAR));
                     ivFruitCurrent.setOnClickListener(null);
-
-                    // Should this be invisible or disabled? idk
-                    // ivFruitCurrent.setVisibility(View.INVISIBLE);
-
                 }
                 else {
                     ivFruitCurrent.setImageResource(fruitImageResource[value]);
-                    // btnCurrent.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, fruitColor[value])));
-                    // btnCurrent.setText(String.valueOf(value));
                 }
 
             }
         }
     }
 
-    private int gethScoreDifference(FruitGame game) {
-        int difference;
-
-        difference = game.scores[1] - game.scores[0];
-
-        if(difference < 0){
-            difference *= -1;
-        }
-        return  difference;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -225,7 +196,7 @@ public class GameActivity extends AppCompatActivity {
                 lp.setMargins(4, 4, 4, 4);
                 ivFruitCurrent.setLayoutParams(lp);*/
 
-                // TODO Bug (B3) padding doesn't work properly same value returned
+                // TODO Padding doesn't work properly same value returned
                 ivFruitCurrent.measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                 int padding = ivFruitCurrent.getMeasuredWidth() / 6;
 
@@ -247,8 +218,7 @@ public class GameActivity extends AppCompatActivity {
                         int x = (int)ivFruitCurrent.getId() / 10 - 1;
                         int y = (int)ivFruitCurrent.getId() % 10 - 1;
 
-                        // COMPLETED (1) Sound can be played when fruit is selected
-                        // Play a sound
+                        // Play a sound when fruit is selected
                         mpSound.start();
 
                         new GamePlayTask(c).execute(x, y);
@@ -264,10 +234,6 @@ public class GameActivity extends AppCompatActivity {
                 layoutParams.height = 0;   // Setting height to "0dp" so height is applied instead
                 ivFruitCurrent.setLayoutParams(layoutParams);
                 glBaseGrid.addView(ivFruitCurrent);
-
-                /*gridLayout.addView(btnCurrent, new GridLayout.LayoutParams(
-                        GridLayout.spec(1, GridLayout.CENTER),
-                        GridLayout.spec(1, GridLayout.CENTER)));*/
             }
         }
 
@@ -292,7 +258,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    // TODO Bug Score calculation buggy
 
     class GamePlayTask extends AsyncTask<Integer, Void, Boolean>
     {
@@ -334,7 +299,7 @@ public class GameActivity extends AppCompatActivity {
 
                 publishProgress();
 
-                // TODO (12) AI "thinking" alloted time, avoid hardcoded sleeping
+                // TODO AI "thinking" alloted time, avoid hardcoded sleeping
                 SystemClock.sleep(1000);
 
                 // AI automatically takes a move
@@ -382,10 +347,13 @@ public class GameActivity extends AppCompatActivity {
 
                 refreshFruits();
 
-                int scoreDifference = gethScoreDifference(game);
+                int scoreDifference = game.scores[1] - game.scores[0];
 
-                tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
+                if(scoreDifference < 0) {
+                    scoreDifference *= -1;
+                }
 
+                // tvTurnPlayer.setText(String.format(Locale.getDefault(), "%s won the game!", playerWinner));
 
                 Intent intentGameOver = new Intent(getApplicationContext() , GameOverActivity.class);
                 intentGameOver.putExtra("UserName", userName);
@@ -401,7 +369,6 @@ public class GameActivity extends AppCompatActivity {
                 publishProgress();
 
                 setEnabledAll(glBaseGrid, true);
-
 
             }
         }

@@ -10,8 +10,8 @@
     android:orientation="vertical"
     tools:context="com.example.android.minmaxagent.GameActivity">
 
-    <!-- TODO (4) Font: Add Calligraphy wherever required -->
-    <!-- TODO (13) Tablet Layout - forcing Portrait mode is shabby -->
+    <!-- TODO Font: Add Calligraphy wherever required -->
+    <!-- TODO Tablet Layout - forcing Portrait mode is shabby -->
 
     <LinearLayout
         android:id="@+id/scoreLayout"

@@ -32,15 +32,19 @@ public class GameOverActivity extends AppCompatActivity {
 
         ivGameOverText = findViewById(R.id.imageViewGameOverMessage);
 
+        if (winner.isEmpty()) {
+            tvGameStat.setText("Oh well, it's a draw!");
+            ivGameOverText.setImageResource(R.drawable.text_game_over_draw);
 
-        if(winner.equals("AI")){
-            tvGameStat.setText("The AI beat you by " + scoreDifference +" points!");
+        } else if (winner.equals("AI")) {
+            tvGameStat.setText("The AI beat you by " + scoreDifference + " points!");
             ivGameOverText.setImageResource(R.drawable.text_game_over_lose);
-        }
-        else{
-            tvGameStat.setText("Congrats, you won by " + scoreDifference +" points!");
+        } else {
+            tvGameStat.setText("Congrats, you won by " + scoreDifference + " points!");
             ivGameOverText.setImageResource(R.drawable.text_game_over_win);
         }
+
+
 
 
         tvRestart = findViewById(R.id.textViewRestartButton);
@@ -53,6 +57,8 @@ public class GameOverActivity extends AppCompatActivity {
                 intentRestartGame.putExtra("UserName",userName);
                 intentRestartGame.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentRestartGame);
+
+                finish();
 
             }
         });
@@ -68,6 +74,7 @@ public class GameOverActivity extends AppCompatActivity {
                 intentQuitGame.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //Clears Activity stack till now
                 startActivity(intentQuitGame);
 
+                finish();
             }
         });
 

@@ -135,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Not already a user, Play as Guest User Here!"
+            android:text="Skip Account Creation"
             android:textSize="20sp" />
 
     </LinearLayout>

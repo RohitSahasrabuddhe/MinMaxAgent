@@ -5,8 +5,8 @@ package com.example.android.minmaxagent.db;
  */
 
 public class Profile {
-    String name,password;
-    int fruitType, gridSize;
+    private String name,password;
+    private int fruitType, gridSize;
 
     public Profile() {
     }

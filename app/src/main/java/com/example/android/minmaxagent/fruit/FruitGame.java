@@ -273,7 +273,7 @@ public class FruitGame
     private void resetTime() {
 
         // INITIALIZE TIME - this was first in the constructor
-        // TODO (12) AI "thinking" alloted time, avoid hardcoding
+        // TODO AI "thinking" alloted time, avoid hardcoding
         float durSecondsAllotted = 5.0f;
         durAllotted = FruitUtils.secondsToNanoseconds(durSecondsAllotted);
         // System.out.println("Time remaining is " + durSecondsAllotted + " seconds.");
@@ -530,23 +530,26 @@ public class FruitGame
         }
     }
 
+    /**
+     * Determines who won the game, <b>provided the game only has two players</b>:<br/>
+     * 1. Human<br/>
+     * 2. AI.<br/>
+     * <br/>
+     * If neither of them won, return empty String.
+     */
     public String winner()
     {
-        int maxIndex = -1;
-        int maxScore = Integer.MIN_VALUE;
-
-        for(int i = 0; i < scores.length; i++)
+        if(scores[1] > scores [0])
         {
-            if(scores[i] > maxScore)
-            {
-                maxIndex = i;
-                maxScore = scores[i];
-            }
+            return playerNames[1];
         }
-
-        if(DEBUG_MODE) System.out.println("The winner is player "+maxIndex+((isAI[maxIndex])?" (AI).":" (Human)."));
-
-        return this.playerNames[maxIndex];
+        else if (scores[0] > scores[1])
+        {
+            return playerNames[0];
+        }
+        else {
+            return "";
+        }
     }
 
 
