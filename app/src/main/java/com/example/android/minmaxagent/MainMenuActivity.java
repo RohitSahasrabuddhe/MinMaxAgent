@@ -1,5 +1,6 @@
 package com.example.android.minmaxagent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MainMenuActivity extends AppCompatActivity {
 
     Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits;
     Intent receivedIntent;
     String userName;
     private boolean exitFlag = false;
+
+    /**
+     * Allow Calligraphy to set its default font.
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,22 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public class InstructionActivity extends AppCompatActivity {
 
     Button buttonBack, buttonNewGame;
     String userName;
     Intent receivedIntent;
+
+    /**
+     * Allow Calligraphy to set its default font.
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/ComicRelief.ttf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build() );
 
         setContentView(R.layout.activity_instruction);
 
@@ -56,8 +60,4 @@ public class InstructionActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
 }

@@ -22,6 +22,8 @@ import com.example.android.minmaxagent.fruit.FruitNode;
 
 import java.util.Locale;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public class GameActivity extends AppCompatActivity {
 
@@ -107,6 +109,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Allow Calligraphy to set its default font.
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState)

@@ -1,5 +1,6 @@
 package com.example.android.minmaxagent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import com.example.android.minmaxagent.db.Profile;
 
 import java.util.Locale;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SettingsActivity extends AppCompatActivity {
 
     EditText valuePlayerName;
@@ -23,6 +26,14 @@ public class SettingsActivity extends AppCompatActivity {
     String userName;
     private int fruitTypeProgress = 0, gridSizeProgress = 0;
     private static final int FRUITS_SEEK_MAX = 6, GRID_SEEK_MAX = 6;
+
+    /**
+     * Allow Calligraphy to set its default font.
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

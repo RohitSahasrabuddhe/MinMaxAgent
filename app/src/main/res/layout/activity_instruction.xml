@@ -56,8 +56,7 @@
                     android:gravity="center_vertical"
                     android:text="Collect connected groups of fruits by tapping them!"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,8 +80,7 @@
                     android:gravity="center_vertical"
                     android:text="The remaining fruits fall down due to gravity."
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,8 +104,7 @@
                     android:gravity="center_vertical"
                     android:text="Beat the AI by obtaining a higher score!"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

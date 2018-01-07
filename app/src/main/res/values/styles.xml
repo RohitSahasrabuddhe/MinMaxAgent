@@ -22,11 +22,12 @@
         <item name="android:layout_height">70sp</item>
         <item name="android:layout_margin">3sp</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
         <item name="android:shadowRadius">0.01</item>
+        <item name="fontPath">fonts/Cartwheel.otf</item>
     </style>
 
     <style name="TextPlayer">

@@ -1,11 +1,14 @@
 package com.example.android.minmaxagent;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class GameOverActivity extends AppCompatActivity {
 
@@ -14,6 +17,14 @@ public class GameOverActivity extends AppCompatActivity {
     ImageView ivGameOverText;
 
     String userName, PLAYER_NAME;
+
+    /**
+     * Allow Calligraphy to set its default font.
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
