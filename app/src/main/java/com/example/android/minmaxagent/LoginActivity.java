@@ -2,6 +2,7 @@ package com.example.android.minmaxagent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUserName, editTextPassword;
     TextView textViewGuestUser;
     Button buttonLogin, buttonSignUp;
+
 
     /**
      * Allow Calligraphy to set its default font.
@@ -116,5 +118,10 @@ public class LoginActivity extends AppCompatActivity {
         String passwordInDatabase = db.getPassword(userName);
 
         return passwordInDatabase;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
