@@ -89,7 +89,8 @@ public class SettingsActivity extends AppCompatActivity {
         valueGridSizeSeekbar.setProgress(gridSizeProgress-3);
 
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
-        String gridDisplayString = String.valueOf(currentUserProfile.getGridSize()) + R.string.settings_activity_x_mark + String.valueOf(currentUserProfile.getGridSize());
+        // String gridDisplayString = String.valueOf(currentUserProfile.getGridSize()) + R.string.settings_activity_grid_size + String.valueOf(currentUserProfile.getGridSize());
+        String gridDisplayString = getResources().getString(R.string.settings_activity_grid_size, currentUserProfile.getGridSize());
         tvGridSizeProgressIndicator.setText(gridDisplayString);
         valueGridSizeSeekbar.setMax(GRID_SEEK_MAX);
 
@@ -97,7 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
                 int indicatorValue = progressValue + 3;
-                tvGridSizeProgressIndicator.setText(String.format(Locale.getDefault(), "%d×%d", indicatorValue, indicatorValue));
+                tvGridSizeProgressIndicator.setText(getResources().getString(R.string.settings_activity_grid_size, indicatorValue));
                 gridSizeProgress = indicatorValue;
             }
 

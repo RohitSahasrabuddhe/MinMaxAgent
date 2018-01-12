@@ -5,13 +5,9 @@
     <string name="title_activity_sign_up">SignUpActivity</string>
 
 
-    <string name="settings_activity_x_mark">X</string>
+    <string name="settings_activity_grid_size">%1$d\u00D7%1$d</string>
 
-
-    <string name="game_over_activity_text_draw">Oh well, it is a draw!</string>
-    <string name="game_over_activity_string_point"> points!</string>
-    <string name="game_over_activity_ai_wins">The AI beat you by </string>
-    <string name="game_over_activity_user_wins">Congrats, you won by </string>
-
-
+    <string name="game_over_activity_result_draw">Oh well, it is a draw!</string>
+    <string name="game_over_activity_result_lose">The AI beat you by %1$s point(s)...</string>
+    <string name="game_over_activity_result_win">Congrats, you won by %1$s point(s)!</string>
 </resources>
