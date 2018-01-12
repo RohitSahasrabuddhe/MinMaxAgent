@@ -1,8 +1,12 @@
 package com.example.android.minmaxagent;
 
+
+import android.app.AlertDialog;
 import android.content.Context;
+
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,17 +55,54 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = editTextUserName.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                String passwordFromDBHandler = getPasswordFromDBHandler(userName);
+                //Replacing all blank spaces in username and password
+                /*userName.replaceAll("\\s","");
+                password.replaceAll("\\s","");*/
+                try{
+                    String passwordFromDBHandler = getPasswordFromDBHandler(userName);
+                    if(password.equals(passwordFromDBHandler)){
+                        Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
+                        intentMainMenu.putExtra("UserName",userName);
 
-                if(password.equals(passwordFromDBHandler)){
-                    Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
-                    intentMainMenu.putExtra("UserName",userName);
+                        intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                    intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intentMainMenu);
+                    }
 
-                    startActivity(intentMainMenu);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);
 
+                    // set title
+                    alertDialogBuilder.setTitle("Login Failed");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Please press OK to try again \n\nPlease press Exit to exit from app")
+                            .setCancelable(false)
+                            .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("Exit",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+
+                                    finish();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
                 }
 
             }
