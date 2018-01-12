@@ -44,14 +44,17 @@ public class GameOverActivity extends AppCompatActivity {
         ivGameOverText = findViewById(R.id.imageViewGameOverMessage);
 
         if (winner.isEmpty()) {
-            tvGameStat.setText("Oh well, it's a draw!");
+            tvGameStat.setText(R.string.game_over_activity_text_draw);
             ivGameOverText.setImageResource(R.drawable.text_game_over_draw);
 
         } else if (winner.equals("AI")) {
-            tvGameStat.setText("The AI beat you by " + scoreDifference + " points!");
+            String messageAIWins = R.string.game_over_activity_ai_wins + scoreDifference + R.string.game_over_activity_string_point;
+            tvGameStat.setText(messageAIWins);
             ivGameOverText.setImageResource(R.drawable.text_game_over_lose);
         } else {
-            tvGameStat.setText("Congrats, you won by " + scoreDifference + " points!");
+            String messageUserWins = R.string.game_over_activity_user_wins + scoreDifference + R.string.game_over_activity_string_point;
+
+            tvGameStat.setText(messageUserWins);
             ivGameOverText.setImageResource(R.drawable.text_game_over_win);
         }
 

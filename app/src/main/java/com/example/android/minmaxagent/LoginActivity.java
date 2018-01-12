@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.example.android.minmaxagent.db.DBHandler;
 import com.example.android.minmaxagent.db.Profile;
@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     // create alert dialog
                     AlertDialog alertDialog = alertDialogBuilder.create();
-
                     // show it
                     alertDialog.show();
                 }
@@ -141,9 +140,10 @@ public class LoginActivity extends AppCompatActivity {
         db.deleteRecordIfExists(guestUserName);
         db.addProfile(new Profile(guestUserName,"",5,5));
 
-        Profile dbProfile = db.getProfileWithName(guestUserName);
 
-        /*Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
+
+        /*Profile dbProfile = db.getProfileWithName(guestUserName);
+        Toast toast=Toast.makeText(getApplicationContext(),"DB Profile: " + dbProfile,Toast.LENGTH_LONG);
         toast.setMargin(50,50);
         toast.show();*/
     }
@@ -153,9 +153,7 @@ public class LoginActivity extends AppCompatActivity {
 
         db.addProfile(new Profile("a","a",5,5));
 
-        String passwordInDatabase = db.getPassword(userName);
-
-        return passwordInDatabase;
+        return db.getPassword(userName);
     }
 
     @Override

@@ -20,10 +20,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    // TODO Bug when default settings used: grid doesn't match
-    // TODO Crash when Settings -> game -> BACK -> Settings -> game
-    // TODO Settings must have a back button
-
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypesSeekbar, valueGridSizeSeekbar;
@@ -57,9 +53,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
         Profile currentUserProfile = db.getProfileWithName(userName);
-        Toast toast=Toast.makeText(getApplicationContext(),"CurrentUserProfile: " + currentUserProfile,Toast.LENGTH_SHORT);
+        /*Toast toast=Toast.makeText(getApplicationContext(),"CurrentUserProfile: " + currentUserProfile,Toast.LENGTH_SHORT);
         toast.setMargin(50,50);
-        toast.show();
+        toast.show();*/
 
         fruitTypeProgress = currentUserProfile.getFruitType();
         gridSizeProgress = currentUserProfile.getGridSize();
@@ -69,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
         valueFruitTypesSeekbar.setMax(FRUITS_SEEK_MAX);
 
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
-        tvFruitTypeProgressIndicator.setText(currentUserProfile.getFruitType() + "");
+        tvFruitTypeProgressIndicator.setText(String.valueOf(currentUserProfile.getFruitType()));
 
 
 
@@ -78,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
                 // int indicatorValue = progressValue/10 + 4;
                 int indicatorValue = progressValue + 3;
-                tvFruitTypeProgressIndicator.setText(""+indicatorValue);
+                tvFruitTypeProgressIndicator.setText(String.valueOf(indicatorValue));
                 fruitTypeProgress = indicatorValue;
             }
 
@@ -93,7 +89,8 @@ public class SettingsActivity extends AppCompatActivity {
         valueGridSizeSeekbar.setProgress(gridSizeProgress-3);
 
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
-        tvGridSizeProgressIndicator.setText(currentUserProfile.getGridSize() + "X" + currentUserProfile.getGridSize() );
+        String gridDisplayString = String.valueOf(currentUserProfile.getGridSize()) + R.string.settings_activity_x_mark + String.valueOf(currentUserProfile.getGridSize());
+        tvGridSizeProgressIndicator.setText(gridDisplayString);
         valueGridSizeSeekbar.setMax(GRID_SEEK_MAX);
 
         valueGridSizeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
