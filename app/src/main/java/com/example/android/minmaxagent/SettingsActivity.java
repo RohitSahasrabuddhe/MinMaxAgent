@@ -28,8 +28,10 @@ public class SettingsActivity extends AppCompatActivity {
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
     SeekBar valueFruitTypesSeekbar, valueGridSizeSeekbar;
     String userName;
+    String PLAYER_NAME ="Dummy";
     private int fruitTypeProgress = 0, gridSizeProgress = 0;
     private static final int FRUITS_SEEK_MAX = 6, GRID_SEEK_MAX = 6;
+    private Intent receivedIntent;
 
     /**
      * Allow Calligraphy to set its default font.
@@ -45,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final Intent receivedIntent = getIntent();
+        receivedIntent = getIntent();
         userName = receivedIntent.getStringExtra("UserName");
         valuePlayerName = findViewById(R.id.valueUserName);
 
@@ -59,17 +61,17 @@ public class SettingsActivity extends AppCompatActivity {
         toast.setMargin(50,50);
         toast.show();
 
-        fruitTypeProgress = currentUserProfile.getFruitType()-3;
-        gridSizeProgress = currentUserProfile.getGridSize()-3;
+        fruitTypeProgress = currentUserProfile.getFruitType();
+        gridSizeProgress = currentUserProfile.getGridSize();
 
         valueFruitTypesSeekbar = findViewById(R.id.valueFruitType);
-        valueFruitTypesSeekbar.setProgress(fruitTypeProgress);
+        valueFruitTypesSeekbar.setProgress(fruitTypeProgress-3);
+        valueFruitTypesSeekbar.setMax(FRUITS_SEEK_MAX);
 
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
         tvFruitTypeProgressIndicator.setText(currentUserProfile.getFruitType() + "");
 
-        valueFruitTypesSeekbar.setProgress(fruitTypeProgress);
-        valueFruitTypesSeekbar.setMax(FRUITS_SEEK_MAX);
+
 
         valueFruitTypesSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -88,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         valueGridSizeSeekbar = findViewById(R.id.valueGridSize);
-        valueGridSizeSeekbar.setProgress(gridSizeProgress);
+        valueGridSizeSeekbar.setProgress(gridSizeProgress-3);
 
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
         tvGridSizeProgressIndicator.setText(currentUserProfile.getGridSize() + "X" + currentUserProfile.getGridSize() );
@@ -114,12 +116,11 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext() , GameActivity.class);
-                String playerName = valuePlayerName.getText().toString();
-                String userName = receivedIntent.getStringExtra("UserName");
+                Intent intentGame = new Intent(getApplicationContext(),GameActivity.class);
+                PLAYER_NAME = valuePlayerName.getText().toString();
 
-                intent.putExtra("UserName" , userName);
-                intent.putExtra("PlayerName" , playerName);
+                intentGame.putExtra("UserName" , userName);
+                intentGame.putExtra("PlayerName" , PLAYER_NAME);
 
                 if(fruitTypeProgress == 0){
                     fruitTypeProgress = 3;
@@ -127,9 +128,10 @@ public class SettingsActivity extends AppCompatActivity {
                 if(gridSizeProgress == 0){
                     gridSizeProgress = 3;
                 }
+
                 updateProfileTable(userName,fruitTypeProgress,gridSizeProgress);
 
-                startActivity(intent);
+                startActivity(intentGame);
                 finish();
             }
         });
@@ -143,7 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         db.updateProfile(userName,fruitTypeProgress,gridSizeProgress);
 
-        Toast toast=Toast.makeText(getApplicationContext(),"Update Complete",Toast.LENGTH_SHORT);
+        Toast toast=Toast.makeText(getApplicationContext(),"Update Complete"+"\n"+userName+"-"+ fruitTypeProgress + "-" + gridSizeProgress,Toast.LENGTH_SHORT);
         toast.setMargin(50,50);
         toast.show();
     }

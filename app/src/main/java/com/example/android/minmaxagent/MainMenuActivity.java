@@ -77,7 +77,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
                 //Instruction button is clicked
                 Intent intentInstruction = new Intent(getApplicationContext() , InstructionActivity.class);
-
                 intentInstruction.putExtra("UserName" , userName);
                 startActivity(intentInstruction);
             }
@@ -90,7 +89,6 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Logout button is clicked
                 Intent intentLogout = new Intent(getApplicationContext() , LoginActivity.class);
-                //intentLogout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentLogout);
                 finish();
             }
@@ -101,8 +99,6 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (exitFlag) {
-            Intent intentLogout = new Intent(getApplicationContext() , LoginActivity.class);
-            startActivity(intentLogout);
             finish();
         } else {
             Toast.makeText(this, "Press Back again to Log Out." , Toast.LENGTH_SHORT).show();

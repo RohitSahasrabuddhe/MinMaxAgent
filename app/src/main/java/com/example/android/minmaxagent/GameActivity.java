@@ -29,7 +29,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class GameActivity extends AppCompatActivity {
 
-    public String PLAYER_NAME = "Dummy";
+    public String PLAYER_NAME = "Guest";
     public String userName;
     public int BOARD_SIZE = 6;
     public int NUMBER_OF_FRUITS = 4;

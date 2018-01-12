@@ -88,11 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 //Creating intent to render further
                 Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
                 intentMainMenu.putExtra("UserName",guestUserName);
-                intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intentMainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intentMainMenu);
 
-                finish();
             }
         });
     }
