@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     startActivity(intentMainMenu);
 
-                    finish();
                 }
 
             }
@@ -73,8 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intentSignUp = new Intent(getApplicationContext(),SignUpActivity.class);
                 startActivity(intentSignUp);
 
-                // In case the user wants to Login instead?
-                // finish();
             }
         });
 

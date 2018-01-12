@@ -38,7 +38,6 @@ public class InstructionActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 /*Intent intentMainMenu = new Intent(getApplicationContext(),MainMenuActivity.class);
                 intentMainMenu.putExtra("UserName",userName);
                 intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

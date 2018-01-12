@@ -120,8 +120,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                 intent.putExtra("UserName" , userName);
                 intent.putExtra("PlayerName" , playerName);
-                //intent.putExtra("valueFruitTypes" , ""+fruitTypeProgress);
-                //intent.putExtra("valueGridSize" , ""+gridSizeProgress);
 
                 if(fruitTypeProgress == 0){
                     fruitTypeProgress = 3;
@@ -150,7 +148,7 @@ public class SettingsActivity extends AppCompatActivity {
         toast.show();
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -159,5 +157,5 @@ public class SettingsActivity extends AppCompatActivity {
         intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intentMainMenu);
         finish();
-    }
+    }*/
 }

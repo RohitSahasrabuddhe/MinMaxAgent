@@ -14,7 +14,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    Button buttonNewGame, buttonSettings, buttonInstruction, buttonCredits;
+    Button buttonNewGame, buttonSettings, buttonInstruction, buttonLogout;
     Intent receivedIntent;
     String userName;
     private boolean exitFlag = false;
@@ -48,12 +48,10 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //New Game button is Clicked
-
                 Intent intentNewGame = new Intent(getApplicationContext() , GameActivity.class);
                 intentNewGame.putExtra("UserName" , userName);
                 startActivity(intentNewGame);
 
-                finish();
             }
         });
 
@@ -68,7 +66,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 intentSettings.putExtra("UserName" , userName);
                 startActivity(intentSettings);
 
-                finish();
             }
         });
 
@@ -81,20 +78,20 @@ public class MainMenuActivity extends AppCompatActivity {
                 //Instruction button is clicked
                 Intent intentInstruction = new Intent(getApplicationContext() , InstructionActivity.class);
 
-                // intentInstruction.putExtra("UserName" , userName);
+                intentInstruction.putExtra("UserName" , userName);
                 startActivity(intentInstruction);
             }
         });
 
         // Credits
-        buttonCredits = findViewById(R.id.buttonCredits);
-        buttonCredits.setOnClickListener(new View.OnClickListener() {
+        buttonLogout = findViewById(R.id.buttonLogout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Credits button is clicked
-                Intent intentCredits = new Intent(getApplicationContext() , CreditActivity.class);
-                intentCredits.putExtra("UserName" , userName);
-                startActivity(intentCredits);
+                //Logout button is clicked
+                Intent intentLogout = new Intent(getApplicationContext() , LoginActivity.class);
+                intentLogout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intentLogout);
             }
         });
 

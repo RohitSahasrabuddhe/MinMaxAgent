@@ -78,11 +78,11 @@
             android:text="Instruction" />
 
         <Button
-            android:id="@+id/buttonCredits"
+            android:id="@+id/buttonLogout"
             style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_violet"
-            android:text="Credits" />
+            android:text="Logout" />
 
     </LinearLayout>
 </LinearLayout>

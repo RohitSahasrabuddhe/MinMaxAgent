@@ -381,7 +381,7 @@ public class GameActivity extends AppCompatActivity {
                 intentGameOver.putExtra("ScoreDifference",""+scoreDifference);
                 intentGameOver.putExtra("PlayerName",PLAYER_NAME);
                 startActivity(intentGameOver);
-
+                finish();
 
             }
             else {
@@ -396,7 +396,7 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -405,5 +405,5 @@ public class GameActivity extends AppCompatActivity {
         intentMainMenu.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intentMainMenu);
         finish();
-    }
+    }*/
 }

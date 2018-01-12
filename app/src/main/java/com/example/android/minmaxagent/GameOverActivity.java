@@ -92,7 +92,7 @@ public class GameOverActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -100,5 +100,5 @@ public class GameOverActivity extends AppCompatActivity {
         intentMainMenu.putExtra("UserName" , userName);
         startActivity(intentMainMenu);
         finish();
-    }
+    }*/
 }
