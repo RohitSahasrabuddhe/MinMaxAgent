@@ -48,13 +48,13 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/help_group" />
 
-                <com.qwerjk.better_text.MagicTextView
+                <TextView
                     style="@style/TextWhiteBlackShadow"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:gravity="center_vertical"
-                    android:text="Collect connected groups of fruits by tapping them!"
+                    android:text="@string/instruction_hint_connect"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -72,13 +72,13 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/help_gravity" />
 
-                <com.qwerjk.better_text.MagicTextView
+                <TextView
                     style="@style/TextWhiteBlackShadow"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:gravity="center_vertical"
-                    android:text="The remaining fruits fall down due to gravity."
+                    android:text="@string/instruction_hint_gravity"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -96,13 +96,13 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/help_score" />
 
-                <com.qwerjk.better_text.MagicTextView
+                <TextView
                     style="@style/TextWhiteBlackShadow"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:gravity="center_vertical"
-                    android:text="Beat the AI by obtaining a higher score!"
+                    android:text="@string/instruction_hint_win"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -123,7 +123,7 @@
             android:layout_gravity="center"
             android:layout_margin="0dp"
             android:background="@drawable/button_red"
-            android:text="Back" />
+            android:text="@string/button_back" />
 
     </LinearLayout>
 

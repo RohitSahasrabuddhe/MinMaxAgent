@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="User Name"
+                android:text="@string/login_username"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
@@ -62,7 +62,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/signpost_hollow"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="text"
+                android:text="@string/dummy_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Password"
+                android:text="@string/login_password"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
@@ -91,7 +92,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/signpost_hollow"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword"
+                android:text="@string/dummy_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +109,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Re-enter Password"
+                android:text="@string/signup_password_reenter"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
@@ -121,7 +123,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/signpost_hollow"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword"
+                android:text="@string/dummy_text" />
         </LinearLayout>
 
         <ImageView
@@ -149,7 +152,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:text="Sign Up" />
+            android:text="@string/button_signup" />
 
         <Space
             android:layout_width="0dp"

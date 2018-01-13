@@ -14,19 +14,26 @@ import android.widget.Toast;
 import com.example.android.minmaxagent.db.DBHandler;
 import com.example.android.minmaxagent.db.Profile;
 
-import java.util.Locale;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SettingsActivity extends AppCompatActivity {
 
     EditText valuePlayerName;
     TextView tvFruitTypeProgressIndicator, tvGridSizeProgressIndicator;
-    SeekBar valueFruitTypesSeekbar, valueGridSizeSeekbar;
+
+    SeekBar valueFruitTypesSeekbar;
+    TextView valueFruitTypesMin, valueFruitTypesMax;
+
+    SeekBar valueGridSizeSeekbar;
+    TextView valueGridSizeMin, valueGridSizeMax;
+
     String userName;
-    String PLAYER_NAME ="Dummy";
+    String PLAYER_NAME;
     private int fruitTypeProgress = 0, gridSizeProgress = 0;
-    private static final int FRUITS_SEEK_MAX = 6, GRID_SEEK_MAX = 6;
+
+    private static final int FRUITTYPES_MIN = 2, FRUITTYPES_MAX = 9;
+    private static final int GRIDSIZE_MIN = 3, GRIDSIZE_MAX = 9;
+
     private Intent receivedIntent;
 
     /**
@@ -53,27 +60,32 @@ public class SettingsActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
         Profile currentUserProfile = db.getProfileWithName(userName);
+
         /*Toast toast=Toast.makeText(getApplicationContext(),"CurrentUserProfile: " + currentUserProfile,Toast.LENGTH_SHORT);
         toast.setMargin(50,50);
         toast.show();*/
 
+        // Fruit Types
         fruitTypeProgress = currentUserProfile.getFruitType();
-        gridSizeProgress = currentUserProfile.getGridSize();
+
+        valueFruitTypesMin = findViewById(R.id.valueFruitTypeMin);
+        valueFruitTypesMin.setText(String.valueOf(FRUITTYPES_MIN));
+
+        valueFruitTypesMax = findViewById(R.id.valueFruitTypeMax);
+        valueFruitTypesMax.setText(String.valueOf(FRUITTYPES_MAX));
 
         valueFruitTypesSeekbar = findViewById(R.id.valueFruitType);
         valueFruitTypesSeekbar.setProgress(fruitTypeProgress-3);
-        valueFruitTypesSeekbar.setMax(FRUITS_SEEK_MAX);
+        valueFruitTypesSeekbar.setMax(FRUITTYPES_MAX - FRUITTYPES_MIN);
 
         tvFruitTypeProgressIndicator = findViewById(R.id.fruitTypeValueIndicator);
         tvFruitTypeProgressIndicator.setText(String.valueOf(currentUserProfile.getFruitType()));
-
-
 
         valueFruitTypesSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
                 // int indicatorValue = progressValue/10 + 4;
-                int indicatorValue = progressValue + 3;
+                int indicatorValue = progressValue + FRUITTYPES_MIN;
                 tvFruitTypeProgressIndicator.setText(String.valueOf(indicatorValue));
                 fruitTypeProgress = indicatorValue;
             }
@@ -85,20 +97,29 @@ public class SettingsActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
+        // Grid Size
+        gridSizeProgress = currentUserProfile.getGridSize();
+
+        valueGridSizeMin = findViewById(R.id.valueGridSizeMin);
+        valueGridSizeMin.setText(String.valueOf(GRIDSIZE_MIN));
+
+        valueGridSizeMax = findViewById(R.id.valueGridSizeMax);
+        valueGridSizeMax.setText(String.valueOf(GRIDSIZE_MIN));
+
         valueGridSizeSeekbar = findViewById(R.id.valueGridSize);
         valueGridSizeSeekbar.setProgress(gridSizeProgress-3);
 
         tvGridSizeProgressIndicator = findViewById(R.id.gridSizeValueIndicator);
         // String gridDisplayString = String.valueOf(currentUserProfile.getGridSize()) + R.string.settings_activity_grid_size + String.valueOf(currentUserProfile.getGridSize());
-        String gridDisplayString = getResources().getString(R.string.settings_activity_grid_size, currentUserProfile.getGridSize());
+        String gridDisplayString = getResources().getString(R.string.settings_gridsize_placeholder, currentUserProfile.getGridSize());
         tvGridSizeProgressIndicator.setText(gridDisplayString);
-        valueGridSizeSeekbar.setMax(GRID_SEEK_MAX);
+        valueGridSizeSeekbar.setMax(GRIDSIZE_MAX - GRIDSIZE_MIN);
 
         valueGridSizeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progressValue, boolean b) {
-                int indicatorValue = progressValue + 3;
-                tvGridSizeProgressIndicator.setText(getResources().getString(R.string.settings_activity_grid_size, indicatorValue));
+                int indicatorValue = progressValue + GRIDSIZE_MIN;
+                tvGridSizeProgressIndicator.setText(getResources().getString(R.string.settings_gridsize_placeholder, indicatorValue));
                 gridSizeProgress = indicatorValue;
             }
 
@@ -120,6 +141,7 @@ public class SettingsActivity extends AppCompatActivity {
                 intentGame.putExtra("UserName" , userName);
                 intentGame.putExtra("PlayerName" , PLAYER_NAME);
 
+                // TODO What does this do? is it reqd
                 if(fruitTypeProgress == 0){
                     fruitTypeProgress = 3;
                 }

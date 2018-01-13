@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="User Name"
+                android:text="@string/login_username"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -75,6 +75,7 @@
                 android:background="@drawable/signpost_hollow"
                 android:ems="10"
                 android:inputType="text"
+                android:text="@string/dummy_text"
                 android:textSize="20sp" />
 
             <Space
@@ -95,7 +96,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Password"
+                android:text="@string/login_password"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -119,6 +120,7 @@
                 android:background="@drawable/signpost_hollow"
                 android:ems="10"
                 android:inputType="textPassword"
+                android:text="@string/dummy_text"
                 android:textSize="20sp" />
 
             <Space
@@ -135,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:gravity="center"
-            android:text="Skip Account Creation"
+            android:text="@string/login_login_as_guest"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -155,14 +157,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/button_red"
-            android:text="Login" />
+            android:text="@string/button_login" />
 
         <Button
             android:id="@+id/buttonSignUp"
             style="@style/ButtonWhiteTextMed"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Sign Up" />
+            android:text="@string/button_signup" />
 
     </LinearLayout>
 

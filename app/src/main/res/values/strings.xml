@@ -2,12 +2,49 @@
 
     <!-- TODO Convert all text in the game to String resources -->
     <string name="app_name">Fruit Rage</string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
 
+    <!--Login/Signup-->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="button_login">Log In</string>
+    <string name="login_login_as_guest"><u>Login as Guest</u></string>
 
-    <string name="settings_activity_grid_size">%1$d\u00D7%1$d</string>
+    <string name="signup_password_reenter">Re-enter Password</string>
+    <string name="button_signup">Sign Up</string>
 
-    <string name="game_over_activity_result_draw">Oh well, it is a draw!</string>
-    <string name="game_over_activity_result_lose">The AI beat you by %1$s point(s)...</string>
-    <string name="game_over_activity_result_win">Congrats, you won by %1$s point(s)!</string>
+    <!--Main Menu-->
+    <string name="button_newgame">Start Game</string>
+    <string name="button_settings">Options</string>
+    <string name="button_instruction">Help</string>
+    <string name="button_logout">Log Out</string>
+
+    <!--Game-->
+    <string name="game_ai">AI</string>
+    <string name="game_turnplayer">%1$s\u2019s Turn</string>
+
+    <!--Game Over-->
+    <string name="button_quit">Quit</string>
+    <string name="button_restart">Retry</string>
+
+    <!-- Settings -->
+    <string name="settings_playername">Player Name</string>
+    <string name="settings_fruittypes">Fruit Types</string>
+    <string name="settings_gridsize">Grid Size</string>
+    <string name="settings_gridsize_placeholder">%1$d\u00D7%1$d</string>
+
+    <!--Help-->
+    <string name="instruction_hint_connect">Collect connected groups of fruits by tapping them!</string>
+    <string name="instruction_hint_gravity">The remaining fruits fall down due to gravity.</string>
+    <string name="instruction_hint_win">Beat the AI by obtaining a higher score!</string>
+    <string name="button_back">Back</string>
+
+    <!-- Game Over -->
+    <string name="gameover_result_draw">Oh well, it is a draw!</string>
+    <string name="gameover_result_lose">The AI beat you by %1$s point(s)…</string>
+    <string name="gameover_result_win">Congrats, you won by %1$s point(s)!</string>
+
+    <!--Dummy-->
+    <string name="dummy_text">&lt;text&gt;</string>
+    <string name="dummy_number">&lt;#&gt;</string>
+
 </resources>

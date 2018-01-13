@@ -28,12 +28,12 @@
             style="@style/LinearLayoutScoreBoard"
             android:orientation="vertical">
 
-            <com.qwerjk.better_text.MagicTextView
+            <TextView
                 android:id="@+id/playerName"
                 style="@style/TextPlayer"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Dummy" />
+                android:text="@string/dummy_text" />
 
             <TextView
                 android:id="@+id/scoreP1"
@@ -43,7 +43,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="100"
+                android:text="@string/dummy_number"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -55,21 +55,21 @@
             style="@style/LinearLayoutScoreBoard"
             android:orientation="vertical">
 
-            <com.qwerjk.better_text.MagicTextView
+            <TextView
                 style="@style/TextPlayer"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="AI" />
+                android:text="@string/game_ai" />
 
             <TextView
                 android:id="@+id/scoreP2"
                 style="@style/TextPlayerScore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="100"
-                android:textSize="30sp"
-                android:layout_weight="1" />
+                android:text="@string/dummy_number"
+                android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -107,7 +107,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingTop="8sp"
-            android:text="Player x's turn"
+            android:text="@string/game_turnplayer"
             android:textSize="43sp" />
     </LinearLayout>
 

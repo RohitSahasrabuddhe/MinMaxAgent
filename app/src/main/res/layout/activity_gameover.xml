@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="60dp"
-                android:text="The AI beat you by 100 points!"
+                android:text="@string/dummy_text"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
@@ -104,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Restart"
+                android:text="@string/button_restart"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
@@ -130,7 +130,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:scaleX="-1"
-                android:text="Quit"
+                android:text="@string/button_quit"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 

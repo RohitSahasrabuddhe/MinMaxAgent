@@ -15,7 +15,7 @@ import com.example.android.minmaxagent.db.Profile;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignUpActivity extends AppCompatActivity {
-    private EditText editTExtUserName, editTExtPassword, editTextPasswordMatch;
+    private EditText editTextUserName, editTextPassword, editTextPasswordMatch;
 
     private String userName, password, passwordMatch;
 
@@ -32,19 +32,24 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_signup);
 
-        editTExtUserName = findViewById(R.id.editTextUserName);
-        editTExtPassword = findViewById(R.id.editTextPassword);
+        editTextUserName = findViewById(R.id.editTextUserName);
+        editTextUserName.setText(null);
+
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setText(null);
+
         editTextPasswordMatch = findViewById(R.id.editTextPasswordMatch);
+        editTextPasswordMatch.setText(null);
 
         buttonSignUp = findViewById(R.id.buttonSignUp);
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userName = editTExtUserName.getText().toString();
-                password = editTExtPassword.getText().toString();
+                userName = editTextUserName.getText().toString();
+                password = editTextPassword.getText().toString();
                 passwordMatch = editTextPasswordMatch.getText().toString();
 
                 if(password.equals(passwordMatch)){

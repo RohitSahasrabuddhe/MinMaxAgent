@@ -11,23 +11,6 @@
     tools:context="com.example.android.minmaxagent.SettingsActivity">
 
 
-    <com.qwerjk.better_text.MagicTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="It's a draw!"
-        android:textColor="#FFF"
-        android:gravity="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        app:foreground="@drawable/gradient_pink_square"
-        app:strokeColor="#FFF"
-        app:strokeJoinStyle="miter"
-        app:strokeWidth="2dp"
-        app:outerShadowDx="0dp"
-        app:outerShadowDy="0dp"
-        app:outerShadowColor="@color/red"
-        app:outerShadowRadius="3dp"/>
 
     <ImageView
         android:id="@+id/imageViewGameOverMessage"

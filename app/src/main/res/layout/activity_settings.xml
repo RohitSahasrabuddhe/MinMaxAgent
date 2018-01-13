@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Player Name"
+                android:text="@string/settings_playername"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
@@ -87,8 +87,7 @@
                 android:backgroundTint="@android:color/white"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="textPersonName"
-                android:text="Human"
+                android:text="@string/dummy_text"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -135,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Fruit Types"
+                    android:text="@string/settings_fruittypes"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 
@@ -145,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="@string/dummy_number"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -157,12 +156,13 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/valueFruitTypeMin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="@string/dummy_number"
                     android:textSize="25sp" />
 
                 <SeekBar
@@ -175,13 +175,13 @@
                     android:progress="1" />
 
                 <TextView
-                    android:id="@+id/textViewNotUsed"
+                    android:id="@+id/valueFruitTypeMax"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="9"
+                    android:text="@string/dummy_number"
                     android:textSize="25sp" />
             </LinearLayout>
 
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Grid Size"
+                    android:text="@string/settings_gridsize"
                     android:textColor="@android:color/white"
                     android:textSize="30sp" />
 
@@ -239,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3X3"
+                    android:text="@string/settings_gridsize_placeholder"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -252,11 +252,12 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/valueGridSizeMin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="@string/dummy_number"
                     android:textSize="25sp" />
 
                 <SeekBar
@@ -269,12 +270,12 @@
                     android:progress="2" />
 
                 <TextView
-                    android:id="@+id/textViewNotUsed2"
+                    android:id="@+id/valueGridSizeMax"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="9"
+                    android:text="@string/dummy_number"
                     android:textSize="25sp" />
             </LinearLayout>
 
@@ -311,7 +312,7 @@
                 android:id="@+id/startActivityButton"
                 style="@style/ButtonWhiteTextMed"
                 android:layout_gravity="center"
-                android:text="Start Game"
+                android:text="@string/button_newgame"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="162dp" />
         </FrameLayout>

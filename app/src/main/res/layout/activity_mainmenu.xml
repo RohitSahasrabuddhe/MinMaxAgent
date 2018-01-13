@@ -61,28 +61,28 @@
             style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_blue"
-            android:text="New Game" />
+            android:text="@string/button_newgame" />
 
         <Button
             android:id="@+id/buttonSettings"
             style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_yellow"
-            android:text="Settings" />
+            android:text="@string/button_settings" />
 
         <Button
             android:id="@+id/buttonInstructions"
             style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_red"
-            android:text="Instruction" />
+            android:text="@string/button_instruction" />
 
         <Button
             android:id="@+id/buttonLogout"
             style="@style/ButtonWhiteTextMed"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_violet"
-            android:text="Logout" />
+            android:text="@string/button_logout" />
 
     </LinearLayout>
 </LinearLayout>

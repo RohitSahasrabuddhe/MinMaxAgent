@@ -100,7 +100,8 @@ public class GameActivity extends AppCompatActivity {
 
 
         // Refresh the turn player display
-        tvTurnPlayer.setText(String.format(Locale.getDefault(),"%s's Turn", game.playerNames[game.turnPlayer]));
+        String turnPlayerDisplay = getResources().getString(R.string.game_turnplayer, game.playerNames[game.turnPlayer]);
+        tvTurnPlayer.setText(turnPlayerDisplay);
 
         // Refresh the fruit Grid - use the board of the game
         byte[][] board = game.node.grid;
