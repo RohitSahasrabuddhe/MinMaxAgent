@@ -1,7 +1,7 @@
 <resources>
 
     <!-- TODO Convert all text in the game to String resources -->
-    <string name="app_name">Fruit Rage</string>
+    <string name="app_name">Super Fruit Riot</string>
 
     <!--Login/Signup-->
     <string name="login_username">Username</string>

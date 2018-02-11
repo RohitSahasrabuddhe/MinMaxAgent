@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.minmaxagent">
+    package="com.rohitsahasrabuddhe.superfruitriot">
 
     <!-- TODO Fix screen transitions -->
     <!-- TODO Company/brand name, universalize package name -->
